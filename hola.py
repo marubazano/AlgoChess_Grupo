@@ -6,3 +6,5 @@ def main():
   hola()
   
 main()
+
+hola()
