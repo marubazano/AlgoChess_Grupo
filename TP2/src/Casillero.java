@@ -17,4 +17,3 @@ public class Casillero {
     }
 
 }
-//////// meper d0nas¿  no no te per dono
