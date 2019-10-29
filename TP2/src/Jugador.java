@@ -11,5 +11,8 @@ public class Jugador {
     public void agregarUnidadAJugador(Unidad unidad) {
         this.unidades.add(unidad);
     }
+    public String obtenerNombre(){
+        return nombre;
+    }
 
 }

@@ -9,7 +9,7 @@ public class Casillero {
     }
     public void ocuparCasilleroPorUnidad() {
         this.ocupado = true;
-        this.unidad = true; //Poner unidad, cambiar el tipo de boolean a Unidad.
+        this.unidad = true; //Poner unidad, cambiar el tipo de boolean a Unidad. Modificar la prueba
     }
 
     public boolean estaOcupado(){
