@@ -1,10 +1,16 @@
 public class Casillero {
+
     private boolean ocupado;
     private boolean unidad;
+
     Casillero() {
         this.unidad = false;
         this.ocupado = false;
     }
-    //coordenadas
+
+    public boolean estaOcupado(){
+        return ocupado;
+    }
+
 }
 ////////
