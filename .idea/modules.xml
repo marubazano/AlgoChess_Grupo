@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AlgoChess_Grupo.iml" filepath="$PROJECT_DIR$/AlgoChess_Grupo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TP2/TP2.iml" filepath="$PROJECT_DIR$/TP2/TP2.iml" />
     </modules>
   </component>
 </project>
