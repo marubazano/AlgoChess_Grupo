@@ -1,15 +1,16 @@
 public class Casillero {
 
     private boolean ocupado;
-    private boolean unidad;
+    private Unidad unidad;
 
     Casillero() {
-        this.unidad = false;
+        this.unidad = null;
         this.ocupado = false;
     }
-    public void ocuparCasilleroPorUnidad() {
+
+    public void ocuparCasilleroPorUnidad(Unidad nueva) {
         this.ocupado = true;
-        this.unidad = true; //Poner unidad, cambiar el tipo de boolean a Unidad. Modificar la prueba
+        this.unidad = nueva;
     }
 
     public boolean estaOcupado(){

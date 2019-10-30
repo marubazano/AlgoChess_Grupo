@@ -6,11 +6,17 @@ public class Jugador {
 
     Jugador(String nombre) {
         this.nombre = nombre;
-        this.unidades= new ArrayList<Unidad>();
+        this.unidades = new ArrayList<>(); //Se declara asi para poner cualquier objeto hijo
     }
+
     public void agregarUnidadAJugador(Unidad unidad) {
         this.unidades.add(unidad);
     }
+
+    public int obtenerCantidadUnidades(){
+        return this.unidades.size();
+    }
+
     public String obtenerNombre(){
         return nombre;
     }
