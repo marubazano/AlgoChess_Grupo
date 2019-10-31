@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+
 public class Unidad {
     private float vida;
-    private int puntos;
+    private int costo;
+    private ArrayList<Arma> armas;
 
     Unidad() {}
 }
