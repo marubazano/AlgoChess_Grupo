@@ -1,4 +1,4 @@
-public class Curandero extends Unidad {
+public class Curandero extends Movible {
     private static final float curacion = 15; //This is constante
 
     public Curandero(){
