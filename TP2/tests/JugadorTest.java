@@ -10,7 +10,7 @@ public class JugadorTest {
 
     @Test
     public void seAgregaUnidadAlJugador(){
-        Unidad prueba = new Unidad();
+        Unidad prueba = new Unidad(0,0,null);
         pruebaJugador.agregarUnidadAJugador(prueba);
         Assert.assertEquals(pruebaJugador.obtenerCantidadUnidades(), 1);
     }

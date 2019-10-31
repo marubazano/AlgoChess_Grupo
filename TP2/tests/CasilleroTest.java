@@ -10,7 +10,7 @@ public class CasilleroTest {
 
     @Test
     public void CasilleroEstaOcupado(){
-        Unidad prueba = new Unidad();
+        Unidad prueba = new Unidad(0,0,null);
         pruebaCasillero.ocuparCasilleroPorUnidad(prueba);
         Assert.assertTrue(pruebaCasillero.estaOcupado());
     }
