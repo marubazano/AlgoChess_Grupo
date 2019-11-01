@@ -4,6 +4,7 @@ public class Unidad {
     private float vida;
     private int costo;
     private ArrayList<Arma> armas; //Guarda, no todas tienen armas, despues vemos eso
+    private Casillero casillero;
 
     protected Unidad(float vida, int costo, ArrayList<Arma> armas) {
         this.vida = vida;
@@ -18,5 +19,7 @@ public class Unidad {
     public void recibirDaño(float daño){
         this.vida -= daño;
     }
+
+    public void recibirCura(float cura) { this.vida += cura; }
 }
 
