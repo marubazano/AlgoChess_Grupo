@@ -21,5 +21,9 @@ public class Unidad {
     }
 
     public void recibirCura(float cura) { this.vida += cura; }
+
+    public void ubicar(Casillero casillero_new) {
+        this.casillero = casillero_new;
+    }
 }
 

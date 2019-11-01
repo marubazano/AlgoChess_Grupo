@@ -21,4 +21,8 @@ public class Jugador {
         return nombre;
     }
 
+    public void ubicarUnidad( Unidad unidad, Casillero casillero) {
+        unidad.ubicar(casillero);
+    }
+
 }
