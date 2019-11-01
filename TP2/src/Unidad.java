@@ -23,7 +23,12 @@ public class Unidad {
     public void recibirCura(float cura) { this.vida += cura; }
 
     public void ubicar(Casillero casillero_new) {
-        this.casillero = casillero_new;
+        if(!casillero_new.estaOcupado()) {
+            this.casillero = casillero_new;
+            casillero.ocuparCasilleroPorUnidad(this);
+        }
+        else System.out.println("Casillero esta ocupado!");
+        //si se trata de ubicar y esta ocupado lanzo excepcion
     }
 }
 

@@ -19,4 +19,20 @@ public class UnidadTest {
         Assert.assertEquals(80, prueba.obtenerVida(), 0.01); //Delta agregado para comparar flotantes, doubles
 
     }
+
+    @Test
+    public void unidadSePuedeUbicarEnCasilleroDesocupado(){
+        Casillero unCasillero = new Casillero();
+        prueba.ubicar(unCasillero);
+        Assert.assertTrue(unCasillero.estaOcupado());
+    }
+
+    //Lanzar excepcion si casillero ocupado
+    @Test
+    public void unidadNoPuedeUbicarseEnCasilleroOcupado(){
+        Casillero unCasillero = new Casillero();
+        Unidad otraUnidad = new Unidad(0,0,null);
+        prueba.ubicar(unCasillero);
+        otraUnidad.ubicar(unCasillero);
+    }
 }
