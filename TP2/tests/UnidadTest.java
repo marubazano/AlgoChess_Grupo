@@ -1,11 +1,14 @@
 import org.junit.*;
-
+/*
+   Al ser abstracta, tenemos que usar un objeto
+   tipo mock, no heredados de unidad.
+ */
 public class UnidadTest {
     private Unidad prueba;
 
     @Before
     public void setUp() {
-        prueba = new Unidad(100,10,null);
+        prueba = new SoldadoDeInfanteria();
     }
 
     @After
@@ -31,7 +34,7 @@ public class UnidadTest {
     @Test
     public void unidadNoPuedeUbicarseEnCasilleroOcupado(){
         Casillero unCasillero = new Casillero();
-        Unidad otraUnidad = new Unidad(0,0,null);
+        Unidad otraUnidad = new Catapulta();
         prueba.ubicar(unCasillero);
         otraUnidad.ubicar(unCasillero);
     }
