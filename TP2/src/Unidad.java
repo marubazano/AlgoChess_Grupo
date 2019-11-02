@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public abstract class Unidad {
     private float vida;
     private int costo;
@@ -25,7 +23,7 @@ public abstract class Unidad {
     public void ubicar(Casillero casillero_new) { //Refactorizar esto
         casillero_new.estaOcupado();
         this.casillero = casillero_new;
-        casillero.ocuparCasilleroPorUnidad(this);
+        casillero.ocuparCasilleroPorUnidad();
 
     }
 

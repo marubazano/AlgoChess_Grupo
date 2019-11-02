@@ -10,8 +10,7 @@ public class CasilleroTest {
 
     @Test
     public void estaOcupadoDevuelveTrueCuandoEstaOcupado(){
-        Unidad prueba = new Catapulta(); //Creo una unidad cualquera
-        pruebaCasillero.ocuparCasilleroPorUnidad(prueba);
+        pruebaCasillero.ocuparCasilleroPorUnidad();
         Assert.assertTrue(pruebaCasillero.estaOcupado());
     }
 }

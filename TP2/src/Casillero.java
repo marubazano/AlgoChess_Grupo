@@ -6,7 +6,7 @@ public class Casillero {
         this.ocupado = false;
     }
 
-    public void ocuparCasilleroPorUnidad(Unidad nueva) {
+    public void ocuparCasilleroPorUnidad() {
         if(!this.estaOcupado())
             this.ocupado = true;
         else System.out.println("El casillero esta ocupado! excepcion");
