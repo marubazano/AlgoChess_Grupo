@@ -34,16 +34,16 @@ public class Jugador {
         return false;
     }
 
-    public void comprarUnidad(Unidad unidad) {
+    public void comprarUnidad(Unidad unidad) throws PuntosInsuficientesException {
             try {
                 if (tieneSuficientesPuntos(unidad)) {
                     unidades.add(unidad);
                     this.puntos -= unidad.getCosto();
                 }
                 else {
-                    throw new PuntosInsuficientesExcepcion();
+                    throw new PuntosInsuficientesException();
                 }
-            } catch (PuntosInsuficientesExcepcion exception) {
+            } catch (PuntosInsuficientesException exception) {
                 System.out.println(exception.getMensaje());
             }
         }
