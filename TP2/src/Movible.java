@@ -5,5 +5,7 @@ public abstract class Movible extends Unidad {
         super(vida,costo);
     }
 
-    public abstract void mover();
+    public void mover(Coordenada coordenada){
+        ubicarEnCoordenada(coordenada);
+    };
 }

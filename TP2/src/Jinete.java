@@ -14,10 +14,4 @@ public class Jinete extends Movible {
          */
     }
 
-    @Override
-    public void mover() {
-        /*
-        bla bla bla
-         */
-    }
 }

@@ -1,11 +1,12 @@
 public abstract class Unidad {
     private float vida;
     private int costo;
-    private Casillero casillero;
+    private Coordenada coordenada;
 
     public Unidad(float vida, int costo) {
         this.vida = vida;
         this.costo = costo;
+        this.coordenada = null; //Poner las coordenadas para cuando atacamos, calcular las coordenadas a las que hace daño desde el lugar en que está la unidad
     }
 
     public float obtenerVida(){
@@ -25,6 +26,14 @@ public abstract class Unidad {
             //LANZAR EXCEPCIÓN DE QUE ESTÁ OCUPADO
         }
         casillero.ocuparCasilleroPorUnidad(this);
+    }
+
+    public void ubicarEnCoordenada(Coordenada coordenada) {
+        this.coordenada = coordenada;
+    }
+
+    public Coordenada obtenerCoordenada() {
+        return this.coordenada;
     }
 
     public int getCosto(){

@@ -71,5 +71,9 @@ public class Jugador {
             e.getMensaje();
         }
     }
+
+    public void mover(Unidad unidad, Direccion direccion) {
+        tablero.mover(unidad, direccion);
+    }
 }
 

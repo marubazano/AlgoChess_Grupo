@@ -39,6 +39,14 @@ public class Tablero {
             throw new CasilleroOcupadoException();
         }
         casillero.ocuparCasilleroPorUnidad(unidad);
+        unidad.ubicarEnCoordenada(coordenada);
+    }
+
+    public void mover(Unidad unidad, Direccion direccion) {
+        //calcular la nueva Coordenada
+        Coordenada coordenadaActual = unidad.obtenerCoordenada();
+        Coordenada nuevaCoordenada = coordenadaActual.sumar(direccion);
+        unidad.ubicarEnCoordenada(nuevaCoordenada);
     }
 
    /* public boolean moverUnidad (Unidad unidad, Coordenada coordenada){

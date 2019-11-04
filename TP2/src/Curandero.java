@@ -14,10 +14,4 @@ public class Curandero extends Movible {
         curarUnidadAliada(unidad);
     }
 
-    @Override
-    public void mover() {
-        /*
-        bla bla bla
-         */
-    }
 }

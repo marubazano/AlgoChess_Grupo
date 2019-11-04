@@ -13,10 +13,5 @@ public class SoldadoDeInfanteria extends Movible {
          */
     }
 
-    @Override
-    public void mover() {
-        /*
-        bla bla bla
-         */
-    }
+
 }
