@@ -2,7 +2,7 @@ import org.junit.*;
 
 public class JugadorTest {
     private Tablero tablero = new Tablero();
-    private Jugador pruebaJugador = new Jugador("Juan", tablero);
+    private Jugador pruebaJugador = new Jugador("Juan", tablero, 1);
 
     @Test
     public void JugadorSeCreaConNombre(){

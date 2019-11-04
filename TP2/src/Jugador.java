@@ -5,12 +5,14 @@ public class Jugador {
     private ArrayList<Unidad> unidades;
     private Tablero tablero;
     private int puntos;
+    private int nroJugador; // Valdra 1 o 2, segun el numero del jugador
 
-    public Jugador(String nombre, Tablero tablero) {
+    public Jugador(String nombre, Tablero tablero, int nroJugador) {
         this.nombre = nombre;
         this.unidades = new ArrayList<>(); //Se declara así para poner cualquier objeto hijo
         this.tablero = tablero;
         this.puntos = 20;
+        this.nroJugador = nroJugador;
     }
 
     public void atacarUnidadEnemiga(Unidad unidad_aliada, Unidad unidad_enemiga, Jugador enemigo) {
@@ -81,17 +83,28 @@ public class Jugador {
         tratarException(unidad);
     }
 
-    public void ubicarUnidad(Tablero tablero, Unidad unidad, Coordenada coordenada){
+    public boolean ubicarUnidad(Tablero tablero, Unidad unidad, Coordenada coordenada){
         try{
+            if (!ubicarUnidadEnLadoDelTableroCorrespondiente(coordenada)) return false;
             tablero.ubicarUnidad(unidad, coordenada);
         }
         catch(CasilleroOcupadoException e){
             e.getMensaje();
         }
+        return true;
     }
 
     public void mover(Unidad unidad, Direccion direccion) {
         tablero.mover(unidad, direccion);
+    }
+
+    public boolean ubicarUnidadEnLadoDelTableroCorrespondiente(Coordenada coordenada){
+        if (this.nroJugador==1){
+            if (coordenada.obtenerVertical()<=10) return true;
+            return false;
+        }
+        if (coordenada.obtenerVertical()>10) return true;
+        return false;
     }
 }
 

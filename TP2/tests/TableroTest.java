@@ -25,6 +25,15 @@ public class TableroTest {
         pruebaTablero.ubicarUnidad(otraUnidad, unaCoordenada);
     }
 
+    @Test
+    public void JugadorNoPuedeUbicarUnidadEnSectorEnemigo(){
+        Jugador unJugador = new Jugador("juan", pruebaTablero, 1);
+        Unidad unaUnidad = new Catapulta();
+        Coordenada coordenada = new Coordenada(2,15);
+        unJugador.ubicarUnidad(pruebaTablero, unaUnidad, coordenada);
+        Assert.assertFalse(unJugador.ubicarUnidad(pruebaTablero, unaUnidad, coordenada));
+    }
+
 
     /*@Test
     public void unidadSeMueveDePosicion(){
