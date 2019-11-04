@@ -23,6 +23,8 @@ public class Jugador {
         return nombre;
     }
 
+    public int obtenerPuntos() { return this.puntos; }
+
     public void ubicarUnidad( Unidad unidad, Casillero casillero) {
         unidad.ubicar(casillero);
     }
@@ -34,18 +36,25 @@ public class Jugador {
         return false;
     }
 
-    public void comprarUnidad(Unidad unidad) throws PuntosInsuficientesException {
-            try {
-                if (tieneSuficientesPuntos(unidad)) {
-                    unidades.add(unidad);
-                    this.puntos -= unidad.getCosto();
-                }
-                else {
-                    throw new PuntosInsuficientesException();
-                }
-            } catch (PuntosInsuficientesException exception) {
-                System.out.println(exception.getMensaje());
-            }
+    public void comprar(Unidad unidad) throws PuntosInsuficientesException{
+        if (tieneSuficientesPuntos(unidad)) {
+            unidades.add(unidad);
+            this.puntos -= unidad.getCosto();
+        }
+        else {
+            throw new PuntosInsuficientesException();
         }
     }
+    public void tratarException(Unidad unidad) {
+        try {
+            this.comprar(unidad);
+        } catch (PuntosInsuficientesException exception) {
+            System.out.println(exception.getMensaje());
+        }
+    }
+
+    public void comprarUnidad(Unidad unidad) {
+        tratarException(unidad);
+    }
+}
 
