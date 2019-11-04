@@ -12,4 +12,5 @@ notifications:
     recipients:
       - marinabazano@gmail.com
       - lgiampieri62@gmail.com
+      - hojmanjoaquin@gmail.com
     on_failure: always
