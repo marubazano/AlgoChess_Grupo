@@ -27,6 +27,10 @@ public abstract class Unidad {
 
     }
 
+    public int getCosto(){
+        return this.costo;
+    }
+
     public abstract void realizarAccion(Unidad unidad);
 }
 
