@@ -1,19 +1,24 @@
 public class Casillero {
 
-    private boolean ocupado;
+    private Unidad unidadQueOcupa;
+    private boolean estaOcupado;
 
-    Casillero() {
-        this.ocupado = false;
+    public Casillero() {
+        this.unidadQueOcupa = null;
+        this.estaOcupado = false;
     }
 
-    public void ocuparCasilleroPorUnidad() {
-        if(!this.estaOcupado())
-            this.ocupado = true;
-        else System.out.println("El casillero esta ocupado! excepcion");
+    public boolean estaOcupado() {
+        return (estaOcupado);
     }
 
-    public boolean estaOcupado(){
-        return ocupado;
+    public void ocuparCasilleroPorUnidad(Unidad unidad) {
+        this.unidadQueOcupa = unidad;
+        this.estaOcupado = true;
     }
 
+    public void vaciarCasillero() {
+        this.unidadQueOcupa = null;
+        this.estaOcupado = false;
+    }
 }
