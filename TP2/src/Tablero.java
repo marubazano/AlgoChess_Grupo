@@ -1,5 +1,3 @@
-import sun.tools.jconsole.Tab;
-
 import java.util.HashMap;
 
 public class Tablero {
@@ -16,6 +14,16 @@ public class Tablero {
                 this.tablero.put(coordenada, casillero);
             }
         }
+    }
+    public boolean tableroEstaVacio(){
+        for (int x = 1; x < CANT_FILAS + 1; x++) {
+            for (int y = 1; y < CANT_COLUMNAS + 1; y++) {
+                Coordenada coordenada = new Coordenada(x, y);
+                Casillero casillero= obtenerCasillero(coordenada);
+                if (casillero.estaOcupado()){return false;}
+            }
+        }
+        return true;
     }
 
     public Casillero obtenerCasillero(Coordenada coordenada) {    //fijarse EXCEPCIÓN
