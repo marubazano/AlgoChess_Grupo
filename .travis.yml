@@ -13,4 +13,5 @@ notifications:
       - marinabazano@gmail.com
       - lgiampieri62@gmail.com
       - hojmanjoaquin@gmail.com
+      - fedelececilia@gmail.com
     on_failure: always
