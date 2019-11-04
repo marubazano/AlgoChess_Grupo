@@ -23,7 +23,7 @@ public abstract class Unidad {
     public void ubicar(Casillero casillero_new) { //Refactorizar esto
         casillero_new.estaOcupado();
         this.casillero = casillero_new;
-        casillero.ocuparCasilleroPorUnidad();
+        casillero.ocuparCasilleroPorUnidad(this);
 
     }
 
