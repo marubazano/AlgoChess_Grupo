@@ -2,6 +2,7 @@ import org.junit.*;
 
 public class CasilleroTest {
     private Casillero pruebaCasillero = new Casillero();
+    private Unidad unidad = new Jinete();
 
     @Test
     public void CasilleroSeCreaVacio(){
@@ -10,7 +11,7 @@ public class CasilleroTest {
 
     @Test
     public void estaOcupadoDevuelveTrueCuandoEstaOcupado(){
-        pruebaCasillero.ocuparCasilleroPorUnidad();
+        pruebaCasillero.ocuparCasilleroPorUnidad(unidad);
         Assert.assertTrue(pruebaCasillero.estaOcupado());
     }
 }

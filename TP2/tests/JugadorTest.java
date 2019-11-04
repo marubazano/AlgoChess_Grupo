@@ -1,7 +1,8 @@
 import org.junit.*;
 
 public class JugadorTest {
-    private Jugador pruebaJugador = new Jugador("Juan");
+    private Tablero tablero = new Tablero();
+    private Jugador pruebaJugador = new Jugador("Juan", tablero);
 
     @Test
     public void JugadorSeCreaConNombre(){
@@ -49,5 +50,19 @@ public class JugadorTest {
         pruebaJugador.comprarUnidad(jinete);
         pruebaJugador.comprarUnidad(soldado);
         Assert.assertEquals(pruebaJugador.obtenerCantidadUnidades(), 3);
+    }
+
+    @Test(expected = PuntosInsuficientesException.class)
+    public void tiraExceptionCuandoNoTieneSuficientesPuntos() throws PuntosInsuficientesException {
+        Unidad catapulta_1 = new Catapulta();
+        Unidad catapulta_2 = new Catapulta();
+        Unidad catapulta_3 = new Catapulta();
+        Unidad soldado = new SoldadoDeInfanteria();
+        Unidad catapulta_4 = new Catapulta();
+        pruebaJugador.comprarUnidad(catapulta_1);
+        pruebaJugador.comprarUnidad(catapulta_2);
+        pruebaJugador.comprarUnidad(catapulta_3);
+        pruebaJugador.comprarUnidad(soldado);
+        pruebaJugador.comprar(catapulta_4);
     }
 }
