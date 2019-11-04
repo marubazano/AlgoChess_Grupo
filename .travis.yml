@@ -1,1 +1,15 @@
 language: java
+jdk:
+  - openjdk8
+
+script:
+  - mvn test
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email:
+    recipients:
+      - marinabazano@gmail.com
+      - lgiampieri62@gmail.com
+    on_failure: always
