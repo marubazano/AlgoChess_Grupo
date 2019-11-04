@@ -32,4 +32,22 @@ public class JugadorTest {
     public void jugadorNoTieneUnidades(){
         Assert.assertEquals(pruebaJugador.obtenerCantidadUnidades(), 0);
     }
+
+    @Test
+    public void puedeComprarUnaUnidad() {
+        Unidad catapulta = new Catapulta();
+        pruebaJugador.comprarUnidad(catapulta);
+        Assert.assertEquals(pruebaJugador.obtenerCantidadUnidades(), 1);
+    }
+
+    @Test
+    public void puedeComprarVariasUnidades() {
+        Unidad catapulta = new Catapulta();
+        Unidad jinete = new Jinete();
+        Unidad soldado = new SoldadoDeInfanteria();
+        pruebaJugador.comprarUnidad(catapulta);
+        pruebaJugador.comprarUnidad(jinete);
+        pruebaJugador.comprarUnidad(soldado);
+        Assert.assertEquals(pruebaJugador.obtenerCantidadUnidades(), 3);
+    }
 }
