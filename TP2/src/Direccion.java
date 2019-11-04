@@ -15,4 +15,11 @@ public enum Direccion {
         this.x = x;
         this.y = y;
     }
+
+ /*  public boolean EstanAlLado(Coordenada unidad1, Coordenada unidad2){
+       if (unidad1+ABAJO==unidad2 || unidad1+ARRIBA==unidad2 || unidad1+DERECHA==unidad2 ||unidad1+IZQUIERDA==unidad2 ||unidad1+DIAGONALSUPERIORIZQUIERDA==unidad2 ||unidad1+DIAGONALSUPERIORDERECHA==unidad2 ||unidad1+DIAGONALINFERIORIZQUIERDA==unidad2 ||unidad1+DIAGONALINFERIORDERECHA==unidad2 ||)
+        {return true;}
+        return false;
+    } El peor if que veran en sus vidas, pero no se me ocurre otra forma. No funciona porque no puedo sumar un
+    elemento Coordenada con un elemento Direccion*/
 }

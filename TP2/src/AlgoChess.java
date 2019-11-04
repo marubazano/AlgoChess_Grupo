@@ -15,6 +15,9 @@ public class AlgoChess {
         //instanciar al this.jugadori que corresponde y que ubique sus fichas. El tema es que eso
         //repite código.
 
+        //soy joaco y opino que hay que hacer una funcion generica para los dos jugadores. Si repetimos codigo queda
+        // como "mala practica".
+
         this.jugador1 = new Jugador(nombreJugador1, this.tablero);
         this.jugador2 = new Jugador(nombreJugador2, this.tablero);
     }*/
