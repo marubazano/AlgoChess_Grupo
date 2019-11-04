@@ -2,6 +2,7 @@ public abstract class Unidad {
     private float vida;
     private int costo;
     private Coordenada coordenada;
+    private Arma arma;
 
     public Unidad(float vida, int costo) {
         this.vida = vida;
@@ -38,6 +39,14 @@ public abstract class Unidad {
 
     public int getCosto(){
         return this.costo;
+    }
+
+    public int getDañoDeArma() {
+        return this.arma.getDaño();
+    }
+
+    public float getVida() {
+        return this.vida;
     }
 
     public abstract void realizarAccion(Unidad unidad);

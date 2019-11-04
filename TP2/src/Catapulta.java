@@ -1,5 +1,5 @@
 public class Catapulta extends Unidad {
-    private Arma municion;
+    public Arma municion;
 
     public Catapulta() {
         super(50, 5); //Llamo al constructor de unidad con los parametros correspondientes
@@ -10,5 +10,9 @@ public class Catapulta extends Unidad {
         /*
         bla bla bla
          */
+    }
+
+    public int getDañoDeArma() {
+        return this.municion.getDaño();
     }
 }

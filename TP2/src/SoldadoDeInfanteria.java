@@ -1,6 +1,6 @@
 public class SoldadoDeInfanteria extends Movible {
 
-    private Arma punios; //Pelea con los puños?
+    private Arma puños; //Pelea con los puños?
 
     public SoldadoDeInfanteria(){
         super(100,1);
@@ -11,6 +11,10 @@ public class SoldadoDeInfanteria extends Movible {
         /*
         bla bla bla
          */
+    }
+
+    public int getDañoDeArma() {
+        return this.puños.getDaño();
     }
 
 

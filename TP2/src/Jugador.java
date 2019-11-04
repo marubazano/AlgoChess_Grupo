@@ -13,8 +13,23 @@ public class Jugador {
         this.puntos = 20;
     }
 
+    public void atacarUnidadEnemiga(Unidad unidad_aliada, Unidad unidad_enemiga, Jugador enemigo) {
+        unidad_enemiga.recibirDaño(unidad_aliada.getDañoDeArma());
+        if (unidad_enemiga.getVida() <= 0) {
+            enemigo.eliminarUnidadDelJugador(unidad_enemiga);
+        }
+    }
+
+    public void curarUnidadAliada(Curandero curandero, Unidad unidad_aliada) {
+        curandero.curarUnidadAliada(unidad_aliada);
+    }
+
     public void agregarUnidadAJugador(Unidad unidad) {
         this.unidades.add(unidad);
+    }
+
+    public void eliminarUnidadDelJugador(Unidad unidad) {
+        this.unidades.remove(unidad);
     }
 
     public int obtenerCantidadUnidades(){
@@ -33,6 +48,9 @@ public class Jugador {
         Casillero casilleroAUbicar = this.tablero.obtenerCasillero(coordenada);
         unidad.ubicar(casilleroAUbicar); //ESTO LANZA LA EXCEPCIÓN, SINO QUE LA LANCE ubicarUnidad
     }
+
+
+    //Métodos para comprar
 
     public boolean tieneSuficientesPuntos(Unidad unidad) {
         if (unidad.getCosto() <= this.puntos) {
