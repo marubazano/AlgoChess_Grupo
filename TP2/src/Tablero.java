@@ -38,8 +38,12 @@ public class Tablero {
         return true;
     }
 
-    public void moverUnidad (Unidad unidad, Coordenada coordenada){
+    public boolean moverUnidad (Unidad unidad, Coordenada coordenada){
         Casillero casillero= obtenerCasillero(coordenada);
-        if(ubicarUnidad(unidad,coordenada)){ casillero.vaciarCasillero();};
+        if(ubicarUnidad(unidad,coordenada)){
+            casillero.vaciarCasillero();
+            return true;
+        }
+        return false;
     }
 }
