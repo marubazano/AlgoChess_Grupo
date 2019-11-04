@@ -15,35 +15,38 @@ public class Tablero {
             }
         }
     }
+
     public boolean tableroEstaVacio(){
-        for (int x = 1; x < CANT_FILAS + 1; x++) {
-            for (int y = 1; y < CANT_COLUMNAS + 1; y++) {
-                Coordenada coordenada = new Coordenada(x, y);
-                Casillero casillero= obtenerCasillero(coordenada);
-                if (casillero.estaOcupado()){return false;}
-            }
+        for(Casillero actual : tablero.values()) {
+            if (actual.estaOcupado()) return false;
         }
         return true;
     }
 
-    public Casillero obtenerCasillero(Coordenada coordenada) {    //fijarse EXCEPCIÓN
-        return this.tablero.get(coordenada);
+    public Casillero obtenerCasillero(Coordenada coordenada) {
+        //fijarse EXCEPCIÓN
+        for(Coordenada actual : tablero.keySet()){
+            if(actual.compararCoordenada(coordenada))
+                return tablero.get(actual);
+        }
+        return null;
+        //Si no esta el casillero, las coordenadas ingresadas estan mal, y hay que mandar exception
     }
 
-    public boolean ubicarUnidad (Unidad unidad, Coordenada coordenada){
-        Casillero casillero= obtenerCasillero(coordenada);
-        if (casillero.estaOcupado()){return false;}
+    public void ubicarUnidad (Unidad unidad, Coordenada coordenada) throws CasilleroOcupadoException {
+        Casillero casillero = obtenerCasillero(coordenada);
+        if (casillero.estaOcupado()){
+            throw new CasilleroOcupadoException();
+        }
         casillero.ocuparCasilleroPorUnidad(unidad);
-        this.tablero.put(coordenada,casillero);
-        return true;
     }
 
-    public boolean moverUnidad (Unidad unidad, Coordenada coordenada){
-        Casillero casillero= obtenerCasillero(coordenada);
+   /* public boolean moverUnidad (Unidad unidad, Coordenada coordenada){
+        Casillero casillero = obtenerCasillero(coordenada);
         if(ubicarUnidad(unidad,coordenada)){
             casillero.vaciarCasillero();
             return true;
         }
         return false;
-    }
+    }*/ // Este metodo no va aca viejo
 }

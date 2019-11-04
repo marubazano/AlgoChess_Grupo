@@ -6,4 +6,16 @@ public class Coordenada {
         this.x = x;
         this.y = y;
     }
+
+    public int obtenerHorizontal(){
+        return x;
+    }
+
+    public int obtenerVertical(){
+        return y;
+    }
+
+    public boolean compararCoordenada(Coordenada coordenada){
+        return (this.x == coordenada.obtenerHorizontal() && this.y == coordenada.obtenerVertical());
+    }
 }

@@ -65,4 +65,15 @@ public class JugadorTest {
         pruebaJugador.comprarUnidad(soldado);
         pruebaJugador.comprar(catapulta_4);
     }
+
+    @Test
+    public void jugadorPuedeUbicarUnidadEnCasilleroVacio(){
+        Unidad unaUnidad = new Catapulta();
+        Coordenada coordenada = new Coordenada(2,4);
+        Tablero tablero = new Tablero();
+        Assert.assertFalse(tablero.obtenerCasillero(coordenada).estaOcupado());
+        pruebaJugador.ubicarUnidad(tablero, unaUnidad, coordenada);
+        Assert.assertTrue(tablero.obtenerCasillero(coordenada).estaOcupado());
+    }
+
 }

@@ -62,5 +62,14 @@ public class Jugador {
     public void comprarUnidad(Unidad unidad) {
         tratarException(unidad);
     }
+
+    public void ubicarUnidad(Tablero tablero, Unidad unidad, Coordenada coordenada){
+        try{
+            tablero.ubicarUnidad(unidad, coordenada);
+        }
+        catch(CasilleroOcupadoException e){
+            e.getMensaje();
+        }
+    }
 }
 
