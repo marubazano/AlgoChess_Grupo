@@ -10,8 +10,13 @@ public class Tablero {
         for (int x = 1; x < CANT_FILAS + 1; x++) {
             for (int y = 1; y < CANT_COLUMNAS + 1; y++) {
                 Coordenada coordenada = new Coordenada(x, y);
-                this.casilleros.put(coordenada, null);
+                Casillero casillero = new Casillero();
+                this.casilleros.put(coordenada, casillero);
             }
         }
+    }
+
+    public Casillero obtenerCasillero(Coordenada coordenada) {    //fijarse EXCEPCIÓN
+        return this.casilleros.get(coordenada);
     }
 }

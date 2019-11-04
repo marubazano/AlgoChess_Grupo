@@ -20,11 +20,11 @@ public abstract class Unidad {
         this.vida += cura;
     }
 
-    public void ubicar(Casillero casillero_new) { //Refactorizar esto
-        casillero_new.estaOcupado();
-        this.casillero = casillero_new;
+    public void ubicar(Casillero casillero) { //Refactorizar esto
+        if (casillero.estaOcupado()) {
+            //LANZAR EXCEPCIÓN DE QUE ESTÁ OCUPADO
+        }
         casillero.ocuparCasilleroPorUnidad(this);
-
     }
 
     public int getCosto(){

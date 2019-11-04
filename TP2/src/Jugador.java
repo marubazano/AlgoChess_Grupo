@@ -3,11 +3,13 @@ import java.util.ArrayList;
 public class Jugador {
     private String nombre;
     private ArrayList<Unidad> unidades;
+    private Tablero tablero;
     private int puntos;
 
-    Jugador(String nombre) {
+    public Jugador(String nombre, Tablero tablero) {
         this.nombre = nombre;
-        this.unidades = new ArrayList<>(); //Se declara asi para poner cualquier objeto hijo
+        this.unidades = new ArrayList<>(); //Se declara así para poner cualquier objeto hijo
+        this.tablero = tablero;
         this.puntos = 20;
     }
 
@@ -23,10 +25,13 @@ public class Jugador {
         return nombre;
     }
 
-    public int obtenerPuntos() { return this.puntos; }
+    public int obtenerPuntos() {
+        return this.puntos;
+    }
 
-    public void ubicarUnidad( Unidad unidad, Casillero casillero) {
-        unidad.ubicar(casillero);
+    public void ubicarUnidad(Unidad unidad, Coordenada coordenada) {
+        Casillero casilleroAUbicar = this.tablero.obtenerCasillero(coordenada);
+        unidad.ubicar(casilleroAUbicar); //ESTO LANZA LA EXCEPCIÓN, SINO QUE LA LANCE ubicarUnidad
     }
 
     public boolean tieneSuficientesPuntos(Unidad unidad) {
@@ -45,6 +50,7 @@ public class Jugador {
             throw new PuntosInsuficientesException();
         }
     }
+
     public void tratarException(Unidad unidad) {
         try {
             this.comprar(unidad);
