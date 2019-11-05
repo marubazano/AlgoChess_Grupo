@@ -23,7 +23,7 @@
         <testOutputDirectory>target/test-classes</testOutputDirectory>
         <sourceDirectory>TP2/src</sourceDirectory>
         <scriptSourceDirectory>TP2/src</scriptSourceDirectory>
-        <testSourceDirectory>src/test/java</testSourceDirectory>
+        <testSourceDirectory>TP2/tests</testSourceDirectory>
         <resources>
             <resource>
                 <directory>TP2/src</directory>
