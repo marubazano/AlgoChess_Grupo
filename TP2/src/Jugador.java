@@ -6,6 +6,7 @@ public class Jugador {
     private Tablero tablero;
     private int puntos;
     private int nroJugador; // Valdra 1 o 2, segun el numero del jugador
+    private String estado;
 
     public Jugador(String nombre, Tablero tablero, int nroJugador) {
         this.nombre = nombre;
@@ -13,6 +14,7 @@ public class Jugador {
         this.tablero = tablero;
         this.puntos = 20;
         this.nroJugador = nroJugador;
+        this.estado="JUGANDO";
     }
 
     /*
@@ -33,6 +35,7 @@ public class Jugador {
 
     public void eliminarUnidadDelJugador(Unidad unidad) {
         this.unidades.remove(unidad);
+        if (unidades.size()==0) this.estado="PERDEDOR";
     }
 
     public int obtenerCantidadUnidades(){
@@ -81,6 +84,7 @@ public class Jugador {
     public boolean ubicarUnidad(Unidad unidad, Coordenada coordenada){
         try{
             if (!ubicarUnidadEnLadoDelTableroCorrespondiente(coordenada)) return false;
+            this.unidades.add(unidad);
             tablero.ubicarUnidad(unidad, coordenada);
         }
         catch(CasilleroOcupadoException e){
@@ -101,5 +105,6 @@ public class Jugador {
         if (coordenada.obtenerVertical()>10) return true;
         return false;
     }
+    public String obtenerEstado(){ return this.estado;}
 }
 

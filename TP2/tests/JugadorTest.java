@@ -113,4 +113,29 @@ public class JugadorTest {
         }
     }
 
+    @Test
+    public void jugadorSeQuedaSinUnidadesEsPerdedor(){
+        Assert.assertEquals(pruebaJugador.obtenerEstado(),"JUGANDO");
+        Jinete jinete = new Jinete();
+        Coordenada coordenada = new Coordenada(4,6);
+        pruebaJugador.ubicarUnidad(jinete, coordenada);
+        pruebaJugador.eliminarUnidadDelJugador(jinete);
+        Assert.assertEquals(pruebaJugador.obtenerEstado(),"PERDEDOR");
+    }
+
+    @Test
+    public void jugadorSeQuedaSinUnidadesEsPerdedorConVariasUnidades(){
+        Assert.assertEquals(pruebaJugador.obtenerEstado(),"JUGANDO");
+        Jinete jinete = new Jinete();
+        Coordenada coordenada = new Coordenada(4,6);
+        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
+        Coordenada coordenada2= new Coordenada(1,2);
+        pruebaJugador.ubicarUnidad(jinete, coordenada);
+        pruebaJugador.ubicarUnidad(soldado,coordenada2);
+        pruebaJugador.eliminarUnidadDelJugador(jinete);
+        Assert.assertEquals(pruebaJugador.obtenerEstado(),"JUGANDO");
+        pruebaJugador.eliminarUnidadDelJugador(soldado);
+        Assert.assertEquals(pruebaJugador.obtenerEstado(),"PERDEDOR");
+    }
+
 }
