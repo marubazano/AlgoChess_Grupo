@@ -1,8 +1,4 @@
-import com.sun.javafx.geom.DirtyRegionContainer;
-import org.junit.Assert;
-import org.junit.Test;
-
-import static org.junit.Assert.*;
+import org.junit.*;
 
 public class CoordenadaTest {
     /*
