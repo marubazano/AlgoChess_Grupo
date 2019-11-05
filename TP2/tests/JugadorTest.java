@@ -70,10 +70,47 @@ public class JugadorTest {
     public void jugadorPuedeUbicarUnidadEnCasilleroVacio(){
         Unidad unaUnidad = new Catapulta();
         Coordenada coordenada = new Coordenada(2,4);
-        Tablero tablero = new Tablero();
         Assert.assertFalse(tablero.obtenerCasillero(coordenada).estaOcupado());
-        pruebaJugador.ubicarUnidad(tablero, unaUnidad, coordenada);
+        pruebaJugador.ubicarUnidad(unaUnidad, coordenada);
         Assert.assertTrue(tablero.obtenerCasillero(coordenada).estaOcupado());
+    }
+
+    @Test
+    public void jugadorPuedeMoverUnidadEnDireccion(){
+        Curandero unidadMovible = new Curandero();
+        Coordenada coordenada = new Coordenada(2,4);
+        Coordenada destino = new Coordenada(3, 4);
+        pruebaJugador.ubicarUnidad(unidadMovible, coordenada);
+        pruebaJugador.mover(unidadMovible, Direccion.ABAJO);
+        Assert.assertTrue(unidadMovible.obtenerCoordenada().compararCoordenada(destino));
+    }
+
+    @Test
+    public void jugadorNoPuedeMoverUnidadACasilleroOcupado() throws CasilleroOcupadoException{
+        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
+        Curandero curandero = new Curandero();
+        Curandero otroCurandero = new Curandero();
+        Coordenada coordenada = new Coordenada(2,5);
+        Coordenada otraCoordenada = new Coordenada(3,5);
+        Coordenada yetAnotherCoordenada = new Coordenada(2,6);
+        pruebaJugador.ubicarUnidad(soldado, coordenada);
+        pruebaJugador.ubicarUnidad(curandero, otraCoordenada);
+        pruebaJugador.ubicarUnidad(otroCurandero, yetAnotherCoordenada);
+        pruebaJugador.mover(curandero, Direccion.ARRIBA);
+        pruebaJugador.mover(otroCurandero, Direccion.IZQUIERDA);
+    }
+
+    @Test
+    public void jugadorPuedeMoverUnidadEnTodasLasDirecciones(){
+        Jinete jinete = new Jinete();
+        Coordenada coordenada = new Coordenada(4,6);
+        pruebaJugador.ubicarUnidad(jinete, coordenada);
+        for(Direccion dir : Direccion.values()){
+            Coordenada esperada = jinete.obtenerCoordenada().desplazar(dir);
+            pruebaJugador.mover(jinete, dir);
+            Assert.assertTrue(jinete.obtenerCoordenada().compararCoordenada(esperada)); //Comparo la coordenada actual del jinete
+                                                                                        //Con la coordenada que se espera.
+        }
     }
 
 }

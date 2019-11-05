@@ -26,7 +26,7 @@ public class UnidadTest {
 
     }
 
-    @Test
+    /*@Test
     public void unidadSePuedeUbicarEnCasilleroDesocupado(){
         Casillero unCasillero = new Casillero();
         prueba.ubicar(unCasillero);
@@ -40,7 +40,7 @@ public class UnidadTest {
         Unidad otraUnidad = new Catapulta();
         prueba.ubicar(unCasillero);
         otraUnidad.ubicar(unCasillero);
-    }
+    }*/
 
     @Test
     public void SoldadoAtacaEnemigo(){
@@ -73,6 +73,11 @@ public class UnidadTest {
         curandero.curarUnidadAliada(jinete);
         Assert.assertTrue(jinete.getVida()==65);
 
+    }
+
+    @Test
+    public void unidadSeUbicaEnCoordenadaCorrespondiente(){
+        Curandero curandero = new Curandero();
     }
 
 }

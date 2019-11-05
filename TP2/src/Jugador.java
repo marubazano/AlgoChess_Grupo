@@ -15,16 +15,17 @@ public class Jugador {
         this.nroJugador = nroJugador;
     }
 
+    /*
     public void atacarUnidadEnemiga(Unidad unidad_aliada, Unidad unidad_enemiga, Jugador enemigo) {
         unidad_enemiga.recibirDaño(unidad_aliada.getDañoDeArma());
         if (unidad_enemiga.getVida() <= 0) {
             enemigo.eliminarUnidadDelJugador(unidad_enemiga);
         }
-    }
+    }*/ //Esta es una accion de la misma unidad
 
-    public void curarUnidadAliada(Curandero curandero, Unidad unidad_aliada) {
+    /*public void curarUnidadAliada(Curandero curandero, Unidad unidad_aliada) {
         curandero.curarUnidadAliada(unidad_aliada);
-    }
+    }*/ //Idem anterior
 
     public void agregarUnidadAJugador(Unidad unidad) {
         this.unidades.add(unidad);
@@ -45,12 +46,6 @@ public class Jugador {
     public int obtenerPuntos() {
         return this.puntos;
     }
-
-    public void ubicarUnidad(Unidad unidad, Coordenada coordenada) {
-        Casillero casilleroAUbicar = this.tablero.obtenerCasillero(coordenada);
-        unidad.ubicar(casilleroAUbicar); //ESTO LANZA LA EXCEPCIÓN, SINO QUE LA LANCE ubicarUnidad
-    }
-
 
     //Métodos para comprar
 
@@ -83,7 +78,7 @@ public class Jugador {
         tratarException(unidad);
     }
 
-    public boolean ubicarUnidad(Tablero tablero, Unidad unidad, Coordenada coordenada){
+    public boolean ubicarUnidad(Unidad unidad, Coordenada coordenada){
         try{
             if (!ubicarUnidadEnLadoDelTableroCorrespondiente(coordenada)) return false;
             tablero.ubicarUnidad(unidad, coordenada);
@@ -94,8 +89,8 @@ public class Jugador {
         return true;
     }
 
-    public void mover(Unidad unidad, Direccion direccion) {
-        tablero.mover(unidad, direccion);
+    public void mover(Movible unidadMovible, Direccion direccion) {
+        tablero.mover(unidadMovible, direccion);
     }
 
     public boolean ubicarUnidadEnLadoDelTableroCorrespondiente(Coordenada coordenada){

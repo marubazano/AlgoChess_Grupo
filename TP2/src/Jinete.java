@@ -4,7 +4,6 @@ public class Jinete extends Movible {
     private ArrayList<Arma> armas; //Ataca cuerpo a cuerpo y a distancia
     private int dañoCuerpoACuerpo = 5;
     private int dañoCuerpoADistancia = 15;
-    private Coordenada coordenada= obtenerCoordenada();
 
     public Jinete(){
         super(100, 3);

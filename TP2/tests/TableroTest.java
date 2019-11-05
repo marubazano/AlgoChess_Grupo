@@ -30,8 +30,8 @@ public class TableroTest {
         Jugador unJugador = new Jugador("juan", pruebaTablero, 1);
         Unidad unaUnidad = new Catapulta();
         Coordenada coordenada = new Coordenada(2,15);
-        unJugador.ubicarUnidad(pruebaTablero, unaUnidad, coordenada);
-        Assert.assertFalse(unJugador.ubicarUnidad(pruebaTablero, unaUnidad, coordenada));
+        unJugador.ubicarUnidad(unaUnidad, coordenada);
+        Assert.assertFalse(unJugador.ubicarUnidad(unaUnidad, coordenada));
     }
 
 

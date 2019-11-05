@@ -42,11 +42,19 @@ public class Tablero {
         unidad.ubicarEnCoordenada(coordenada);
     }
 
-    public void mover(Unidad unidad, Direccion direccion) {
+    public void mover(Movible unidadMovible, Direccion direccion) {
         //calcular la nueva Coordenada
-        Coordenada coordenadaActual = unidad.obtenerCoordenada();
-        Coordenada nuevaCoordenada = coordenadaActual.sumar(direccion);
-        unidad.ubicarEnCoordenada(nuevaCoordenada);
+        Coordenada coordenadaActual = unidadMovible.obtenerCoordenada();
+        Casillero casilleroActual= obtenerCasillero(coordenadaActual);
+        Coordenada nuevaCoordenada = coordenadaActual.desplazar(direccion);
+        try {
+            ubicarUnidad(unidadMovible, nuevaCoordenada);
+            casilleroActual.vaciarCasillero();
+            unidadMovible.mover(nuevaCoordenada);
+        }
+        catch(CasilleroOcupadoException e){
+            e.getMensaje();
+        }
     }
 
    /* public boolean moverUnidad (Unidad unidad, Coordenada coordenada){

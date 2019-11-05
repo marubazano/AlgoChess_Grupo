@@ -7,11 +7,12 @@ public class Coordenada {
         this.y = y;
     }
 
-    public Coordenada sumar(Direccion direccion){
-        int nuevox = this.x + direccion.x;
-        int nuevoy = this.y + direccion.y;
-        Coordenada nuevaCoordenada = new Coordenada(nuevox, nuevoy);
-        return nuevaCoordenada;
+    public Coordenada desplazar(Direccion direccion){
+        Coordenada dir = direccion.getCoordenada();
+        int horizontal = this.x + dir.obtenerHorizontal();
+        int vertical = this.y + dir.obtenerVertical();
+        Coordenada nueva = new Coordenada(horizontal, vertical);
+        return nueva;
     }
 
     public int obtenerHorizontal(){

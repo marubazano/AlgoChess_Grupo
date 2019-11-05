@@ -1,8 +1,10 @@
+import java.util.ArrayList;
 public abstract class Unidad {
     private float vida;
     private int costo;
     private Coordenada coordenada;
     private Arma arma;
+    private ArrayList<Unidad> unidadesContiguas;
 
     public Unidad(float vida, int costo) {
         this.vida = vida;
@@ -22,12 +24,12 @@ public abstract class Unidad {
         this.vida += cura;
     }
 
-    public void ubicar(Casillero casillero) { //Refactorizar esto
+    /*public void ubicar(Casillero casillero) { //Refactorizar esto
         if (casillero.estaOcupado()) {
             //LANZAR EXCEPCIÓN DE QUE ESTÁ OCUPADO
         }
         casillero.ocuparCasilleroPorUnidad(this);
-    }
+    }*/
 
     public void ubicarEnCoordenada(Coordenada coordenada) {
         this.coordenada = coordenada;
