@@ -69,17 +69,6 @@ public class Jugador {
         }
     }
 
-    public void tratarException(Unidad unidad) {
-        try {
-            this.comprar(unidad);
-        } catch (PuntosInsuficientesException exception) {
-            System.out.println(exception.getMensaje());
-        }
-    }
-
-    public void comprarUnidad(Unidad unidad) {
-        tratarException(unidad);
-    }
 
     public boolean ubicarUnidad(Unidad unidad, Coordenada coordenada) {
         try {

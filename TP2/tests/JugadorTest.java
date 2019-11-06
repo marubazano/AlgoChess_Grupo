@@ -35,20 +35,20 @@ public class JugadorTest {
     }
 
     @Test
-    public void puedeComprarUnaUnidad() {
+    public void puedeComprarUnaUnidad() throws PuntosInsuficientesException {
         Unidad catapulta = new Catapulta();
-        pruebaJugador.comprarUnidad(catapulta);
+        pruebaJugador.comprar(catapulta);
         Assert.assertEquals(pruebaJugador.obtenerCantidadUnidades(), 1);
     }
 
     @Test
-    public void puedeComprarVariasUnidades() {
+    public void puedeComprarVariasUnidades() throws PuntosInsuficientesException {
         Unidad catapulta = new Catapulta();
         Unidad jinete = new Jinete();
         Unidad soldado = new SoldadoDeInfanteria();
-        pruebaJugador.comprarUnidad(catapulta);
-        pruebaJugador.comprarUnidad(jinete);
-        pruebaJugador.comprarUnidad(soldado);
+        pruebaJugador.comprar(catapulta);
+        pruebaJugador.comprar(jinete);
+        pruebaJugador.comprar(soldado);
         Assert.assertEquals(pruebaJugador.obtenerCantidadUnidades(), 3);
     }
 
@@ -59,15 +59,15 @@ public class JugadorTest {
         Unidad catapulta_3 = new Catapulta();
         Unidad soldado = new SoldadoDeInfanteria();
         Unidad catapulta_4 = new Catapulta();
-        pruebaJugador.comprarUnidad(catapulta_1);
-        pruebaJugador.comprarUnidad(catapulta_2);
-        pruebaJugador.comprarUnidad(catapulta_3);
-        pruebaJugador.comprarUnidad(soldado);
+        pruebaJugador.comprar(catapulta_1);
+        pruebaJugador.comprar(catapulta_2);
+        pruebaJugador.comprar(catapulta_3);
+        pruebaJugador.comprar(soldado);
         pruebaJugador.comprar(catapulta_4);
     }
 
     @Test
-    public void jugadorPuedeUbicarUnidadEnCasilleroVacio() throws CasilleroInvalidoException{
+    public void jugadorPuedeUbicarUnidadEnCasilleroVacio() throws CasilleroInvalidoException {
         Unidad unaUnidad = new Catapulta();
         Coordenada coordenada = new Coordenada(2,4);
         Assert.assertFalse(tablero.obtenerCasillero(coordenada).estaOcupado());
@@ -76,7 +76,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void jugadorPuedeMoverUnidadEnDireccion(){
+    public void jugadorPuedeMoverUnidadEnDireccion() {
         Curandero unidadMovible = new Curandero();
         Coordenada coordenada = new Coordenada(2,4);
         Coordenada destino = new Coordenada(3, 4);
