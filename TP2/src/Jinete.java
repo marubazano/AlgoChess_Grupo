@@ -21,8 +21,7 @@ public class Jinete extends Movible {
          */
     }
 
-    public int getDañoDeArma() {
-        return this.armas.get(0).getDaño();
+    public int obtenerDañoDeArma() {
+        return this.armas.get(0).obtenerDañoDeArma();
     }
-
 }

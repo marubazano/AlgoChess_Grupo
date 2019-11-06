@@ -5,13 +5,8 @@ public class Curandero extends Movible {
         super(75, 2);
     }
 
-    public void curarUnidadAliada(Unidad unidad){
-        unidad.recibirCura(curacion);
-    }
-
     @Override
     public void realizarAccion(Unidad unidad) {
-        curarUnidadAliada(unidad);
+        unidad.recibirCura(curacion);
     }
-
 }

@@ -7,8 +7,8 @@ public class Coordenada {
         this.y = y;
     }
 
-    public Coordenada desplazar(Direccion direccion){
-        Coordenada dir = direccion.getCoordenada();
+    public Coordenada desplazar(Direccion direccion) {
+        Coordenada dir = direccion.obtenerCoordenada();
         int horizontal = this.x + dir.obtenerHorizontal();
         int vertical = this.y + dir.obtenerVertical();
         Coordenada nueva = new Coordenada(horizontal, vertical);
@@ -23,7 +23,7 @@ public class Coordenada {
         return y;
     }
 
-    public boolean compararCoordenada(Coordenada coordenada){
+    public boolean compararCoordenada(Coordenada coordenada) {
         return (this.x == coordenada.obtenerHorizontal() && this.y == coordenada.obtenerVertical());
     }
 }

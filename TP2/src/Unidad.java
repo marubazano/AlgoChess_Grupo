@@ -12,11 +12,11 @@ public abstract class Unidad {
         this.coordenada = null; //Poner las coordenadas para cuando atacamos, calcular las coordenadas a las que hace daño desde el lugar en que está la unidad
     }
 
-    public float obtenerVida(){
+    public float obtenerVida() {
         return this.vida;
     }
 
-    public void recibirDaño(float daño){
+    public void recibirDaño(float daño) {
         this.vida -= daño;
     }
 
@@ -39,16 +39,12 @@ public abstract class Unidad {
         return this.coordenada;
     }
 
-    public int getCosto(){
+    public int obtenerCosto() {
         return this.costo;
     }
 
-    public int getDañoDeArma() {
-        return this.arma.getDaño();
-    }
-
-    public float getVida() {
-        return this.vida;
+    public int obtenerDañoDeArma() {
+        return this.arma.obtenerDañoDeArma();
     }
 
     public abstract void realizarAccion(Unidad unidad);

@@ -19,8 +19,8 @@ public class Jugador {
 
     /*
     public void atacarUnidadEnemiga(Unidad unidad_aliada, Unidad unidad_enemiga, Jugador enemigo) {
-        unidad_enemiga.recibirDaño(unidad_aliada.getDañoDeArma());
-        if (unidad_enemiga.getVida() <= 0) {
+        unidad_enemiga.recibirDaño(unidad_aliada.obtenerDañoDeArma());
+        if (unidad_enemiga.obtenerVida() <= 0) {
             enemigo.eliminarUnidadDelJugador(unidad_enemiga);
         }
     }*/ //Esta es una accion de la misma unidad
@@ -35,14 +35,14 @@ public class Jugador {
 
     public void eliminarUnidadDelJugador(Unidad unidad) {
         this.unidades.remove(unidad);
-        if (unidades.size()==0) this.estado="PERDEDOR";
+        if (unidades.size() == 0) this.estado="PERDEDOR";
     }
 
-    public int obtenerCantidadUnidades(){
+    public int obtenerCantidadUnidades() {
         return this.unidades.size();
     }
 
-    public String obtenerNombre(){
+    public String obtenerNombre() {
         return nombre;
     }
 
@@ -53,16 +53,16 @@ public class Jugador {
     //Métodos para comprar
 
     public boolean tieneSuficientesPuntos(Unidad unidad) {
-        if (unidad.getCosto() <= this.puntos) {
+        if (unidad.obtenerCosto() <= this.puntos) {
             return true;
         }
         return false;
     }
 
-    public void comprar(Unidad unidad) throws PuntosInsuficientesException{
+    public void comprar(Unidad unidad) throws PuntosInsuficientesException {
         if (tieneSuficientesPuntos(unidad)) {
             unidades.add(unidad);
-            this.puntos -= unidad.getCosto();
+            this.puntos -= unidad.obtenerCosto();
         }
         else {
             throw new PuntosInsuficientesException();
@@ -81,13 +81,13 @@ public class Jugador {
         tratarException(unidad);
     }
 
-    public boolean ubicarUnidad(Unidad unidad, Coordenada coordenada){
-        try{
+    public boolean ubicarUnidad(Unidad unidad, Coordenada coordenada) {
+        try {
             if (!ubicarUnidadEnLadoDelTableroCorrespondiente(coordenada)) return false;
             this.unidades.add(unidad);
             tablero.ubicarUnidad(unidad, coordenada);
         }
-        catch(CasilleroOcupadoException e){
+        catch (CasilleroOcupadoException e) {
             e.getMensaje();
         }
         return true;
@@ -97,14 +97,17 @@ public class Jugador {
         tablero.mover(unidadMovible, direccion);
     }
 
-    public boolean ubicarUnidadEnLadoDelTableroCorrespondiente(Coordenada coordenada){
-        if (this.nroJugador==1){
-            if (coordenada.obtenerVertical()<=10) return true;
+    public boolean ubicarUnidadEnLadoDelTableroCorrespondiente(Coordenada coordenada) {
+        if (this.nroJugador == 1) {
+            if (coordenada.obtenerVertical() <= 10) return true;
             return false;
         }
-        if (coordenada.obtenerVertical()>10) return true;
+        if (coordenada.obtenerVertical() > 10) return true;
         return false;
     }
-    public String obtenerEstado(){ return this.estado;}
+
+    public String obtenerEstado() {
+        return this.estado;
+    }
 }
 

@@ -15,7 +15,7 @@ public enum Direccion {
         this.coordenada = coordenada;
     }
 
-    public Coordenada getCoordenada(){
+    public Coordenada obtenerCoordenada(){
         return coordenada;
     }
 

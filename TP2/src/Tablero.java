@@ -16,7 +16,7 @@ public class Tablero {
         }
     }
 
-    public boolean tableroEstaVacio(){
+    public boolean tableroEstaVacio() {
         for(Casillero actual : tablero.values()) {
             if (actual.estaOcupado()) return false;
         }
@@ -25,9 +25,8 @@ public class Tablero {
 
     public Casillero obtenerCasillero(Coordenada coordenada) {
         //fijarse EXCEPCIÓN
-        for(Coordenada actual : tablero.keySet()){
-            if(actual.compararCoordenada(coordenada))
-                return tablero.get(actual);
+        for (Coordenada actual : tablero.keySet()) {
+            if (actual.compararCoordenada(coordenada)) return tablero.get(actual);
         }
         return null;
         //Si no esta el casillero, las coordenadas ingresadas estan mal, y hay que mandar exception
@@ -35,7 +34,7 @@ public class Tablero {
 
     public void ubicarUnidad (Unidad unidad, Coordenada coordenada) throws CasilleroOcupadoException {
         Casillero casillero = obtenerCasillero(coordenada);
-        if (casillero.estaOcupado()){
+        if (casillero.estaOcupado()) {
             throw new CasilleroOcupadoException();
         }
         casillero.ocuparCasilleroPorUnidad(unidad);

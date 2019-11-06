@@ -11,7 +11,7 @@ public class Catapulta extends Unidad {
         unidadEnemiga.recibirDaño(daño);
     }
 
-    public int getDañoDeArma() {
-        return this.municion.getDaño();
+    public int obtenerDañoDeArma() {
+        return this.municion.obtenerDañoDeArma();
     }
 }

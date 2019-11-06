@@ -1,7 +1,7 @@
 public class Arma {
     private int daño;
 
-    public int getDaño() {
+    public int obtenerDañoDeArma() {
         return daño;
     }
 }

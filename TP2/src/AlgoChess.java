@@ -21,6 +21,4 @@ public class AlgoChess {
         this.jugador1 = new Jugador(nombreJugador1, this.tablero);
         this.jugador2 = new Jugador(nombreJugador2, this.tablero);
     }*/
-
-
 }

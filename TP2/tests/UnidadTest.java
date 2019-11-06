@@ -46,20 +46,20 @@ public class UnidadTest {
     public void SoldadoAtacaEnemigo(){
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
         Jinete jinete = new Jinete();
-        Assert.assertTrue(jinete.getVida()==100);
+        Assert.assertTrue(jinete.obtenerVida()==100);
         soldado.realizarAccion(jinete);
-        Assert.assertTrue(jinete.getVida()==90);
-        Assert.assertTrue(soldado.getVida()==100);
+        Assert.assertTrue(jinete.obtenerVida()==90);
+        Assert.assertTrue(soldado.obtenerVida()==100);
     }
 
     @Test
     public void CatapultaAtacaEnemigo(){
         Catapulta catapulta = new Catapulta();
         Jinete jinete = new Jinete();
-        Assert.assertTrue(jinete.getVida()==100);
+        Assert.assertTrue(jinete.obtenerVida()==100);
         catapulta.realizarAccion(jinete);
-        Assert.assertTrue(jinete.getVida()==80);
-        Assert.assertTrue(catapulta.getVida()==50);
+        Assert.assertTrue(jinete.obtenerVida()==80);
+        Assert.assertTrue(catapulta.obtenerVida()==50);
     }
 
 
@@ -67,11 +67,11 @@ public class UnidadTest {
     public void curanderoCuraAUnidadAliada(){
         Curandero curandero = new Curandero();
         Jinete jinete = new Jinete();
-        Assert.assertTrue(jinete.getVida()==100);
+        Assert.assertTrue(jinete.obtenerVida()==100);
         jinete.recibirDaño(50);
-        Assert.assertTrue(jinete.getVida()==50);
-        curandero.curarUnidadAliada(jinete);
-        Assert.assertTrue(jinete.getVida()==65);
+        Assert.assertTrue(jinete.obtenerVida()==50);
+        curandero.realizarAccion(jinete);
+        Assert.assertTrue(jinete.obtenerVida()==65);
 
     }
 
