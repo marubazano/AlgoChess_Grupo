@@ -34,13 +34,24 @@ public class TableroTest {
         Assert.assertFalse(unJugador.ubicarUnidad(unaUnidad, coordenada));
     }
 
+    @Test
+    public void tableroAsignaUnidadesContiguasCorrectamente() throws CasilleroInvalidoException, CasilleroOcupadoException{
+        Jinete jinete = new Jinete();
+        Curandero curandero = new Curandero();
+        Catapulta catapulta = new Catapulta();
+        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
+        Coordenada coordenadaJinete = new Coordenada(2,4);
+        Coordenada coordenadaCurandero = new Coordenada(3,5);
+        Coordenada coordenadaCatapulta = new Coordenada(1,5);
+        Coordenada coordenadaSoldado = new Coordenada(3,2);
+        pruebaTablero.ubicarUnidad(jinete, coordenadaJinete);
+        pruebaTablero.ubicarUnidad(curandero, coordenadaCurandero);
+        pruebaTablero.ubicarUnidad(catapulta, coordenadaCatapulta);
+        pruebaTablero.ubicarUnidad(soldado, coordenadaSoldado);
 
-    /*@Test
-    public void unidadSeMueveDePosicion(){
-        Unidad unaUnidad = new Jinete();
-        Coordenada unaCoordenada = new Coordenada(1,1);
-        Coordenada otraCoordenada = new Coordenada(2,1);
-        pruebaTablero.ubicarUnidad(unaUnidad,unaCoordenada);
-        Assert.assertTrue(pruebaTablero.moverUnidad(unaUnidad,otraCoordenada));
-    }*/
+        Assert.assertEquals(jinete.obtenerUnidadesContiguas().size(), 2);
+        Assert.assertEquals(curandero.obtenerUnidadesContiguas().size(), 1);
+        Assert.assertEquals(catapulta.obtenerUnidadesContiguas().size(), 1);
+        Assert.assertEquals(soldado.obtenerUnidadesContiguas().size(), 0);
+    }
 }

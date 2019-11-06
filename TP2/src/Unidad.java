@@ -9,6 +9,7 @@ public abstract class Unidad {
         this.vida = vida;
         this.costo = costo;
         this.coordenada = null; //Poner las coordenadas para cuando atacamos, calcular las coordenadas a las que hace daño desde el lugar en que está la unidad
+        this.unidadesContiguas = new ArrayList<>();
     }
 
     public float obtenerVida() {
@@ -43,5 +44,14 @@ public abstract class Unidad {
     }
 
     public abstract void realizarAccion(Unidad unidad);
+
+    public void asignarUnidadContigua(Unidad unidad){
+        if(!unidadesContiguas.contains(unidad))
+            unidadesContiguas.add(unidad);
+    }
+
+    public ArrayList<Unidad> obtenerUnidadesContiguas(){
+        return unidadesContiguas;
+    }
 }
 

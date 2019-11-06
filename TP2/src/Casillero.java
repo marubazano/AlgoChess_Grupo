@@ -21,4 +21,8 @@ public class Casillero {
         this.unidadQueOcupa = null;
         this.estaOcupado = false;
     }
+
+    public Unidad obtenerUnidad(){
+        return unidadQueOcupa;
+    }
 }

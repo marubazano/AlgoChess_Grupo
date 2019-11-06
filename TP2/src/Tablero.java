@@ -40,6 +40,7 @@ public class Tablero {
         }
         casillero.ocuparCasilleroPorUnidad(unidad);
         unidad.ubicarEnCoordenada(coordenada);
+        asignarUnidadesContiguas(unidad);
     }
 
     public void mover(Movible unidadMovible, Direccion direccion) {
@@ -57,6 +58,25 @@ public class Tablero {
         }
         catch(CasilleroInvalidoException e){
             e.getMensaje();
+        }
+    }
+
+    public void asignarUnidadesContiguas(Unidad unidad){
+        Coordenada desplazada;
+        for(Direccion dir : Direccion.values()){ //itero por todas las dirs adyacentes a la unidad
+            Coordenada actual = unidad.obtenerCoordenada();
+            desplazada = actual.desplazar(dir);
+            try {
+                Casillero casillero = obtenerCasillero(desplazada);
+                if(casillero.estaOcupado()){
+                    Unidad contigua = casillero.obtenerUnidad();
+                    contigua.asignarUnidadContigua(unidad);
+                    unidad.asignarUnidadContigua(contigua);
+                }
+            }
+            catch(CasilleroInvalidoException e){
+                continue; //feito feito
+            }
         }
     }
 }
