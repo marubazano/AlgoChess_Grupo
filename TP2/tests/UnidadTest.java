@@ -133,6 +133,38 @@ public class UnidadTest {
     }
 
     @Test
+    public void jineteAtacaEnemigo()throws CasilleroInvalidoException, CasilleroOcupadoException{
+        Tablero tablero = new Tablero();
+        Jinete jinete = new Jinete();
+        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
+        Curandero curandero = new Curandero();
+        Coordenada coordenadaJinete = new Coordenada(9,9);
+        Coordenada coordenadaSoldado = new Coordenada(11,11);
+        Coordenada coordenadaCurandero = new Coordenada(13,13);
+        tablero.ubicarUnidad(jinete, coordenadaJinete);
+        tablero.ubicarUnidad(soldado, coordenadaSoldado);
+        tablero.ubicarUnidad(curandero, coordenadaCurandero);
+        jinete.realizarAccion(soldado);
+        jinete.realizarAccion(curandero);
+        Assert.assertTrue(soldado.obtenerVida()==95);
+        Assert.assertTrue(curandero.obtenerVida()==60);
+    }
+
+    @Test
+    public void jineteFallaAlAtacarEnemigo()throws CasilleroInvalidoException, CasilleroOcupadoException{
+        Tablero tablero = new Tablero();
+        Jinete jinete = new Jinete();
+        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
+        Coordenada coordenadaJinete = new Coordenada(9,9);
+        Coordenada coordenadaSoldado = new Coordenada(11,18);
+        tablero.ubicarUnidad(jinete, coordenadaJinete);
+        tablero.ubicarUnidad(soldado, coordenadaSoldado);
+        jinete.realizarAccion(soldado);
+        Assert.assertTrue(soldado.obtenerVida()==100);
+    }
+
+
+    @Test
     public void unidadSeUbicaEnCoordenadaCorrespondiente(){
         Curandero curandero = new Curandero();
     }

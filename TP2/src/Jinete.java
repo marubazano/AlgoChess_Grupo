@@ -17,16 +17,37 @@ public class Jinete extends Movible {
     @Override
     public void realizarAccion(Unidad unidadEnemiga) {
         Coordenada coordenadaEnemiga = unidadEnemiga.obtenerCoordenada();
-        /*
-       El valor ataque del jinete depende de la distancia hacia su enemigo, ¿necesitariamos un metodo calcularDistancia?
-        agregue en los atributos la coordenada del jinete y en los parametros que recibe la coordenada enemiga. Tenemos
-        saber si esta al lado (para atacar cuerpo a cuerpo) o si no lo esta (para atacar a distancia). Trate de hacer una
-        funcion en Direccion pero no funco.
-        Cariños, joaco.
-         */
+        Coordenada coordenadaJinete = this.obtenerCoordenada();
+        Coordenada distancia = coordenadaJinete.calcularDistacia(coordenadaEnemiga);
+        int distEnX = obtenerDistanciaPositivaX(distancia);
+        int distEnY = obtenerDistanciaPositivaY(distancia);
+        if (distEnX<=2 && distEnY<=2)
+            unidadEnemiga.recibirDaño(obtenerDañoDeArma("Espada"));//distancia corta, ataque con espada
+        if((distEnX>2 && distEnX<=5) && (distEnY>2 && distEnY<=5))
+            unidadEnemiga.recibirDaño(obtenerDañoDeArma("ArcoYFlecha"));// distancia media, ataque con arco y flecha
+        if (distEnX>6 && distEnY>6)
+            return; //distancia lejana jinete no realiza daño al enemigo
+
     }
 
-    public int obtenerDañoDeArma() {
-        return this.armas.get(0).obtenerDañoDeArma();
+    public int obtenerDistanciaPositivaX(Coordenada coordenada){
+        int distX = coordenada.obtenerHorizontal();
+        if (distX<0) distX=distX*(-1);
+        return distX;
+    }
+
+    public int obtenerDistanciaPositivaY(Coordenada coordenada){
+        int distY = coordenada.obtenerVertical();
+        if (distY<0) distY=distY*(-1);
+        return distY;
+    }
+
+
+
+    public int obtenerDañoDeArma(String arma) {
+        int n;
+        if (arma=="Espada") n=1;
+        else n=0;
+        return this.armas.get(n).obtenerDañoDeArma();
     }
 }

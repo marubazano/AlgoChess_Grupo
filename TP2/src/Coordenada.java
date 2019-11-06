@@ -26,4 +26,15 @@ public class Coordenada {
     public boolean compararCoordenada(Coordenada coordenada) {
         return (this.x == coordenada.obtenerHorizontal() && this.y == coordenada.obtenerVertical());
     }
+
+    public Coordenada calcularDistacia (Coordenada otraCoordenada){
+        int x1 = this.x;
+        int y1 = this.y;
+        int x2 = otraCoordenada.obtenerHorizontal();
+        int y2 = otraCoordenada.obtenerVertical();
+        int distEnX = x1-x2;
+        int distEnY = y1-y2;
+        Coordenada distancia = new Coordenada(distEnX,distEnY);
+        return distancia;
+    }
 }
