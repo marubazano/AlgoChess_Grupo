@@ -62,8 +62,65 @@ public class UnidadTest {
         Assert.assertTrue(catapulta.obtenerVida()==50);
     }
 
+    @Test
+    public void CatapultaAtacaVariosEnemigosContiguos()throws CasilleroInvalidoException, CasilleroOcupadoException{
+        Tablero tablero = new Tablero();
+        Jinete jinete = new Jinete();
+        Jinete jinete2 = new Jinete();
+        Curandero curandero = new Curandero();
+        Catapulta catapulta = new Catapulta();
+        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
+        Coordenada coordenadaJinete = new Coordenada(14,14);
+        Coordenada coordenadaCurandero = new Coordenada(14,15);
+        Coordenada coordenadaCatapulta = new Coordenada(1,1);
+        Coordenada coordenadaSoldado = new Coordenada(15,15);
+        Coordenada coordenadaJinete2 = new Coordenada(16,16);
+        tablero.ubicarUnidad(jinete, coordenadaJinete);
+        tablero.ubicarUnidad(curandero, coordenadaCurandero);
+        tablero.ubicarUnidad(catapulta, coordenadaCatapulta);
+        tablero.ubicarUnidad(soldado, coordenadaSoldado);
+        tablero.ubicarUnidad(jinete2, coordenadaJinete2);
+
+        catapulta.realizarAccion(jinete);
+        Assert.assertTrue(jinete.obtenerVida()==80);
+        Assert.assertTrue(soldado.obtenerVida()==80);
+        Assert.assertTrue(curandero.obtenerVida()==55);
+        Assert.assertTrue(jinete2.obtenerVida()==80);
+        Assert.assertTrue(catapulta.obtenerVida()==50);
+
+        catapulta.realizarAccion(jinete);
+        Assert.assertTrue(jinete.obtenerVida()==60);
+        Assert.assertTrue(soldado.obtenerVida()==60);
+        Assert.assertTrue(curandero.obtenerVida()==35);
+        Assert.assertTrue(jinete2.obtenerVida()==60);
+        Assert.assertTrue(catapulta.obtenerVida()==50);
+    }
 
     @Test
+    public void CatapultaAtacaYNoDaniaAEnemigosNoContiguos()throws CasilleroInvalidoException, CasilleroOcupadoException {
+        Tablero tablero = new Tablero();
+        Jinete jinete = new Jinete();
+        Jinete jinete2 = new Jinete();
+        Curandero curandero = new Curandero();
+        Catapulta catapulta = new Catapulta();
+        Coordenada coordenadaJinete = new Coordenada(14,14);
+        Coordenada coordenadaCurandero = new Coordenada(14,15);
+        Coordenada coordenadaCatapulta = new Coordenada(1,1);
+        Coordenada coordenadaJinete2 = new Coordenada(18,18);
+        tablero.ubicarUnidad(jinete, coordenadaJinete);
+        tablero.ubicarUnidad(curandero, coordenadaCurandero);
+        tablero.ubicarUnidad(catapulta, coordenadaCatapulta);
+        tablero.ubicarUnidad(jinete2, coordenadaJinete2);
+
+        catapulta.realizarAccion(jinete);
+        Assert.assertTrue(jinete.obtenerVida()==80);
+        Assert.assertTrue(curandero.obtenerVida()==55);
+        Assert.assertTrue(jinete2.obtenerVida()==100);
+        Assert.assertTrue(catapulta.obtenerVida()==50);
+    }
+
+
+        @Test
     public void curanderoCuraAUnidadAliada(){
         Curandero curandero = new Curandero();
         Jinete jinete = new Jinete();
