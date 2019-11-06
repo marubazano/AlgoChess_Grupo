@@ -1,28 +1,29 @@
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Catapulta extends Unidad {
     public Arma municion;
-    ArrayList<Unidad> unidadesContiguasAtacadas;
+
 
     public Catapulta() {
         super(50, 5); //Llamo al constructor de unidad con los parametros correspondientes
         this.municion = new Arma(20);
-        this.unidadesContiguasAtacadas = new ArrayList<Unidad>();
     }
 
     @Override
     public void realizarAccion(Unidad unidadEnemiga) {
-        int daño = obtenerDañoDeArma();
-        unidadEnemiga.recibirDaño(daño);
-        this.unidadesContiguasAtacadas.add(unidadEnemiga);
-        ArrayList<Unidad> unidadesContiguas=unidadEnemiga.obtenerUnidadesContiguas();
-        for (int i=0; i<unidadEnemiga.obtenerUnidadesContiguas().size();i++){
-            if (!unidadesContiguasAtacadas.contains(unidadesContiguas.get(i))) {
-                realizarAccion(unidadesContiguas.get(i));
-                break;
-            }
+    int daño = obtenerDañoDeArma();
+        ArrayList<Unidad> contiguas = unidadEnemiga.obtenerUnidadesContiguas();
+        Set<Unidad> unidadesAAtacar = new HashSet<>(); //El set no permite duplicados al agregar, buenardo
+        unidadesAAtacar.add(unidadEnemiga);
+        for(Unidad actual : contiguas){
+            unidadesAAtacar.addAll(contiguas);
+            unidadesAAtacar.addAll(actual.obtenerUnidadesContiguas());
         }
-        this.unidadesContiguasAtacadas.clear();
+        for(Unidad actual : unidadesAAtacar){
+            actual.recibirDaño(daño);
+        }
     }
 
     public int obtenerDañoDeArma() {
