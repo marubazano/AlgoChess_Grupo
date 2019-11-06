@@ -9,7 +9,7 @@ public class TableroTest {
     }
 
     @Test
-    public void unidadSeUbicaConExitoEnElTablero() throws CasilleroOcupadoException{
+    public void unidadSeUbicaConExitoEnElTablero() throws CasilleroOcupadoException, CasilleroInvalidoException{
         Unidad unaUnidad = new Catapulta();
         Coordenada unaCoordenada = new Coordenada(1,1);
         pruebaTablero.ubicarUnidad(unaUnidad,unaCoordenada);
@@ -17,7 +17,7 @@ public class TableroTest {
     }
 
     @Test (expected = CasilleroOcupadoException.class)
-    public void unidadNoSePuedeColocarEnPosicionOcupada() throws CasilleroOcupadoException {
+    public void unidadNoSePuedeColocarEnPosicionOcupada() throws CasilleroOcupadoException, CasilleroInvalidoException {
         Unidad unaUnidad = new Jinete();
         Unidad otraUnidad = new Jinete();
         Coordenada unaCoordenada = new Coordenada(1,1);

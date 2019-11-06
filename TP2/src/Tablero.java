@@ -23,17 +23,18 @@ public class Tablero {
         return true;
     }
 
-    public Casillero obtenerCasillero(Coordenada coordenada) {
+    public Casillero obtenerCasillero(Coordenada coordenada) throws CasilleroInvalidoException {
         //fijarse EXCEPCIÓN
         for (Coordenada actual : tablero.keySet()) {
             if (actual.compararCoordenada(coordenada)) return tablero.get(actual);
         }
-        return null;
+        throw new CasilleroInvalidoException();
         //Si no esta el casillero, las coordenadas ingresadas estan mal, y hay que mandar exception
     }
 
-    public void ubicarUnidad (Unidad unidad, Coordenada coordenada) throws CasilleroOcupadoException {
-        Casillero casillero = obtenerCasillero(coordenada);
+    public void ubicarUnidad (Unidad unidad, Coordenada coordenada) throws CasilleroOcupadoException, CasilleroInvalidoException {
+        Casillero casillero;
+        casillero = obtenerCasillero(coordenada);
         if (casillero.estaOcupado()) {
             throw new CasilleroOcupadoException();
         }
@@ -44,9 +45,9 @@ public class Tablero {
     public void mover(Movible unidadMovible, Direccion direccion) {
         //calcular la nueva Coordenada
         Coordenada coordenadaActual = unidadMovible.obtenerCoordenada();
-        Casillero casilleroActual= obtenerCasillero(coordenadaActual);
-        Coordenada nuevaCoordenada = coordenadaActual.desplazar(direccion);
         try {
+            Casillero casilleroActual= obtenerCasillero(coordenadaActual);
+            Coordenada nuevaCoordenada = coordenadaActual.desplazar(direccion);
             ubicarUnidad(unidadMovible, nuevaCoordenada);
             casilleroActual.vaciarCasillero();
             unidadMovible.mover(nuevaCoordenada);
@@ -54,14 +55,8 @@ public class Tablero {
         catch(CasilleroOcupadoException e){
             e.getMensaje();
         }
-    }
-
-   /* public boolean moverUnidad (Unidad unidad, Coordenada coordenada){
-        Casillero casillero = obtenerCasillero(coordenada);
-        if(ubicarUnidad(unidad,coordenada)){
-            casillero.vaciarCasillero();
-            return true;
+        catch(CasilleroInvalidoException e){
+            e.getMensaje();
         }
-        return false;
-    }*/ // Este metodo no va aca viejo
+    }
 }

@@ -90,6 +90,9 @@ public class Jugador {
         catch (CasilleroOcupadoException e) {
             e.getMensaje();
         }
+        catch(CasilleroInvalidoException e){
+            e.getMensaje();
+        }
         return true;
     }
 

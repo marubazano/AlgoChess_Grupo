@@ -67,7 +67,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void jugadorPuedeUbicarUnidadEnCasilleroVacio(){
+    public void jugadorPuedeUbicarUnidadEnCasilleroVacio() throws CasilleroInvalidoException{
         Unidad unaUnidad = new Catapulta();
         Coordenada coordenada = new Coordenada(2,4);
         Assert.assertFalse(tablero.obtenerCasillero(coordenada).estaOcupado());
@@ -136,6 +136,15 @@ public class JugadorTest {
         Assert.assertEquals(pruebaJugador.obtenerEstado(),"JUGANDO");
         pruebaJugador.eliminarUnidadDelJugador(soldado);
         Assert.assertEquals(pruebaJugador.obtenerEstado(),"PERDEDOR");
+    }
+
+    @Test
+    public void jugadorNoPuedeMoverUnidadFueraDelTablero(){
+        Jinete jinete = new Jinete();
+        Coordenada coordenada = new Coordenada(1,1);
+        pruebaJugador.ubicarUnidad(jinete, coordenada);
+        pruebaJugador.mover(jinete, Direccion.ARRIBA);
+        Assert.assertTrue(jinete.obtenerCoordenada().compararCoordenada(new Coordenada(1,1)));
     }
 
 }
