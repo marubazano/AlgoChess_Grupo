@@ -8,7 +8,7 @@ public class Coordenada {
     }
 
     public Coordenada desplazar(Direccion direccion) {
-        Coordenada dir = direccion.obtenerCoordenada();
+        Coordenada dir = direccion.obtenerDireccion();
         int horizontal = this.x + dir.obtenerHorizontal();
         int vertical = this.y + dir.obtenerVertical();
         Coordenada nueva = new Coordenada(horizontal, vertical);

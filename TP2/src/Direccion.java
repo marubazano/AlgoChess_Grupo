@@ -9,14 +9,14 @@ public enum Direccion {
     DIAGONALINFERIORDERECHA(new Coordenada(1,1));
 
 
-    Coordenada coordenada;
+    Coordenada direccion;
 
-    private Direccion(Coordenada coordenada){
-        this.coordenada = coordenada;
+    private Direccion(Coordenada coordenada) {
+        this.direccion = coordenada;
     }
 
-    public Coordenada obtenerCoordenada(){
-        return coordenada;
+    public Coordenada obtenerDireccion() {
+        return direccion;
     }
 
 

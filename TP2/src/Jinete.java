@@ -1,12 +1,17 @@
 import java.util.ArrayList;
 
 public class Jinete extends Movible {
-    private ArrayList<Arma> armas; //Ataca cuerpo a cuerpo y a distancia
-    private int dañoCuerpoACuerpo = 5;
-    private int dañoCuerpoADistancia = 15;
+    private ArrayList<Arma> armas; //ver si conviene terner un arreglo de armas o un atributo para cada arma (como está abajo).
+    //private Arma arcoYFlecha;
+    //private Arma espada;
 
     public Jinete(){
         super(100, 3);
+        Arma arcoYFlecha = new Arma(15); //ataca media distancia
+        Arma espada = new Arma(5); //ataca cuerpo a cuerpo
+        this.armas = new ArrayList<>();
+        this.armas.add(arcoYFlecha);
+        this.armas.add(espada);
     }
 
     @Override

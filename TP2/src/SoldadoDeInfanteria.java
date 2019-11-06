@@ -1,14 +1,15 @@
 public class SoldadoDeInfanteria extends Movible {
 
     private Arma puños; //Pelea con los puños?
-    private int daño = 10;
 
     public SoldadoDeInfanteria(){
         super(100,1);
+        this.puños = new Arma(10);
     }
 
     @Override
     public void realizarAccion(Unidad unidadEnemiga) {
+        int daño = obtenerDañoDeArma();
         unidadEnemiga.recibirDaño(daño);
     }
 

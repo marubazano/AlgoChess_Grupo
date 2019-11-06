@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public abstract class Movible extends Unidad {
 
     protected Movible(float vida, int costo) {
-        super(vida,costo);
+        super(vida, costo);
     }
 
     public void mover(Coordenada coordenada) {

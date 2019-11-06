@@ -3,7 +3,6 @@ public abstract class Unidad {
     private float vida;
     private int costo;
     private Coordenada coordenada;
-    private Arma arma;
     private ArrayList<Unidad> unidadesContiguas;
 
     public Unidad(float vida, int costo) {
@@ -41,10 +40,6 @@ public abstract class Unidad {
 
     public int obtenerCosto() {
         return this.costo;
-    }
-
-    public int obtenerDañoDeArma() {
-        return this.arma.obtenerDañoDeArma();
     }
 
     public abstract void realizarAccion(Unidad unidad);

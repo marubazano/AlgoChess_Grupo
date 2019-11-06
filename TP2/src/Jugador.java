@@ -83,7 +83,7 @@ public class Jugador {
 
     public boolean ubicarUnidad(Unidad unidad, Coordenada coordenada) {
         try {
-            if (!ubicarUnidadEnLadoDelTableroCorrespondiente(coordenada)) return false;
+            if (!estaEnLadoDelTableroCorrespondiente(coordenada)) return false;
             this.unidades.add(unidad);
             tablero.ubicarUnidad(unidad, coordenada);
         }
@@ -97,7 +97,7 @@ public class Jugador {
         tablero.mover(unidadMovible, direccion);
     }
 
-    public boolean ubicarUnidadEnLadoDelTableroCorrespondiente(Coordenada coordenada) {
+    public boolean estaEnLadoDelTableroCorrespondiente(Coordenada coordenada) {
         if (this.nroJugador == 1) {
             if (coordenada.obtenerVertical() <= 10) return true;
             return false;

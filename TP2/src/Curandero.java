@@ -1,5 +1,5 @@
 public class Curandero extends Movible {
-    private static final float curacion = 15; //This is constante
+    private static final float CURACION = 15; //This is constante
 
     public Curandero(){
         super(75, 2);
@@ -7,6 +7,6 @@ public class Curandero extends Movible {
 
     @Override
     public void realizarAccion(Unidad unidad) {
-        unidad.recibirCura(curacion);
+        unidad.recibirCura(CURACION);
     }
 }
