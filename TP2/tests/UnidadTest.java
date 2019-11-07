@@ -97,6 +97,36 @@ public class UnidadTest {
     }
 
     @Test
+    public void CataputalAtacaUnidadesEnLineaRecta()throws CasilleroInvalidoException, CasilleroOcupadoException{
+        Tablero tablero = new Tablero();
+        Jinete jinete = new Jinete();
+        Jinete jinete2 = new Jinete();
+        Curandero curandero = new Curandero();
+        Curandero curandero2 = new Curandero();
+        Catapulta catapulta = new Catapulta();
+        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
+        Coordenada coordenadaJinete = new Coordenada(14,14);
+        Coordenada coordenadaCurandero = new Coordenada(15,14);
+        Coordenada coordenadaCatapulta = new Coordenada(1,1);
+        Coordenada coordenadaSoldado = new Coordenada(16,14);
+        Coordenada coordenadaJinete2 = new Coordenada(17,14);
+        Coordenada coordenadaCurandero2 = new Coordenada(18,14);
+        tablero.ubicarUnidad(jinete, coordenadaJinete);
+        tablero.ubicarUnidad(curandero, coordenadaCurandero);
+        tablero.ubicarUnidad(curandero2, coordenadaCurandero2);
+        tablero.ubicarUnidad(catapulta, coordenadaCatapulta);
+        tablero.ubicarUnidad(soldado, coordenadaSoldado);
+        tablero.ubicarUnidad(jinete2, coordenadaJinete2);
+        catapulta.realizarAccion(jinete);
+        Assert.assertTrue(jinete.obtenerVida()==80);
+        Assert.assertTrue(soldado.obtenerVida()==80);
+        Assert.assertTrue(curandero.obtenerVida()==55);
+        Assert.assertTrue(curandero2.obtenerVida()==55);
+        Assert.assertTrue(jinete2.obtenerVida()==80);
+        Assert.assertTrue(catapulta.obtenerVida()==50);
+    }
+
+    @Test
     public void CatapultaAtacaYNoDaniaAEnemigosNoContiguos()throws CasilleroInvalidoException, CasilleroOcupadoException {
         Tablero tablero = new Tablero();
         Jinete jinete = new Jinete();
@@ -164,9 +194,9 @@ public class UnidadTest {
     }
 
 
-    @Test
+    /*@Test
     public void unidadSeUbicaEnCoordenadaCorrespondiente(){
         Curandero curandero = new Curandero();
-    }
+    }*/
 
 }

@@ -17,12 +17,19 @@ public class Catapulta extends Unidad {
         ArrayList<Unidad> contiguas = unidadEnemiga.obtenerUnidadesContiguas();
         Set<Unidad> unidadesAAtacar = new HashSet<>(); //El set no permite duplicados al agregar, buenardo
         unidadesAAtacar.add(unidadEnemiga);
-        for(Unidad actual : contiguas){
-            unidadesAAtacar.addAll(contiguas);
-            unidadesAAtacar.addAll(actual.obtenerUnidadesContiguas());
-        }
+        unidadesAAtacar.addAll(contiguas);
+        unidadesEnAreaDeAtaque(contiguas, unidadesAAtacar);
         for(Unidad actual : unidadesAAtacar){
             actual.recibirDaño(daño);
+        }
+    }
+
+    public void unidadesEnAreaDeAtaque(ArrayList<Unidad> contiguas, Set<Unidad> unidadesAAtacar){
+        for (Unidad actual : contiguas) {
+            unidadesAAtacar.add(actual);
+            if (!unidadesAAtacar.containsAll(actual.obtenerUnidadesContiguas())) {
+                unidadesEnAreaDeAtaque(actual.obtenerUnidadesContiguas(), unidadesAAtacar);
+            }
         }
     }
 

@@ -144,6 +144,9 @@ public class JugadorTest {
         Coordenada coordenada = new Coordenada(1,1);
         pruebaJugador.ubicarUnidad(jinete, coordenada);
         pruebaJugador.mover(jinete, Direccion.ARRIBA);
+        pruebaJugador.mover(jinete, Direccion.IZQUIERDA);
+        pruebaJugador.mover(jinete, Direccion.DIAGONALSUPERIORDERECHA);
+        pruebaJugador.mover(jinete, Direccion.DIAGONALSUPERIORIZQUIERDA);
         Assert.assertTrue(jinete.obtenerCoordenada().compararCoordenada(new Coordenada(1,1)));
     }
 

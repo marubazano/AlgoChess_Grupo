@@ -17,18 +17,6 @@ public class Jugador {
         this.estado="JUGANDO";
     }
 
-    /*
-    public void atacarUnidadEnemiga(Unidad unidad_aliada, Unidad unidad_enemiga, Jugador enemigo) {
-        unidad_enemiga.recibirDaño(unidad_aliada.obtenerDañoDeArma());
-        if (unidad_enemiga.obtenerVida() <= 0) {
-            enemigo.eliminarUnidadDelJugador(unidad_enemiga);
-        }
-    }*/ //Esta es una accion de la misma unidad
-
-    /*public void curarUnidadAliada(Curandero curandero, Unidad unidad_aliada) {
-        curandero.curarUnidadAliada(unidad_aliada);
-    }*/ //Idem anterior
-
     public void agregarUnidadAJugador(Unidad unidad) {
         this.unidades.add(unidad);
     }
@@ -53,7 +41,7 @@ public class Jugador {
     //Métodos para comprar
 
     public boolean tieneSuficientesPuntos(Unidad unidad) {
-        if (unidad.obtenerCosto() <= this.puntos) {
+        if (unidad.obtenerCosto() <= obtenerPuntos()) {
             return true;
         }
         return false;
@@ -61,7 +49,7 @@ public class Jugador {
 
     public void comprar(Unidad unidad) throws PuntosInsuficientesException {
         if (tieneSuficientesPuntos(unidad)) {
-            unidades.add(unidad);
+            agregarUnidadAJugador(unidad);
             this.puntos -= unidad.obtenerCosto();
         }
         else {
@@ -73,7 +61,7 @@ public class Jugador {
     public boolean ubicarUnidad(Unidad unidad, Coordenada coordenada) {
         try {
             if (!estaEnLadoDelTableroCorrespondiente(coordenada)) return false;
-            this.unidades.add(unidad);
+            agregarUnidadAJugador(unidad);
             tablero.ubicarUnidad(unidad, coordenada);
         }
         catch (CasilleroOcupadoException e) {
