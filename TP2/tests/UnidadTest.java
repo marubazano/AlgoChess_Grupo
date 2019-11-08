@@ -1,7 +1,5 @@
 import org.junit.*;
 
-import java.time.temporal.ChronoUnit;
-
 /*
    Al ser abstracta, tenemos que usar un objeto
    tipo mock, no heredados de unidad.

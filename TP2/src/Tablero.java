@@ -23,20 +23,17 @@ public class Tablero {
         return true;
     }
 
-    public Casillero obtenerCasillero(Coordenada coordenada) throws CasilleroInvalidoException {
-        for (Coordenada actual : tablero.keySet()) {
-            if (actual.compararCoordenada(coordenada)) return tablero.get(actual);
-        }
-        throw new CasilleroInvalidoException();
-        //Si no esta el casillero, las coordenadas ingresadas están mal, y hay que mandar exception
+    public Casillero obtenerCasillero(Coordenada coordenada) {
+        return tablero.get(coordenada);
     }
 
     public void ubicarUnidad(Unidad unidad, Coordenada coordenada) throws CasilleroOcupadoException, CasilleroInvalidoException {
-        Casillero casillero;
-        casillero = obtenerCasillero(coordenada);
-        casillero.ocuparCasilleroPorUnidad(unidad);
-        unidad.ubicarEnCoodenada(coordenada);
-        asignarUnidadesContiguas(unidad);
+        try {
+            obtenerCasillero(coordenada).ocuparCasilleroPorUnidad(unidad, coordenada);
+        }
+        catch (NullPointerException e) {
+            throw new CasilleroInvalidoException(e);
+        }
     }
 
     public void mover(Movible unidadMovible, Direccion direccion) {
@@ -62,17 +59,17 @@ public class Tablero {
         for (Direccion dir : Direccion.values()) { //itero por todas las dirs adyacentes a la unidad
             Coordenada actual = unidad.obtenerCoordenada();
             desplazada = actual.desplazar(dir);
-            try {
+            //try {
                 Casillero casillero = obtenerCasillero(desplazada);
                 if (casillero.estaOcupado()) {
                     Unidad contigua = casillero.obtenerUnidad();
                     contigua.asignarUnidadContigua(unidad);
                     unidad.asignarUnidadContigua(contigua);
                 }
-            }
-            catch (CasilleroInvalidoException e) {
-                continue; //feito feito
-            }
+            //}
+            //catch (CasilleroInvalidoException e) {
+                //continue; //feito feito
+            //}
         }
     }
 }

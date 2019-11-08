@@ -12,13 +12,15 @@ public class CasilleroTest {
 
     @Test
     public void estaOcupadoDevuelveTrueCuandoEstaOcupado() throws CasilleroOcupadoException {
-        pruebaCasillero.ocuparCasilleroPorUnidad(unidad);
+        Coordenada coordenada = new Coordenada(0,0);
+        pruebaCasillero.ocuparCasilleroPorUnidad(unidad,coordenada);
         Assert.assertTrue(pruebaCasillero.estaOcupado());
     }
 
     @Test
     public void seVaciaCasilleroCorrectamente() throws CasilleroOcupadoException {
-        pruebaCasillero.ocuparCasilleroPorUnidad(unidad);
+        Coordenada coordenada = new Coordenada(0,0);
+        pruebaCasillero.ocuparCasilleroPorUnidad(unidad, coordenada);
         pruebaCasillero.vaciarCasillero();
         Assert.assertFalse(pruebaCasillero.estaOcupado());
     }
@@ -31,7 +33,8 @@ public class CasilleroTest {
 
     @Test(expected = CasilleroOcupadoException.class)
     public void ocuparCasilleroOcupadoLanzaError() throws CasilleroOcupadoException {
-        pruebaCasillero.ocuparCasilleroPorUnidad(unidad);
-        pruebaCasillero.ocuparCasilleroPorUnidad(unidad2);
+        Coordenada coordenada = new Coordenada(0,0);
+        pruebaCasillero.ocuparCasilleroPorUnidad(unidad, coordenada);
+        pruebaCasillero.ocuparCasilleroPorUnidad(unidad2, coordenada);
     }
 }

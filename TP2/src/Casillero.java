@@ -12,11 +12,18 @@ public class Casillero {
         return (estaOcupado);
     }
 
-    public void ocuparCasilleroPorUnidad(Unidad unidad) throws CasilleroOcupadoException {
+    public void ocuparCasilleroPorUnidad(Unidad unidad, Coordenada coordenada) throws CasilleroOcupadoException {
         if (this.estaOcupado()) { throw new CasilleroOcupadoException(); }
         this.unidadQueOcupa = unidad;
+        unidad.ubicarEnCoodenada(coordenada);
         this.estaOcupado = true;
     }
+
+    /*public void mover(Movible unidad, Coordenada nuevaCoordenada) {
+
+        unidadQueOcupa.mover(nuevaCoordenada);
+        vaciarCasillero();
+    }*/
 
     public void vaciarCasillero() {
         this.unidadQueOcupa = null;
