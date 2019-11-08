@@ -24,15 +24,17 @@ public class Tablero {
     }
 
     public Casillero obtenerCasillero(Coordenada coordenada) throws CasilleroInvalidoException {
-        //fijarse EXCEPCIÓN
-        for (Coordenada actual : tablero.keySet()) {
-            if (actual.compararCoordenada(coordenada)) return tablero.get(actual);
+
+        try {
+            return tablero.get(coordenada);
+        }catch (NullPointerException ex){
+            throw new CasilleroInvalidoException(ex);
         }
-        throw new CasilleroInvalidoException();
-        //Si no esta el casillero, las coordenadas ingresadas estan mal, y hay que mandar exception
     }
 
     public void ubicarUnidad (Unidad unidad, Coordenada coordenada) throws CasilleroOcupadoException, CasilleroInvalidoException {
+        obtenerCasillero(coordenada).ocuparCasilleroPorUnidad(unidad);
+
         Casillero casillero;
         casillero = obtenerCasillero(coordenada);
         if (casillero.estaOcupado()) {

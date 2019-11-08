@@ -37,4 +37,14 @@ public class Coordenada {
         Coordenada distancia = new Coordenada(distEnX,distEnY);
         return distancia;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (((Coordenada)obj).x==this.x) && (((Coordenada)obj).y==this.y);
+    }
+
+    @Override
+    public int hashCode() {
+        return this.x + 10000 * this.y;
+    }
 }
