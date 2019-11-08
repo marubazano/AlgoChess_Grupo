@@ -31,7 +31,7 @@ public abstract class Unidad {
         casillero.ocuparCasilleroPorUnidad(this);
     }*/
 
-    public void ubicarEnCoordenada(Coordenada coordenada) {
+    public void ubicarEnCoodenada(Coordenada coordenada) {
         this.coordenada = coordenada;
     }
 

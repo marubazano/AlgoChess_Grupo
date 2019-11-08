@@ -12,7 +12,8 @@ public class Casillero {
         return (estaOcupado);
     }
 
-    public void ocuparCasilleroPorUnidad(Unidad unidad) {
+    public void ocuparCasilleroPorUnidad(Unidad unidad) throws CasilleroOcupadoException {
+        if (this.estaOcupado()) { throw new CasilleroOcupadoException(); }
         this.unidadQueOcupa = unidad;
         this.estaOcupado = true;
     }

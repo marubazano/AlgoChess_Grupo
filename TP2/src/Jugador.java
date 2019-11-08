@@ -61,13 +61,13 @@ public class Jugador {
     public boolean ubicarUnidad(Unidad unidad, Coordenada coordenada) {
         try {
             if (!estaEnLadoDelTableroCorrespondiente(coordenada)) return false;
-            agregarUnidadAJugador(unidad);
             tablero.ubicarUnidad(unidad, coordenada);
+            agregarUnidadAJugador(unidad);
         }
         catch (CasilleroOcupadoException e) {
             e.getMensaje();
         }
-        catch(CasilleroInvalidoException e){
+        catch (CasilleroInvalidoException e) {
             e.getMensaje();
         }
         return true;

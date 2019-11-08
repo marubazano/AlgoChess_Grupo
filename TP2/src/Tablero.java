@@ -24,24 +24,18 @@ public class Tablero {
     }
 
     public Casillero obtenerCasillero(Coordenada coordenada) throws CasilleroInvalidoException {
-
-        try {
-            return tablero.get(coordenada);
-        }catch (NullPointerException ex){
-            throw new CasilleroInvalidoException(ex);
+        for (Coordenada actual : tablero.keySet()) {
+            if (actual.compararCoordenada(coordenada)) return tablero.get(actual);
         }
+        throw new CasilleroInvalidoException();
+        //Si no esta el casillero, las coordenadas ingresadas están mal, y hay que mandar exception
     }
 
-    public void ubicarUnidad (Unidad unidad, Coordenada coordenada) throws CasilleroOcupadoException, CasilleroInvalidoException {
-        obtenerCasillero(coordenada).ocuparCasilleroPorUnidad(unidad);
-
+    public void ubicarUnidad(Unidad unidad, Coordenada coordenada) throws CasilleroOcupadoException, CasilleroInvalidoException {
         Casillero casillero;
         casillero = obtenerCasillero(coordenada);
-        if (casillero.estaOcupado()) {
-            throw new CasilleroOcupadoException();
-        }
         casillero.ocuparCasilleroPorUnidad(unidad);
-        unidad.ubicarEnCoordenada(coordenada);
+        unidad.ubicarEnCoodenada(coordenada);
         asignarUnidadesContiguas(unidad);
     }
 
@@ -49,34 +43,34 @@ public class Tablero {
         //calcular la nueva Coordenada
         Coordenada coordenadaActual = unidadMovible.obtenerCoordenada();
         try {
-            Casillero casilleroActual= obtenerCasillero(coordenadaActual);
             Coordenada nuevaCoordenada = coordenadaActual.desplazar(direccion);
             ubicarUnidad(unidadMovible, nuevaCoordenada);
+            Casillero casilleroActual = obtenerCasillero(coordenadaActual);
             casilleroActual.vaciarCasillero();
             unidadMovible.mover(nuevaCoordenada);
         }
-        catch(CasilleroOcupadoException e){
+        catch (CasilleroOcupadoException e) {
             e.getMensaje();
         }
-        catch(CasilleroInvalidoException e){
+        catch (CasilleroInvalidoException e) {
             e.getMensaje();
         }
     }
 
-    public void asignarUnidadesContiguas(Unidad unidad){
+    public void asignarUnidadesContiguas(Unidad unidad) {
         Coordenada desplazada;
-        for(Direccion dir : Direccion.values()){ //itero por todas las dirs adyacentes a la unidad
+        for (Direccion dir : Direccion.values()) { //itero por todas las dirs adyacentes a la unidad
             Coordenada actual = unidad.obtenerCoordenada();
             desplazada = actual.desplazar(dir);
             try {
                 Casillero casillero = obtenerCasillero(desplazada);
-                if(casillero.estaOcupado()){
+                if (casillero.estaOcupado()) {
                     Unidad contigua = casillero.obtenerUnidad();
                     contigua.asignarUnidadContigua(unidad);
                     unidad.asignarUnidadContigua(contigua);
                 }
             }
-            catch(CasilleroInvalidoException e){
+            catch (CasilleroInvalidoException e) {
                 continue; //feito feito
             }
         }

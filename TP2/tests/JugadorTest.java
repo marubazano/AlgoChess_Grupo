@@ -105,7 +105,7 @@ public class JugadorTest {
         Jinete jinete = new Jinete();
         Coordenada coordenada = new Coordenada(4,6);
         pruebaJugador.ubicarUnidad(jinete, coordenada);
-        for(Direccion dir : Direccion.values()){
+        for (Direccion dir : Direccion.values()) {
             Coordenada esperada = jinete.obtenerCoordenada().desplazar(dir);
             pruebaJugador.mover(jinete, dir);
             Assert.assertTrue(jinete.obtenerCoordenada().compararCoordenada(esperada)); //Comparo la coordenada actual del jinete
@@ -129,7 +129,7 @@ public class JugadorTest {
         Jinete jinete = new Jinete();
         Coordenada coordenada = new Coordenada(4,6);
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
-        Coordenada coordenada2= new Coordenada(1,2);
+        Coordenada coordenada2 = new Coordenada(1,2);
         pruebaJugador.ubicarUnidad(jinete, coordenada);
         pruebaJugador.ubicarUnidad(soldado,coordenada2);
         pruebaJugador.eliminarUnidadDelJugador(jinete);
@@ -139,7 +139,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void jugadorNoPuedeMoverUnidadFueraDelTablero(){
+    public void jugadorNoPuedeMoverUnidadFueraDelTablero() {
         Jinete jinete = new Jinete();
         Coordenada coordenada = new Coordenada(1,1);
         pruebaJugador.ubicarUnidad(jinete, coordenada);

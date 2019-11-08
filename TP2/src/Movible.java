@@ -7,6 +7,6 @@ public abstract class Movible extends Unidad {
     }
 
     public void mover(Coordenada coordenada) {
-        ubicarEnCoordenada(coordenada);
+        ubicarEnCoodenada(coordenada);
     }
 }
