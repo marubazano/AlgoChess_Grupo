@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class SoldadoDeInfanteria extends Movible {
 
     private Arma puños; //Pelea con los puños?

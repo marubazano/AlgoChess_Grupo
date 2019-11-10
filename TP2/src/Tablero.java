@@ -38,6 +38,14 @@ public class Tablero {
     }
 
     public void mover(Movible unidadMovible, Direccion direccion) {
+        //reviso si hay batallon
+        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
+        ArrayList<Unidad> batallon;
+        if (unidadMovible.getClass() == soldado.getClass()){
+            batallon=armarBatallon(soldado);
+            if (batallon.size()==3);//HAY BATALLON GENTE EEEEEE
+        }
+
         //calcular la nueva Coordenada
         Coordenada coordenadaActual = unidadMovible.obtenerCoordenada();
         try {
@@ -72,5 +80,19 @@ public class Tablero {
                 //continue; //feito feito
             //}
         return contiguas;
+    }
+
+    public ArrayList<Unidad> armarBatallon(Movible soldado){
+        ArrayList<Unidad> contiguas = obtenerUnidadesContiguas(soldado);
+        ArrayList<Unidad> batallon = new ArrayList<Unidad>();
+        int cantBatallon = 3;
+        for (int i = 0 ; i < contiguas.size() ; i++) {
+            if (contiguas.get(i).getClass() == soldado.getClass()){
+                batallon.add(contiguas.get(i));
+                cantBatallon--;
+            }
+            if (cantBatallon==0) break;
+        }
+        return batallon;
     }
 }

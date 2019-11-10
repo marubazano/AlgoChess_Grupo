@@ -22,7 +22,7 @@ public class UnidadTest {
     public void unidadRecibeDanioYActualizaVida(){
         prueba.recibirDaño(20);
         Assert.assertEquals(80, prueba.obtenerVida(), 0.01); //Delta agregado para comparar flotantes, doubles
-
+        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
     }
 
 
