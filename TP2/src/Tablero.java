@@ -90,8 +90,8 @@ public class Tablero {
             if (contiguas.get(i).getClass() == soldado.getClass()){
                 batallon.add(contiguas.get(i));
                 cantBatallon--;
+                if (cantBatallon==0) break;
             }
-            if (cantBatallon==0) break;
         }
         return batallon;
     }
