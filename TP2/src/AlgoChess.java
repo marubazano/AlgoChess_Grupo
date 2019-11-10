@@ -1,3 +1,5 @@
+import Tablero.Tablero;
+
 public class AlgoChess {
     private Tablero tablero;
     private Jugador jugador1;

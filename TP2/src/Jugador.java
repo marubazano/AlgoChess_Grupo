@@ -1,4 +1,13 @@
+import Excepciones.CasilleroInvalidoException;
+import Excepciones.CasilleroOcupadoException;
+import Excepciones.PuntosInsuficientesException;
+import Tablero.Tablero;
+import Unidades.Movible;
+import Unidades.Unidad;
+
 import java.util.ArrayList;
+import Tablero.*;
+import Unidades.*;
 
 public class Jugador {
     private String nombre;

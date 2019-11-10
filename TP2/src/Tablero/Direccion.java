@@ -1,3 +1,7 @@
+package Tablero;
+
+import Tablero.Coordenada;
+
 public enum Direccion {
     ABAJO(new Coordenada(1,0)),
     ARRIBA(new Coordenada(-1,0)),

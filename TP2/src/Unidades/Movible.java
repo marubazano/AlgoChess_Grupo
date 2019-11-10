@@ -1,3 +1,6 @@
+package Unidades;
+import Tablero.*;
+
 import java.util.ArrayList;
 //Va protected en el constructor? El constructor tiene que recibir por parámetro vida, costo y armas y después pasarlas por super?
 public abstract class Movible extends Unidad {

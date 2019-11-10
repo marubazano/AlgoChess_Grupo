@@ -1,3 +1,4 @@
+import Tablero.Coordenada;
 import org.junit.*;
 
 public class CoordenadaTest {

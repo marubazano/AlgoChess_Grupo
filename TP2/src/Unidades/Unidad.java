@@ -1,9 +1,11 @@
-import java.util.ArrayList;
+package Unidades;
+import Tablero.*;
+
 public abstract class Unidad {
     private float vida;
     private int costo;
     private Coordenada coordenada;
-    //private ArrayList<Unidad> unidadesContiguas;
+    //private ArrayList<Unidades.Unidad> unidadesContiguas;
 
     public Unidad(float vida, int costo) {
         this.vida = vida;
@@ -24,7 +26,7 @@ public abstract class Unidad {
         this.vida += cura;
     }
 
-    /*public void ubicar(Casillero casillero) { //Refactorizar esto
+    /*public void ubicar(Tablero.Casillero casillero) { //Refactorizar esto
         if (casillero.estaOcupado()) {
             //LANZAR EXCEPCIÓN DE QUE ESTÁ OCUPADO
         }
@@ -45,12 +47,12 @@ public abstract class Unidad {
 
     public abstract void realizarAccion(Unidad unidad, Tablero tablero);
 
-    /*public void asignarUnidadContigua(Unidad unidad){
+    /*public void asignarUnidadContigua(Unidades.Unidad unidad){
         if(!unidadesContiguas.contains(unidad))
             unidadesContiguas.add(unidad);
     }
 
-    public ArrayList<Unidad> obtenerUnidadesContiguas(){
+    public ArrayList<Unidades.Unidad> obtenerUnidadesContiguas(){
         return unidadesContiguas;
     }*/
 }

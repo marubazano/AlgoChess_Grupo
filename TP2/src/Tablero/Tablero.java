@@ -1,3 +1,11 @@
+package Tablero;
+
+import Excepciones.CasilleroInvalidoException;
+import Excepciones.CasilleroOcupadoException;
+import Unidades.Movible;
+import Unidades.SoldadoDeInfanteria;
+import Unidades.Unidad;
+
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -46,7 +54,7 @@ public class Tablero {
             if (batallon.size()==3);//HAY BATALLON GENTE EEEEEE{}
         }
 
-        //calcular la nueva Coordenada
+        //calcular la nueva Tablero.Coordenada
         Coordenada coordenadaActual = unidadMovible.obtenerCoordenada();
         try {
             Coordenada nuevaCoordenada = coordenadaActual.desplazar(direccion);
@@ -76,7 +84,7 @@ public class Tablero {
                     contiguas.add(contigua);
                 }
             }
-            //catch (CasilleroInvalidoException e) {
+            //catch (Excepciones.CasilleroInvalidoException e) {
                 //continue; //feito feito
             //}
         return contiguas;

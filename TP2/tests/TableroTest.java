@@ -1,4 +1,13 @@
+import Excepciones.CasilleroInvalidoException;
+import Excepciones.CasilleroOcupadoException;
+import Tablero.Tablero;
+import Unidades.Catapulta;
+import Unidades.Jinete;
+import Unidades.Unidad;
 import org.junit.*;
+import Tablero.*;
+import Unidades.*;
+import Excepciones.*;
 
 public class TableroTest {
     private Tablero pruebaTablero = new Tablero();
@@ -9,7 +18,7 @@ public class TableroTest {
     }
 
     @Test
-    public void unidadSeUbicaConExitoEnElTablero() throws CasilleroOcupadoException, CasilleroInvalidoException{
+    public void unidadSeUbicaConExitoEnElTablero() throws CasilleroOcupadoException, CasilleroInvalidoException {
         Unidad unaUnidad = new Catapulta();
         Coordenada unaCoordenada = new Coordenada(1,1);
         pruebaTablero.ubicarUnidad(unaUnidad,unaCoordenada);
@@ -35,15 +44,15 @@ public class TableroTest {
     }
 /*
     @Test
-    public void tableroAsignaUnidadesContiguasCorrectamente() throws CasilleroInvalidoException, CasilleroOcupadoException{
-        Jinete jinete = new Jinete();
-        Curandero curandero = new Curandero();
-        Catapulta catapulta = new Catapulta();
-        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
-        Coordenada coordenadaJinete = new Coordenada(2,4);
-        Coordenada coordenadaCurandero = new Coordenada(3,5);
-        Coordenada coordenadaCatapulta = new Coordenada(1,5);
-        Coordenada coordenadaSoldado = new Coordenada(3,2);
+    public void tableroAsignaUnidadesContiguasCorrectamente() throws Excepciones.CasilleroInvalidoException, Excepciones.CasilleroOcupadoException{
+        Unidades.Jinete jinete = new Unidades.Jinete();
+        Unidades.Curandero curandero = new Unidades.Curandero();
+        Unidades.Catapulta catapulta = new Unidades.Catapulta();
+        Unidades.SoldadoDeInfanteria soldado = new Unidades.SoldadoDeInfanteria();
+        Tablero.Coordenada coordenadaJinete = new Tablero.Coordenada(2,4);
+        Tablero.Coordenada coordenadaCurandero = new Tablero.Coordenada(3,5);
+        Tablero.Coordenada coordenadaCatapulta = new Tablero.Coordenada(1,5);
+        Tablero.Coordenada coordenadaSoldado = new Tablero.Coordenada(3,2);
         pruebaTablero.ubicarUnidad(jinete, coordenadaJinete);
         pruebaTablero.ubicarUnidad(curandero, coordenadaCurandero);
         pruebaTablero.ubicarUnidad(catapulta, coordenadaCatapulta);

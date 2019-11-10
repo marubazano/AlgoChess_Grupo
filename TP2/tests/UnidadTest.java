@@ -1,4 +1,11 @@
+import Excepciones.CasilleroInvalidoException;
+import Excepciones.CasilleroOcupadoException;
+import Tablero.Tablero;
+import Unidades.*;
 import org.junit.*;
+import Tablero.*;
+import Unidades.*;
+import Excepciones.*;
 
 /*
    Al ser abstracta, tenemos que usar un objeto
@@ -147,7 +154,7 @@ public class UnidadTest {
     }
 
     @Test
-    public void jineteAtacaEnemigo()throws CasilleroInvalidoException, CasilleroOcupadoException{
+    public void jineteAtacaEnemigo()throws CasilleroInvalidoException, CasilleroOcupadoException {
         Tablero tablero = new Tablero();
         Jinete jinete = new Jinete();
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
