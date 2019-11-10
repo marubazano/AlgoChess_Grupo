@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Tablero {
     private static final int CANT_FILAS = 20;
@@ -54,8 +55,9 @@ public class Tablero {
         }
     }
 
-    public void asignarUnidadesContiguas(Unidad unidad) {
+    public ArrayList<Unidad> obtenerUnidadesContiguas(Unidad unidad) {
         Coordenada desplazada;
+        ArrayList<Unidad> contiguas = new ArrayList<>();
         for (Direccion dir : Direccion.values()) { //itero por todas las dirs adyacentes a la unidad
             Coordenada actual = unidad.obtenerCoordenada();
             desplazada = actual.desplazar(dir);
@@ -63,13 +65,12 @@ public class Tablero {
                 Casillero casillero = obtenerCasillero(desplazada);
                 if (casillero.estaOcupado()) {
                     Unidad contigua = casillero.obtenerUnidad();
-                    contigua.asignarUnidadContigua(unidad);
-                    unidad.asignarUnidadContigua(contigua);
+                    contiguas.add(contigua);
                 }
-            //}
+            }
             //catch (CasilleroInvalidoException e) {
                 //continue; //feito feito
             //}
-        }
+        return contiguas;
     }
 }

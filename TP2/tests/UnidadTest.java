@@ -6,7 +6,7 @@ import org.junit.*;
  */
 public class UnidadTest {
     private Unidad prueba;
-    private Tablero tablero;
+    private Tablero tablero = new Tablero();
 
     @Before
     public void setUp() {
@@ -37,9 +37,11 @@ public class UnidadTest {
     }
 
     @Test
-    public void CatapultaAtacaEnemigo(){
+    public void CatapultaAtacaEnemigo() throws CasilleroOcupadoException, CasilleroInvalidoException{
         Catapulta catapulta = new Catapulta();
         Jinete jinete = new Jinete();
+        Coordenada coordJinete = new Coordenada(10,5);
+        tablero.ubicarUnidad(jinete,coordJinete);
         Assert.assertTrue(jinete.obtenerVida()==100);
         catapulta.realizarAccion(jinete, tablero);
         Assert.assertTrue(jinete.obtenerVida()==80);
@@ -48,7 +50,6 @@ public class UnidadTest {
 
     @Test
     public void CatapultaAtacaVariosEnemigosContiguos()throws CasilleroInvalidoException, CasilleroOcupadoException{
-        Tablero tablero = new Tablero();
         Jinete jinete = new Jinete();
         Jinete jinete2 = new Jinete();
         Curandero curandero = new Curandero();
@@ -82,7 +83,6 @@ public class UnidadTest {
 
     @Test
     public void CataputalAtacaUnidadesEnLineaRecta()throws CasilleroInvalidoException, CasilleroOcupadoException{
-        Tablero tablero = new Tablero();
         Jinete jinete = new Jinete();
         Jinete jinete2 = new Jinete();
         Curandero curandero = new Curandero();

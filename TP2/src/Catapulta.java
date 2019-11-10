@@ -13,7 +13,7 @@ public class Catapulta extends Unidad {
 
     @Override
     public void realizarAccion(Unidad unidadEnemiga, Tablero tablero) {
-    int daño = obtenerDañoDeArma();
+        /*int daño = obtenerDañoDeArma();
         ArrayList<Unidad> contiguas = unidadEnemiga.obtenerUnidadesContiguas();
         Set<Unidad> unidadesAAtacar = new HashSet<>(); //El set no permite duplicados al agregar, buenardo
         unidadesAAtacar.add(unidadEnemiga);
@@ -21,16 +21,34 @@ public class Catapulta extends Unidad {
         unidadesEnAreaDeAtaque(contiguas, unidadesAAtacar);
         for(Unidad actual : unidadesAAtacar){
             actual.recibirDaño(daño);
+        }*/
+        int danio = obtenerDañoDeArma();
+        Set<Unidad> unidadesAAtacar = new HashSet<>();
+        unidadesAAtacar.add(unidadEnemiga);
+        unidadesAAtacar.addAll(tablero.obtenerUnidadesContiguas(unidadEnemiga));
+        unidadesEnAreaDeAtaque(tablero, unidadesAAtacar);
+        for(Unidad unidad : unidadesAAtacar){
+            unidad.recibirDaño(danio);
         }
     }
 
-    public void unidadesEnAreaDeAtaque(ArrayList<Unidad> contiguas, Set<Unidad> unidadesAAtacar){
-        for (Unidad actual : contiguas) {
+    public void unidadesEnAreaDeAtaque(Tablero tablero, Set<Unidad> unidadesAAtacar){
+        /*for (Unidad actual : contiguas) {
             unidadesAAtacar.add(actual);
             if (!unidadesAAtacar.containsAll(actual.obtenerUnidadesContiguas())) {
                 unidadesEnAreaDeAtaque(actual.obtenerUnidadesContiguas(), unidadesAAtacar);
             }
+        }*/
+
+        for(Unidad actual : unidadesAAtacar){
+            if(!unidadesAAtacar.containsAll(tablero.obtenerUnidadesContiguas(actual))){
+                unidadesAAtacar.add(actual);
+                unidadesAAtacar.addAll(tablero.obtenerUnidadesContiguas(actual));
+                //unidadesEnAreaDeAtaque(tablero, unidadesAAtacar);
+            }
+
         }
+
     }
 
     public int obtenerDañoDeArma() {
