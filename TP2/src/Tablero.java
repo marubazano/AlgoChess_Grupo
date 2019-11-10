@@ -43,7 +43,7 @@ public class Tablero {
         ArrayList<Unidad> batallon;
         if (unidadMovible.getClass() == soldado.getClass()){
             batallon=armarBatallon(soldado);
-            if (batallon.size()==3);//HAY BATALLON GENTE EEEEEE
+            if (batallon.size()==3);//HAY BATALLON GENTE EEEEEE{}
         }
 
         //calcular la nueva Coordenada
