@@ -13,40 +13,21 @@ public class Catapulta extends Unidad {
 
     @Override
     public void realizarAccion(Unidad unidadEnemiga, Tablero tablero) {
-        /*int daño = obtenerDañoDeArma();
-        ArrayList<Unidad> contiguas = unidadEnemiga.obtenerUnidadesContiguas();
-        Set<Unidad> unidadesAAtacar = new HashSet<>(); //El set no permite duplicados al agregar, buenardo
-        unidadesAAtacar.add(unidadEnemiga);
-        unidadesAAtacar.addAll(contiguas);
-        unidadesEnAreaDeAtaque(contiguas, unidadesAAtacar);
-        for(Unidad actual : unidadesAAtacar){
-            actual.recibirDaño(daño);
-        }*/
         int danio = obtenerDañoDeArma();
-        Set<Unidad> unidadesAAtacar = new HashSet<>();
-        unidadesAAtacar.add(unidadEnemiga);
-        unidadesAAtacar.addAll(tablero.obtenerUnidadesContiguas(unidadEnemiga));
-        unidadesEnAreaDeAtaque(tablero, unidadesAAtacar);
-        for(Unidad unidad : unidadesAAtacar){
-            unidad.recibirDaño(danio);
-        }
+        Set<Unidad> atacadas = new HashSet<>();
+        unidadEnemiga.recibirDaño(danio);
+        atacadas.add(unidadEnemiga);
+        atacarUnidadesContiguas(tablero, atacadas, unidadEnemiga);
     }
 
-    public void unidadesEnAreaDeAtaque(Tablero tablero, Set<Unidad> unidadesAAtacar){
-        /*for (Unidad actual : contiguas) {
-            unidadesAAtacar.add(actual);
-            if (!unidadesAAtacar.containsAll(actual.obtenerUnidadesContiguas())) {
-                unidadesEnAreaDeAtaque(actual.obtenerUnidadesContiguas(), unidadesAAtacar);
+    public void atacarUnidadesContiguas (Tablero tablero, Set<Unidad> atacadas, Unidad unidadEnemiga) {
+        int danio = obtenerDañoDeArma();
+        for (Unidad contigua : tablero.obtenerUnidadesContiguas(unidadEnemiga)) {
+            if(!atacadas.contains(contigua)) {
+                contigua.recibirDaño(danio);
+                atacadas.add(contigua);
+                atacarUnidadesContiguas(tablero, atacadas, contigua);
             }
-        }*/
-
-        for(Unidad actual : unidadesAAtacar){
-            if(!unidadesAAtacar.containsAll(tablero.obtenerUnidadesContiguas(actual))){
-                unidadesAAtacar.add(actual);
-                unidadesAAtacar.addAll(tablero.obtenerUnidadesContiguas(actual));
-                //unidadesEnAreaDeAtaque(tablero, unidadesAAtacar);
-            }
-
         }
 
     }

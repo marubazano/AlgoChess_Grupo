@@ -67,18 +67,18 @@ public class UnidadTest {
         tablero.ubicarUnidad(jinete2, coordenadaJinete2);
 
         catapulta.realizarAccion(jinete, tablero);
-        Assert.assertTrue(jinete.obtenerVida()==80);
-        Assert.assertTrue(soldado.obtenerVida()==80);
-        Assert.assertTrue(curandero.obtenerVida()==55);
-        Assert.assertTrue(jinete2.obtenerVida()==80);
-        Assert.assertTrue(catapulta.obtenerVida()==50);
+        Assert.assertTrue(jinete.obtenerVida() == 80);
+        Assert.assertTrue(soldado.obtenerVida() == 80);
+        Assert.assertTrue(curandero.obtenerVida() == 55);
+        Assert.assertTrue(jinete2.obtenerVida() == 80);
+        Assert.assertTrue(catapulta.obtenerVida() == 50);
 
         catapulta.realizarAccion(jinete, tablero);
-        Assert.assertTrue(jinete.obtenerVida()==60);
-        Assert.assertTrue(soldado.obtenerVida()==60);
-        Assert.assertTrue(curandero.obtenerVida()==35);
-        Assert.assertTrue(jinete2.obtenerVida()==60);
-        Assert.assertTrue(catapulta.obtenerVida()==50);
+        Assert.assertTrue(jinete.obtenerVida() == 60);
+        Assert.assertTrue(soldado.obtenerVida() == 60);
+        Assert.assertTrue(curandero.obtenerVida() == 35);
+        Assert.assertTrue(jinete2.obtenerVida() == 60);
+        Assert.assertTrue(catapulta.obtenerVida() == 50);
     }
 
     @Test
