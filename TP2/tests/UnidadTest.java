@@ -25,21 +25,6 @@ public class UnidadTest {
 
     }
 
-    /*@Test
-    public void unidadSePuedeUbicarEnCasilleroDesocupado(){
-        Casillero unCasillero = new Casillero();
-        prueba.ubicar(unCasillero);
-        Assert.assertTrue(unCasillero.estaOcupado());
-    }
-
-    //Lanzar excepcion si casillero ocupado
-    @Test
-    public void unidadNoPuedeUbicarseEnCasilleroOcupado(){
-        Casillero unCasillero = new Casillero();
-        Unidad otraUnidad = new Catapulta();
-        prueba.ubicar(unCasillero);
-        otraUnidad.ubicar(unCasillero);
-    }*/
 
     @Test
     public void SoldadoAtacaEnemigo(){
@@ -193,9 +178,6 @@ public class UnidadTest {
     }
 
 
-    /*@Test
-    public void unidadSeUbicaEnCoordenadaCorrespondiente(){
-        Curandero curandero = new Curandero();
-    }*/
+
 
 }
