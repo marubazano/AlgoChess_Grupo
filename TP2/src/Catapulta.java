@@ -12,7 +12,7 @@ public class Catapulta extends Unidad {
     }
 
     @Override
-    public void realizarAccion(Unidad unidadEnemiga) {
+    public void realizarAccion(Unidad unidadEnemiga, Tablero tablero) {
     int daño = obtenerDañoDeArma();
         ArrayList<Unidad> contiguas = unidadEnemiga.obtenerUnidadesContiguas();
         Set<Unidad> unidadesAAtacar = new HashSet<>(); //El set no permite duplicados al agregar, buenardo

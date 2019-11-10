@@ -36,7 +36,7 @@ public class Jinete extends Movible {
         return distX;
     }
 
-    public int obtenerDistanciaPositivaY(Coordenada coordenada){
+    public int obtenerDistanciaPositivaY(Coordenada coordenada, Tablero tablero){
         int distY = coordenada.obtenerVertical();
         if (distY<0) distY=distY*(-1);
         return distY;

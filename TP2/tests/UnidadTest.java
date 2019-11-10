@@ -6,6 +6,7 @@ import org.junit.*;
  */
 public class UnidadTest {
     private Unidad prueba;
+    private Tablero tablero;
 
     @Before
     public void setUp() {
@@ -45,7 +46,7 @@ public class UnidadTest {
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
         Jinete jinete = new Jinete();
         Assert.assertTrue(jinete.obtenerVida()==100);
-        soldado.realizarAccion(jinete);
+        soldado.realizarAccion(jinete, tablero);
         Assert.assertTrue(jinete.obtenerVida()==90);
         Assert.assertTrue(soldado.obtenerVida()==100);
     }
@@ -55,7 +56,7 @@ public class UnidadTest {
         Catapulta catapulta = new Catapulta();
         Jinete jinete = new Jinete();
         Assert.assertTrue(jinete.obtenerVida()==100);
-        catapulta.realizarAccion(jinete);
+        catapulta.realizarAccion(jinete, tablero);
         Assert.assertTrue(jinete.obtenerVida()==80);
         Assert.assertTrue(catapulta.obtenerVida()==50);
     }
@@ -79,14 +80,14 @@ public class UnidadTest {
         tablero.ubicarUnidad(soldado, coordenadaSoldado);
         tablero.ubicarUnidad(jinete2, coordenadaJinete2);
 
-        catapulta.realizarAccion(jinete);
+        catapulta.realizarAccion(jinete, tablero);
         Assert.assertTrue(jinete.obtenerVida()==80);
         Assert.assertTrue(soldado.obtenerVida()==80);
         Assert.assertTrue(curandero.obtenerVida()==55);
         Assert.assertTrue(jinete2.obtenerVida()==80);
         Assert.assertTrue(catapulta.obtenerVida()==50);
 
-        catapulta.realizarAccion(jinete);
+        catapulta.realizarAccion(jinete, tablero);
         Assert.assertTrue(jinete.obtenerVida()==60);
         Assert.assertTrue(soldado.obtenerVida()==60);
         Assert.assertTrue(curandero.obtenerVida()==35);
@@ -115,7 +116,7 @@ public class UnidadTest {
         tablero.ubicarUnidad(catapulta, coordenadaCatapulta);
         tablero.ubicarUnidad(soldado, coordenadaSoldado);
         tablero.ubicarUnidad(jinete2, coordenadaJinete2);
-        catapulta.realizarAccion(jinete);
+        catapulta.realizarAccion(jinete, tablero);
         Assert.assertTrue(jinete.obtenerVida()==80);
         Assert.assertTrue(soldado.obtenerVida()==80);
         Assert.assertTrue(curandero.obtenerVida()==55);
@@ -140,7 +141,7 @@ public class UnidadTest {
         tablero.ubicarUnidad(catapulta, coordenadaCatapulta);
         tablero.ubicarUnidad(jinete2, coordenadaJinete2);
 
-        catapulta.realizarAccion(jinete);
+        catapulta.realizarAccion(jinete, tablero);
         Assert.assertTrue(jinete.obtenerVida()==80);
         Assert.assertTrue(curandero.obtenerVida()==55);
         Assert.assertTrue(jinete2.obtenerVida()==100);
@@ -155,7 +156,7 @@ public class UnidadTest {
         Assert.assertTrue(jinete.obtenerVida()==100);
         jinete.recibirDaño(50);
         Assert.assertTrue(jinete.obtenerVida()==50);
-        curandero.realizarAccion(jinete);
+        curandero.realizarAccion(jinete, tablero);
         Assert.assertTrue(jinete.obtenerVida()==65);
 
     }
@@ -172,8 +173,8 @@ public class UnidadTest {
         tablero.ubicarUnidad(jinete, coordenadaJinete);
         tablero.ubicarUnidad(soldado, coordenadaSoldado);
         tablero.ubicarUnidad(curandero, coordenadaCurandero);
-        jinete.realizarAccion(soldado);
-        jinete.realizarAccion(curandero);
+        jinete.realizarAccion(soldado, tablero);
+        jinete.realizarAccion(curandero, tablero);
         Assert.assertTrue(soldado.obtenerVida()==95);
         Assert.assertTrue(curandero.obtenerVida()==60);
     }
@@ -187,7 +188,7 @@ public class UnidadTest {
         Coordenada coordenadaSoldado = new Coordenada(11,18);
         tablero.ubicarUnidad(jinete, coordenadaJinete);
         tablero.ubicarUnidad(soldado, coordenadaSoldado);
-        jinete.realizarAccion(soldado);
+        jinete.realizarAccion(soldado, tablero);
         Assert.assertTrue(soldado.obtenerVida()==100);
     }
 

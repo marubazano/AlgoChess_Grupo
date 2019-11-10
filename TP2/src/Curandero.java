@@ -6,7 +6,7 @@ public class Curandero extends Movible {
     }
 
     @Override
-    public void realizarAccion(Unidad unidad) {
+    public void realizarAccion(Unidad unidad, Tablero tablero) {
         unidad.recibirCura(CURACION);
     }
 }

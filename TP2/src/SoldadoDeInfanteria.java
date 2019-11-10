@@ -8,7 +8,7 @@ public class SoldadoDeInfanteria extends Movible {
     }
 
     @Override
-    public void realizarAccion(Unidad unidadEnemiga) {
+    public void realizarAccion(Unidad unidadEnemiga, Tablero tablero) {
         int daño = obtenerDañoDeArma();
         unidadEnemiga.recibirDaño(daño);
     }

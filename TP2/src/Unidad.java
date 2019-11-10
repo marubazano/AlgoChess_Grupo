@@ -43,7 +43,7 @@ public abstract class Unidad {
         return this.costo;
     }
 
-    public abstract void realizarAccion(Unidad unidad);
+    public abstract void realizarAccion(Unidad unidad, Tablero tablero);
 
     public void asignarUnidadContigua(Unidad unidad){
         if(!unidadesContiguas.contains(unidad))
