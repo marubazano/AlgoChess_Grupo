@@ -15,7 +15,7 @@ public class Jinete extends Movible {
     }
 
     @Override
-    public void realizarAccion(Unidad unidadEnemiga) {
+    public void realizarAccion(Unidad unidadEnemiga, Tablero tablero) {
         Coordenada coordenadaEnemiga = unidadEnemiga.obtenerCoordenada();
         Coordenada coordenadaJinete = this.obtenerCoordenada();
         Coordenada distancia = coordenadaJinete.calcularDistacia(coordenadaEnemiga);
@@ -36,7 +36,7 @@ public class Jinete extends Movible {
         return distX;
     }
 
-    public int obtenerDistanciaPositivaY(Coordenada coordenada, Tablero tablero){
+    public int obtenerDistanciaPositivaY(Coordenada coordenada){
         int distY = coordenada.obtenerVertical();
         if (distY<0) distY=distY*(-1);
         return distY;
