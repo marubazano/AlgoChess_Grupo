@@ -1,3 +1,5 @@
+package Tablero;
+
 public class Coordenada {
     private int x;
     private int y;

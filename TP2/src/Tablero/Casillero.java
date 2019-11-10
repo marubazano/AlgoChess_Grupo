@@ -1,3 +1,8 @@
+package Tablero;
+
+import Excepciones.CasilleroOcupadoException;
+import Unidades.Unidad;
+
 public class Casillero {
 
     private Unidad unidadQueOcupa;
@@ -19,7 +24,7 @@ public class Casillero {
         this.estaOcupado = true;
     }
 
-    /*public void mover(Movible unidad, Coordenada nuevaCoordenada) {
+    /*public void mover(Unidades.Movible unidad, Tablero.Coordenada nuevaCoordenada) {
 
         unidadQueOcupa.mover(nuevaCoordenada);
         vaciarCasillero();

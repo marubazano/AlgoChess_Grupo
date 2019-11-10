@@ -1,3 +1,9 @@
+import Excepciones.CasilleroOcupadoException;
+import Tablero.Casillero;
+import Tablero.Coordenada;
+import Unidades.Catapulta;
+import Unidades.Jinete;
+import Unidades.Unidad;
 import org.junit.*;
 
 public class CasilleroTest {

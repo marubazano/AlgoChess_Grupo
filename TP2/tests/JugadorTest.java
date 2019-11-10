@@ -1,4 +1,12 @@
+import Excepciones.CasilleroInvalidoException;
+import Excepciones.CasilleroOcupadoException;
+import Excepciones.PuntosInsuficientesException;
+import Tablero.Tablero;
+import Unidades.*;
 import org.junit.*;
+import Tablero.*;
+import Unidades.*;
+import Excepciones.*;
 
 public class JugadorTest {
     private Tablero tablero = new Tablero();
@@ -86,7 +94,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void jugadorNoPuedeMoverUnidadACasilleroOcupado() throws CasilleroOcupadoException{
+    public void jugadorNoPuedeMoverUnidadACasilleroOcupado() throws CasilleroOcupadoException {
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
         Curandero curandero = new Curandero();
         Curandero otroCurandero = new Curandero();

@@ -1,9 +1,12 @@
+package Unidades;
+import Tablero.*;
+
 import java.util.ArrayList;
 
 public class Jinete extends Movible {
     private ArrayList<Arma> armas; //ver si conviene terner un arreglo de armas o un atributo para cada arma (como está abajo).
-    //private Arma arcoYFlecha;
-    //private Arma espada;
+    //private Unidades.Arma arcoYFlecha;
+    //private Unidades.Arma espada;
 
     public Jinete(){
         super(100, 3);
