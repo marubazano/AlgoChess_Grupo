@@ -85,7 +85,8 @@ public class Tablero {
     public ArrayList<Unidad> armarBatallon(Movible soldado){
         ArrayList<Unidad> contiguas = obtenerUnidadesContiguas(soldado);
         ArrayList<Unidad> batallon = new ArrayList<Unidad>();
-        int cantBatallon = 3;
+        batallon.add(soldado);
+        int cantBatallon = 2;
         for (int i = 0 ; i < contiguas.size() ; i++) {
             if (contiguas.get(i).getClass() == soldado.getClass()){
                 batallon.add(contiguas.get(i));
