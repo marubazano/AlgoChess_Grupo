@@ -51,7 +51,11 @@ public class Tablero {
         ArrayList<Unidad> batallon;
         if (unidadMovible.getClass() == soldado.getClass()){
             batallon=armarBatallon(soldado);
-            if (batallon.size()==3);//HAY BATALLON GENTE EEEEEE{}
+            if (batallon.size()==3){//HAY BATALLON GENTE EEEEEE
+                for (int i = 0 ; i < batallon.size() ; i++) {
+                 moverDeBatallon((Movible)batallon.get(i),direccion);
+                }
+            }
         }
 
         //calcular la nueva Tablero.Coordenada
@@ -104,4 +108,20 @@ public class Tablero {
         }
         return batallon;
     }
+
+    public void moverDeBatallon(Movible unidadMovible, Direccion direccion) {
+        Coordenada coordenadaActual = unidadMovible.obtenerCoordenada();
+        try {
+            Coordenada nuevaCoordenada = coordenadaActual.desplazar(direccion);
+            ubicarUnidad(unidadMovible, nuevaCoordenada);
+            Casillero casilleroActual = obtenerCasillero(coordenadaActual);
+            casilleroActual.vaciarCasillero();
+            unidadMovible.mover(nuevaCoordenada);
+        }
+        catch (Excepciones.CasilleroOcupadoException e) {
+        }
+        catch (CasilleroInvalidoException e) {
+        }
+    }
+
 }
