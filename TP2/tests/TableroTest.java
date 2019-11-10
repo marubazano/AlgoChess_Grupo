@@ -63,4 +63,69 @@ public class TableroTest {
         Assert.assertEquals(catapulta.obtenerUnidadesContiguas().size(), 1);
         Assert.assertEquals(soldado.obtenerUnidadesContiguas().size(), 0);
     }*/
+
+    @Test
+    public void batallonSeMueveCorrectamente() throws CasilleroOcupadoException, CasilleroInvalidoException{
+        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
+        Coordenada coordenada1 = new Coordenada(4, 5);
+        Coordenada coordenada2 = new Coordenada(4, 6);
+        Coordenada coordenada3 = new Coordenada(4, 7);
+        Coordenada coordenadaDestino1 = new Coordenada(5, 5);
+        Coordenada coordenadaDestino2 = new Coordenada(5, 6);
+        Coordenada coordenadaDestino3 = new Coordenada(5, 7);
+        pruebaTablero.ubicarUnidad(soldado1, coordenada1);
+        pruebaTablero.ubicarUnidad(soldado2, coordenada2);
+        pruebaTablero.ubicarUnidad(soldado3, coordenada3);
+        pruebaTablero.mover(soldado2, Direccion.ABAJO);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenadaDestino1).obtenerUnidad(), soldado1);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenadaDestino2).obtenerUnidad(), soldado2);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenadaDestino3).obtenerUnidad(), soldado3);
+    }
+
+    @Test
+    public void batallonSeMueveCorrectamenteEnElLimite() throws CasilleroOcupadoException, CasilleroInvalidoException{
+        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
+        Coordenada coordenada1 = new Coordenada(1, 1);
+        Coordenada coordenada2 = new Coordenada(1, 2);
+        Coordenada coordenada3 = new Coordenada(1, 3);
+        Coordenada coordenadaDestino1 = new Coordenada(2, 1);
+        Coordenada coordenadaDestino2 = new Coordenada(2, 2);
+        Coordenada coordenadaDestino3 = new Coordenada(2, 3);
+        pruebaTablero.ubicarUnidad(soldado1, coordenada1);
+        pruebaTablero.ubicarUnidad(soldado2, coordenada2);
+        pruebaTablero.ubicarUnidad(soldado3, coordenada3);
+        pruebaTablero.mover(soldado2, Direccion.ABAJO);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenadaDestino1).obtenerUnidad(), soldado1);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenadaDestino2).obtenerUnidad(), soldado2);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenadaDestino3).obtenerUnidad(), soldado3);
+    }
+
+    @Test
+    public void batallonSeMueveCorrectamenteConObstaculo() throws CasilleroOcupadoException, CasilleroInvalidoException{
+        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
+        Curandero curandero = new Curandero();
+        Coordenada coordenada1 = new Coordenada(1, 1);
+        Coordenada coordenada2 = new Coordenada(1, 2);
+        Coordenada coordenada3 = new Coordenada(1, 3);
+        Coordenada coordenada4 = new Coordenada(2, 2);
+        Coordenada coordenadaDestino1 = new Coordenada(2, 1);
+        Coordenada coordenadaDestino3 = new Coordenada(2, 3);
+        pruebaTablero.ubicarUnidad(soldado1, coordenada1);
+        pruebaTablero.ubicarUnidad(soldado2, coordenada2);
+        pruebaTablero.ubicarUnidad(soldado3, coordenada3);
+        pruebaTablero.ubicarUnidad(curandero, coordenada4);
+        pruebaTablero.mover(soldado2, Direccion.ABAJO);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenadaDestino1).obtenerUnidad(), soldado1);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenada2).obtenerUnidad(), soldado2);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenadaDestino3).obtenerUnidad(), soldado3);
+    }
+
+
+
 }

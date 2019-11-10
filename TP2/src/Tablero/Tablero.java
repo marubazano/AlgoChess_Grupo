@@ -48,13 +48,13 @@ public class Tablero {
     public void mover(Movible unidadMovible, Direccion direccion) {
         //reviso si hay batallon
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
-        ArrayList<Unidad> batallon;
         if (unidadMovible.getClass() == soldado.getClass()){
-            batallon=armarBatallon(soldado);
-            if (batallon.size()==3){//HAY BATALLON GENTE EEEEEE
+            ArrayList<Unidad> batallon = armarBatallon(unidadMovible);
+            if (batallon.size() == 3){//HAY BATALLON GENTE EEEEEE
                 for (int i = 0 ; i < batallon.size() ; i++) {
                  moverDeBatallon((Movible)batallon.get(i),direccion);
                 }
+                return;
             }
         }
 
@@ -82,12 +82,16 @@ public class Tablero {
             Coordenada actual = unidad.obtenerCoordenada();
             desplazada = actual.desplazar(dir);
             //try {
-                Casillero casillero = obtenerCasillero(desplazada);
-                if (casillero.estaOcupado()) {
+            Casillero casillero = obtenerCasillero(desplazada);
+            try {
+                if (casillero != null && casillero.estaOcupado()) {
                     Unidad contigua = casillero.obtenerUnidad();
                     contiguas.add(contigua);
                 }
+            } catch (NullPointerException e) {
+                continue;
             }
+        }
             //catch (Excepciones.CasilleroInvalidoException e) {
                 //continue; //feito feito
             //}
@@ -103,7 +107,7 @@ public class Tablero {
             if (contiguas.get(i).getClass() == soldado.getClass()){
                 batallon.add(contiguas.get(i));
                 cantBatallon--;
-                if (cantBatallon==0) break;
+                if (cantBatallon == 0) break;
             }
         }
         return batallon;
