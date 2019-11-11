@@ -20,10 +20,10 @@ public class Jinete extends Movible {
         Coordenada coordenadaEnemiga = unidadEnemiga.obtenerCoordenada();
         Coordenada coordenadaJinete = this.obtenerCoordenada();
         Distancia distancia = coordenadaJinete.calcularDistacia(coordenadaEnemiga);
-        unidadEnemiga.recibirDaño(ArmaSegunDistancia(distancia));
+        unidadEnemiga.recibirDaño(armaSegunDistancia(distancia));
     }
 
-    public int ArmaSegunDistancia(Distancia distancia){
+    public int armaSegunDistancia(Distancia distancia){
         int danioArma;
         try {
             danioArma = armas.get(distancia).obtenerDañoDeArma();
