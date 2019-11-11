@@ -98,5 +98,12 @@ public class Jugador {
     public String obtenerEstado() {
         return this.estado;
     }
+
+    public void realizarAccionDeUnidad(Unidad unidad, Unidad unidadEnemiga){
+        if (this.unidades.contains(unidadEnemiga)) return; //trató de atacar a una unidad aliada
+        if (!this.unidades.contains(unidad)) return; //trató de atacar con una unidad enemiga
+        unidad.realizarAccion(unidadEnemiga, this.tablero);
+    }
+
 }
 

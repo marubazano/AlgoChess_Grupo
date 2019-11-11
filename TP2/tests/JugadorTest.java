@@ -158,4 +158,17 @@ public class JugadorTest {
         Assert.assertTrue(jinete.obtenerCoordenada().compararCoordenada(new Coordenada(1,1)));
     }
 
+    @Test
+    public void jugadorAtaca() throws PuntosInsuficientesException,CasilleroOcupadoException, CasilleroInvalidoException {
+        Unidad catapulta = new Catapulta();
+        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
+        pruebaJugador.comprar(catapulta);
+        Coordenada coordenada = new Coordenada(4,4);
+        Coordenada coordenada2 = new Coordenada(14,14);
+        pruebaJugador.ubicarUnidad(catapulta,coordenada);
+        tablero.ubicarUnidad(soldado,coordenada2);
+        pruebaJugador.realizarAccionDeUnidad(catapulta,soldado);
+        Assert.assertTrue(soldado.obtenerVida()==80);
+    }
+
 }

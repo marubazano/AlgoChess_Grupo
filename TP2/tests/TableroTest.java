@@ -146,6 +146,66 @@ public class TableroTest {
         Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenadaDestino3).obtenerUnidad(), soldado3);
     }
 
+    @Test
+    public void batallonSeDisuelveCorrectamenteAnteObstaculo() throws CasilleroOcupadoException, CasilleroInvalidoException{
+        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
+        Curandero curandero = new Curandero();
+        Coordenada coordenada1 = new Coordenada(1, 1);
+        Coordenada coordenada2 = new Coordenada(1, 2);
+        Coordenada coordenada3 = new Coordenada(1, 3);
+        Coordenada coordenada4 = new Coordenada(2, 2);
+        Coordenada coordenadaDestino1 = new Coordenada(2, 1);
+        Coordenada coordenadaDestino3 = new Coordenada(2, 3);
+        pruebaTablero.ubicarUnidad(soldado1, coordenada1);
+        pruebaTablero.ubicarUnidad(soldado2, coordenada2);
+        pruebaTablero.ubicarUnidad(soldado3, coordenada3);
+        pruebaTablero.ubicarUnidad(curandero, coordenada4);
+        pruebaTablero.mover(soldado2, Direccion.ABAJO);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenadaDestino1).obtenerUnidad(), soldado1);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenada2).obtenerUnidad(), soldado2);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenadaDestino3).obtenerUnidad(), soldado3);
+        pruebaTablero.mover(soldado2, Direccion.ABAJO);
+        Coordenada coordenadaDestino12 = new Coordenada(3, 1);
+        Coordenada coordenadaDestino32 = new Coordenada(3, 3);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenadaDestino12).obtenerUnidad(), soldado1);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenada2).obtenerUnidad(), soldado2);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenadaDestino32).obtenerUnidad(), soldado3);
+        //Se disolvio el batallon, lo pruebo:
+        pruebaTablero.mover(soldado2, Direccion.ABAJO);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenadaDestino12).obtenerUnidad(), soldado1);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenada2).obtenerUnidad(), soldado2);
+        Assert.assertEquals(pruebaTablero.obtenerCasillero(coordenadaDestino32).obtenerUnidad(), soldado3);
+    }
+
+    @Test
+    public void batallonHabiendoCuatroSoldadosSeMuevenTres() throws CasilleroOcupadoException, CasilleroInvalidoException{
+        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado3 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado4 = new SoldadoDeInfanteria();
+        Coordenada coordenada1 = new Coordenada(4, 5);
+        Coordenada coordenada2 = new Coordenada(4, 6);
+        Coordenada coordenada3 = new Coordenada(4, 7);
+        Coordenada coordenada4 = new Coordenada(4, 8);
+        Coordenada coordenadaDestino1 = new Coordenada(5, 5);
+        Coordenada coordenadaDestino2 = new Coordenada(5, 6);
+        Coordenada coordenadaDestino3 = new Coordenada(5, 7);
+        Coordenada coordenadaDestino4 = new Coordenada(5, 8);
+        pruebaTablero.ubicarUnidad(soldado1, coordenada1);
+        pruebaTablero.ubicarUnidad(soldado2, coordenada2);
+        pruebaTablero.ubicarUnidad(soldado3, coordenada3);
+        pruebaTablero.ubicarUnidad(soldado4, coordenada4);
+        pruebaTablero.mover(soldado2, Direccion.ABAJO);
+        int movimientos  = 0;
+        if (pruebaTablero.obtenerCasillero(coordenadaDestino1).obtenerUnidad() == soldado1) movimientos++;
+        if (pruebaTablero.obtenerCasillero(coordenadaDestino2).obtenerUnidad() == soldado2) movimientos++;
+        if (pruebaTablero.obtenerCasillero(coordenadaDestino3).obtenerUnidad() == soldado3) movimientos++;
+        if (pruebaTablero.obtenerCasillero(coordenadaDestino4).obtenerUnidad() == soldado4) movimientos++;
+        Assert.assertEquals(movimientos, 3);
+    } //solo tres movimientos: el batallon solo mueve tres soldados
+
 
 
 }

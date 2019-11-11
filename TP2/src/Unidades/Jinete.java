@@ -15,6 +15,11 @@ public class Jinete extends Movible {
         armas.put(Distancia.MEDIANA, arcoYFlecha);
     }
 
+    //Ataque del jinete:
+    // 1) Hay Soldado aliado cerca O no hay enemigo cerca: Ataca con arcoYFlecha SOLO a distancia media.
+    // 2) No hay aliados cerca Y hay enemigos cerca: Ataca con espada SOLO a distancia corta.
+    // Si el ataque indicado no es ninguno de los dos casos anteriores, el jinete NO ATACA y el jugador pierde el turno.
+
     @Override
     public void realizarAccion(Unidad unidadEnemiga, Tablero tablero) {
         Coordenada coordenadaEnemiga = unidadEnemiga.obtenerCoordenada();
