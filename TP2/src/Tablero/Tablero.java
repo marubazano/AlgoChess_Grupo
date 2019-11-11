@@ -47,16 +47,7 @@ public class Tablero {
 
     public void mover(Movible unidadMovible, Direccion direccion) {
         //reviso si hay batallon
-        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
-        if (unidadMovible.getClass() == soldado.getClass()){
-            ArrayList<Unidad> batallon = armarBatallon(unidadMovible);
-            if (batallon.size() == 3){//HAY BATALLON GENTE EEEEEE
-                for (int i = 0 ; i < batallon.size() ; i++) {
-                 moverDeBatallon((Movible)batallon.get(i),direccion);
-                }
-                return;
-            }
-        }
+        if (hayBatallon(unidadMovible,direccion)==true) return;
 
         //calcular la nueva Tablero.Coordenada
         Coordenada coordenadaActual = unidadMovible.obtenerCoordenada();
@@ -98,6 +89,25 @@ public class Tablero {
         return contiguas;
     }
 
+    public void mover(){
+
+
+    }
+
+    public boolean hayBatallon(Movible unidadMovible, Direccion direccion){
+        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
+        if (unidadMovible.getClass() == soldado.getClass()){
+            ArrayList<Unidad> batallon = armarBatallon(unidadMovible);
+            if (batallon.size() == 3){//HAY BATALLON GENTE EEEEEE
+                for (int i = 0 ; i < batallon.size() ; i++) {
+                    moverDeBatallon((Movible)batallon.get(i),direccion);
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ArrayList<Unidad> armarBatallon(Movible soldado){
         ArrayList<Unidad> contiguas = obtenerUnidadesContiguas(soldado);
         ArrayList<Unidad> batallon = new ArrayList<Unidad>();
@@ -121,7 +131,7 @@ public class Tablero {
             Casillero casilleroActual = obtenerCasillero(coordenadaActual);
             casilleroActual.vaciarCasillero();
             unidadMovible.mover(nuevaCoordenada);
-        }
+        } //Si uno de los soldados no puede moverse, continua en el casillero donde estaba
         catch (Excepciones.CasilleroOcupadoException e) {
         }
         catch (CasilleroInvalidoException e) {
