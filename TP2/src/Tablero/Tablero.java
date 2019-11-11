@@ -84,7 +84,7 @@ public class Tablero {
             //try {
             Casillero casillero = obtenerCasillero(desplazada);
             try {
-                if (casillero != null && casillero.estaOcupado()) {
+                if (casillero.estaOcupado()) {
                     Unidad contigua = casillero.obtenerUnidad();
                     contiguas.add(contigua);
                 }
