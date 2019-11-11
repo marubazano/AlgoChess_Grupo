@@ -89,11 +89,6 @@ public class Tablero {
         return contiguas;
     }
 
-    public void mover(){
-
-
-    }
-
     public boolean hayBatallon(Movible unidadMovible, Direccion direccion){
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
         if (unidadMovible.getClass() == soldado.getClass()){
