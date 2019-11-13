@@ -53,9 +53,11 @@ public class Jinete extends Movible {
     public boolean hayAliadoCerca(ArrayList<Unidad> unidadesAliadas){
         boolean hayAliado = false;
         for(Unidad actual : unidadesAliadas){
-            Distancia distancia = actual.obtenerCoordenada().calcularDistacia(this.obtenerCoordenada());
-            if(distancia == Distancia.CERCANA) {
-                hayAliado = true;
+            if(actual != this) { //No quiero encontrar la distancia a self
+                Distancia distancia = actual.obtenerCoordenada().calcularDistacia(this.obtenerCoordenada());
+                if (distancia == Distancia.CERCANA) {
+                    hayAliado = true;
+                }
             }
         }
         return hayAliado;
@@ -85,12 +87,10 @@ public class Jinete extends Movible {
     public ArrayList<Unidad> obtenerUnidadesEnemigas(ArrayList<Unidad> unidadesTablero, ArrayList<Unidad> unidadesAliadas) {
         ArrayList<Unidad> enemigas = new ArrayList<>();
         for(Unidad actual : unidadesTablero){
-            if(!unidadesAliadas.contains(actual)){
+            if(!unidadesAliadas.contains(actual) && actual != this){ //No nos queremos agregar en las unidades enemigas!!!
                 enemigas.add(actual);
             }
         }
         return enemigas;
     }
-
-
 }

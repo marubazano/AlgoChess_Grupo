@@ -66,7 +66,6 @@ public class Jugador {
         }
     }
 
-
     public boolean ubicarUnidad(Unidad unidad, Coordenada coordenada) {
         try {
             if (!estaEnLadoDelTableroCorrespondiente(coordenada)) return false;

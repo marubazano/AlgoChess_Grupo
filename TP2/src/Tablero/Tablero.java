@@ -138,7 +138,8 @@ public class Tablero {
         Collection<Casillero> casilleros = tablero.values();
         ArrayList<Unidad> unidades = new ArrayList<>();
         for(Casillero actual : casilleros){
-            unidades.add(actual.obtenerUnidad());
+            if(actual.estaOcupado())
+                unidades.add(actual.obtenerUnidad());
         }
         return unidades;
     }
