@@ -184,8 +184,22 @@ public class JugadorTest {
         Assert.assertTrue(soldadoEnemigo.obtenerVida() == 100);
     }
 
+    @Test
+    public void jugadorCura() throws PuntosInsuficientesException,CasilleroOcupadoException, CasilleroInvalidoException {
+        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
+        Curandero curandero = new Curandero();
+        pruebaJugador.comprar(soldado);
+        pruebaJugador.comprar(curandero);
+        Coordenada coordenada = new Coordenada(1, 1);
+        Coordenada coordenada2 = new Coordenada(4, 4);
+        pruebaJugador.ubicarUnidad(soldado, coordenada);
+        tablero.ubicarUnidad(curandero, coordenada2);
+        soldado.recibirDaño(20);
+        Assert.assertTrue(soldado.obtenerVida() == 80);
+        pruebaJugador.realizarAccionDeUnidad(curandero, soldado);
+        Assert.assertTrue(soldado.obtenerVida() == 95);
+    }
 
-    // REVISAR CUANDO EL JUGADOR ATACA Y CUANDO NO.
 
 
 }

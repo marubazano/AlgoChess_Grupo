@@ -98,10 +98,30 @@ public class Jugador {
         return this.estado;
     }
 
-    public void realizarAccionDeUnidad(Unidad unidad, Unidad unidadEnemiga){
-        if (this.unidades.contains(unidadEnemiga)) return; //trató de atacar a una unidad aliada
-        if (!this.unidades.contains(unidad)) return; //trató de atacar con una unidad enemiga
-        unidad.realizarAccion(unidadEnemiga, this.tablero, this.unidades);
+    public void realizarAccionDeUnidad(Unidad unaUnidad, Unidad otraUnidad){
+        //Dos posibilidades:
+        //1) Recibe un aliado y un enemigo, el aliado ataca al enemigo.
+        //2) Recibe un Curandero (aliado) y un aliado, el curandero cura al aliado.
+        if (esCurandero(unaUnidad)) realizarAccionDeCurandero(unaUnidad,otraUnidad);
+        else realizarAccionDeUnidadDeAtaque(unaUnidad, otraUnidad);
+    }
+
+    public void realizarAccionDeUnidadDeAtaque (Unidad unaUnidad, Unidad otraUnidad){
+        if (this.unidades.contains(otraUnidad)) return; //trató de atacar A una unidad aliada
+        if (!this.unidades.contains(unaUnidad)) return; //trató de atacar CON una unidad enemiga
+        unaUnidad.realizarAccion(otraUnidad, this.tablero, this.unidades);
+    }
+
+    public void realizarAccionDeCurandero (Unidad curandero, Unidad unidadACurar){
+        if (!this.unidades.contains(unidadACurar)) return; //trató de curar A unidad enemiga
+        if (!this.unidades.contains(curandero)) return; // trato de curar CON un curandero enemigo
+        curandero.realizarAccion(unidadACurar,tablero,unidades);
+    }
+
+    public boolean esCurandero (Unidad unidad){
+        Curandero esCurandero = new Curandero();
+        if(unidad.getClass() == esCurandero.getClass()) return true;
+        return false;
     }
 
 }
