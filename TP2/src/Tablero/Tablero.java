@@ -6,6 +6,7 @@ import Unidades.Movible;
 import Unidades.SoldadoDeInfanteria;
 import Unidades.Unidad;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -131,6 +132,15 @@ public class Tablero {
         }
         catch (CasilleroInvalidoException e) {
         }
+    }
+
+    public ArrayList<Unidad> obtenerUnidades(){
+        Collection<Casillero> casilleros = tablero.values();
+        ArrayList<Unidad> unidades = new ArrayList<>();
+        for(Casillero actual : casilleros){
+            unidades.add(actual.obtenerUnidad());
+        }
+        return unidades;
     }
 
 }

@@ -4,6 +4,8 @@ import Tablero.*;
 import Unidades.Movible;
 import Unidades.Unidad;
 
+import java.util.ArrayList;
+
 public class SoldadoDeInfanteria extends Movible {
 
     private Arma puños; //Pelea con los puños?
@@ -14,7 +16,7 @@ public class SoldadoDeInfanteria extends Movible {
     }
 
     @Override
-    public void realizarAccion(Unidad unidadEnemiga, Tablero tablero) {
+    public void realizarAccion(Unidad unidadEnemiga, Tablero tablero, ArrayList<Unidad> unidades) {
         int daño = obtenerDañoDeArma();
         unidadEnemiga.recibirDaño(daño);
     }

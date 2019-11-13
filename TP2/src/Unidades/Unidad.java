@@ -1,5 +1,6 @@
 package Unidades;
 import Tablero.*;
+import java.util.ArrayList;
 
 public abstract class Unidad {
     private float vida;
@@ -36,7 +37,7 @@ public abstract class Unidad {
         return this.costo;
     }
 
-    public abstract void realizarAccion(Unidad unidad, Tablero tablero);
+    public abstract void realizarAccion(Unidad unidad, Tablero tablero, ArrayList<Unidad> unidades);
 
 }
 

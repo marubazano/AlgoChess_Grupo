@@ -1,5 +1,7 @@
 package Unidades;
 import Tablero.*;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Jinete extends Movible {
@@ -21,11 +23,21 @@ public class Jinete extends Movible {
     // Si el ataque indicado no es ninguno de los dos casos anteriores, el jinete NO ATACA y el jugador pierde el turno.
 
     @Override
-    public void realizarAccion(Unidad unidadEnemiga, Tablero tablero) {
+    public void realizarAccion(Unidad unidadEnemiga, Tablero tablero, ArrayList<Unidad> unidadesAliadas) {
         Coordenada coordenadaEnemiga = unidadEnemiga.obtenerCoordenada();
         Coordenada coordenadaJinete = this.obtenerCoordenada();
         Distancia distancia = coordenadaJinete.calcularDistacia(coordenadaEnemiga);
-        unidadEnemiga.recibirDaño(armaSegunDistancia(distancia));
+        ArrayList<Unidad> unidadesTablero = tablero.obtenerUnidades();
+        ArrayList<Unidad> enemigas = obtenerUnidadesEnemigas(unidadesTablero, unidadesAliadas);
+        if((haySoldadoAliadoCerca(unidadesAliadas) || !hayEnemigosCerca(enemigas)) && (distancia == Distancia.MEDIANA)){
+            unidadEnemiga.recibirDaño(armaSegunDistancia(distancia));
+        }
+        else if((hayEnemigosCerca(enemigas) && !hayAliadoCerca(unidadesAliadas)) && distancia == Distancia.CERCANA){
+            unidadEnemiga.recibirDaño(armaSegunDistancia(distancia));
+        }
+        else{
+            System.out.println("Lanzar excepción de AtaqueInvalido");
+        }
     }
 
     public int armaSegunDistancia(Distancia distancia){
@@ -37,4 +49,48 @@ public class Jinete extends Movible {
         }
         return danioArma;
     }
+
+    public boolean hayAliadoCerca(ArrayList<Unidad> unidadesAliadas){
+        boolean hayAliado = false;
+        for(Unidad actual : unidadesAliadas){
+            Distancia distancia = actual.obtenerCoordenada().calcularDistacia(this.obtenerCoordenada());
+            if(distancia == Distancia.CERCANA) {
+                hayAliado = true;
+            }
+        }
+        return hayAliado;
+    }
+
+    public boolean haySoldadoAliadoCerca(ArrayList<Unidad> unidadesAliadas){
+        boolean haySoldado = false;
+        for(Unidad actual : unidadesAliadas){
+            Distancia distancia = actual.obtenerCoordenada().calcularDistacia(this.obtenerCoordenada());
+            if(actual instanceof SoldadoDeInfanteria && distancia == Distancia.CERCANA) {
+                haySoldado = true;
+            }
+        }
+        return haySoldado;
+    }
+
+    public boolean hayEnemigosCerca(ArrayList<Unidad> unidadesEnemigas){
+        boolean hayEnemigoCerca = false;
+        for(Unidad enemiga : unidadesEnemigas){
+            Distancia distancia = enemiga.obtenerCoordenada().calcularDistacia(this.obtenerCoordenada());
+            if(distancia == Distancia.CERCANA)
+                hayEnemigoCerca = true;
+        }
+        return hayEnemigoCerca;
+    }
+
+    public ArrayList<Unidad> obtenerUnidadesEnemigas(ArrayList<Unidad> unidadesTablero, ArrayList<Unidad> unidadesAliadas) {
+        ArrayList<Unidad> enemigas = new ArrayList<>();
+        for(Unidad actual : unidadesTablero){
+            if(!unidadesAliadas.contains(actual)){
+                enemigas.add(actual);
+            }
+        }
+        return enemigas;
+    }
+
+
 }

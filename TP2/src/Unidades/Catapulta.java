@@ -15,7 +15,7 @@ public class Catapulta extends Unidad {
     }
 
     @Override
-    public void realizarAccion(Unidad unidadEnemiga, Tablero tablero) {
+    public void realizarAccion(Unidad unidadEnemiga, Tablero tablero, ArrayList<Unidad> unidades) {
         int danio = obtenerDañoDeArma();
         Set<Unidad> atacadas = new HashSet<>();
         unidadEnemiga.recibirDaño(danio);
