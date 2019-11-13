@@ -1,3 +1,5 @@
+import Excepciones.AccionInvalidaException;
+import Excepciones.AccionInvalidaException;
 import Excepciones.CasilleroInvalidoException;
 import Excepciones.CasilleroOcupadoException;
 import Excepciones.PuntosInsuficientesException;
@@ -98,7 +100,7 @@ public class Jugador {
         return this.estado;
     }
 
-    public void realizarAccionDeUnidad(Unidad unaUnidad, Unidad otraUnidad){
+    public void realizarAccionDeUnidad(Unidad unaUnidad, Unidad otraUnidad) throws AccionInvalidaException{
         //Dos posibilidades:
         //1) Recibe un aliado y un enemigo, el aliado ataca al enemigo.
         //2) Recibe un Curandero (aliado) y un aliado, el curandero cura al aliado.
@@ -106,13 +108,13 @@ public class Jugador {
         else realizarAccionDeUnidadDeAtaque(unaUnidad, otraUnidad);
     }
 
-    public void realizarAccionDeUnidadDeAtaque (Unidad unaUnidad, Unidad otraUnidad){
+    public void realizarAccionDeUnidadDeAtaque (Unidad unaUnidad, Unidad otraUnidad) throws AccionInvalidaException{
         if (this.unidades.contains(otraUnidad)) return; //trató de atacar A una unidad aliada
         if (!this.unidades.contains(unaUnidad)) return; //trató de atacar CON una unidad enemiga
         unaUnidad.realizarAccion(otraUnidad, this.tablero, this.unidades);
     }
 
-    public void realizarAccionDeCurandero (Unidad curandero, Unidad unidadACurar){
+    public void realizarAccionDeCurandero (Unidad curandero, Unidad unidadACurar) throws AccionInvalidaException {
         if (!this.unidades.contains(unidadACurar)) return; //trató de curar A unidad enemiga
         if (!this.unidades.contains(curandero)) return; // trato de curar CON un curandero enemigo
         curandero.realizarAccion(unidadACurar,tablero,unidades);

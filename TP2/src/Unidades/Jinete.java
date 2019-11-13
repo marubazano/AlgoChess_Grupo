@@ -1,4 +1,6 @@
 package Unidades;
+import Excepciones.AccionInvalidaException;
+import Excepciones.AccionInvalidaException;
 import Tablero.*;
 
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class Jinete extends Movible {
     // Si el ataque indicado no es ninguno de los dos casos anteriores, el jinete NO ATACA y el jugador pierde el turno.
 
     @Override
-    public void realizarAccion(Unidad unidadEnemiga, Tablero tablero, ArrayList<Unidad> unidadesAliadas) {
+    public void realizarAccion(Unidad unidadEnemiga, Tablero tablero, ArrayList<Unidad> unidadesAliadas) throws AccionInvalidaException {
         Coordenada coordenadaEnemiga = unidadEnemiga.obtenerCoordenada();
         Coordenada coordenadaJinete = this.obtenerCoordenada();
         Distancia distancia = coordenadaJinete.calcularDistacia(coordenadaEnemiga);
@@ -36,7 +38,7 @@ public class Jinete extends Movible {
             unidadEnemiga.recibirDaño(armaSegunDistancia(distancia));
         }
         else{
-            System.out.println("Lanzar excepción de AtaqueInvalido");
+            throw new AccionInvalidaException();
         }
     }
 

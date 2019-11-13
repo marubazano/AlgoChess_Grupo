@@ -1,4 +1,6 @@
 package Unidades;
+import Excepciones.AccionInvalidaException;
+import Excepciones.AccionInvalidaException;
 import Tablero.*;
 import java.util.ArrayList;
 
@@ -37,7 +39,7 @@ public abstract class Unidad {
         return this.costo;
     }
 
-    public abstract void realizarAccion(Unidad unidad, Tablero tablero, ArrayList<Unidad> unidades);
+    public abstract void realizarAccion(Unidad unidad, Tablero tablero, ArrayList<Unidad> unidades) throws AccionInvalidaException;
 
 }
 

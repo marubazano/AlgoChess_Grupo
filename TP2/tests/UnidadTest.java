@@ -154,7 +154,7 @@ public class UnidadTest {
     }
 
     @Test
-    public void jineteAtacaEnemigoADistanciaMediaConArcoYFlecha()throws CasilleroInvalidoException, CasilleroOcupadoException {
+    public void jineteAtacaEnemigoADistanciaMediaConArcoYFlecha()throws CasilleroInvalidoException, CasilleroOcupadoException, AccionInvalidaException {
         Jinete jinete = new Jinete();
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
         Curandero curandero = new Curandero();
@@ -172,7 +172,7 @@ public class UnidadTest {
     }
 
     @Test
-    public void jineteAtacaAUnidadEnemigaCercanaConEspada()throws CasilleroInvalidoException, CasilleroOcupadoException{
+    public void jineteAtacaAUnidadEnemigaCercanaConEspada()throws CasilleroInvalidoException, CasilleroOcupadoException, AccionInvalidaException{
         Jinete jinete = new Jinete();
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
         Curandero curandero = new Curandero();
@@ -189,8 +189,8 @@ public class UnidadTest {
         Assert.assertTrue(soldado.obtenerVida()==95);
     }
 
-    @Test
-    public void jineteFallaAlAtacarEnemigoLejano()throws CasilleroInvalidoException, CasilleroOcupadoException{
+    @Test(expected = AccionInvalidaException.class)
+    public void jineteFallaAlAtacarEnemigoLejano()throws CasilleroInvalidoException, CasilleroOcupadoException, AccionInvalidaException{
         Jinete jinete = new Jinete();
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
         Coordenada coordenadaJinete = new Coordenada(9,9);
@@ -202,8 +202,8 @@ public class UnidadTest {
         Assert.assertTrue(soldado.obtenerVida()==100);
     }
 
-    @Test
-    public void jineteFallaAlAtacarEnemigoCercanoTeniendoAliadosCerca() throws CasilleroInvalidoException, CasilleroOcupadoException{
+    @Test(expected = AccionInvalidaException.class)
+    public void jineteFallaAlAtacarEnemigoCercanoTeniendoAliadosCerca() throws CasilleroInvalidoException, CasilleroOcupadoException, AccionInvalidaException{
         Jinete jinete = new Jinete();
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
         Catapulta catapulta = new Catapulta();

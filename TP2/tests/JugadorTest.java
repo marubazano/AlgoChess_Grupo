@@ -159,7 +159,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void jugadorAtaca() throws PuntosInsuficientesException,CasilleroOcupadoException, CasilleroInvalidoException {
+    public void jugadorAtaca() throws PuntosInsuficientesException, CasilleroOcupadoException, CasilleroInvalidoException, AccionInvalidaException {
         Unidad catapulta = new Catapulta();
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
         pruebaJugador.comprar(catapulta);
@@ -172,7 +172,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void jugadorNoAtaca() throws PuntosInsuficientesException,CasilleroOcupadoException, CasilleroInvalidoException {
+    public void jugadorNoAtaca() throws PuntosInsuficientesException,CasilleroOcupadoException, CasilleroInvalidoException, AccionInvalidaException {
         Unidad soldado = new SoldadoDeInfanteria();
         SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
         pruebaJugador.comprar(soldado);
@@ -185,7 +185,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void jugadorCura() throws PuntosInsuficientesException,CasilleroOcupadoException, CasilleroInvalidoException {
+    public void jugadorCura() throws PuntosInsuficientesException,CasilleroOcupadoException, CasilleroInvalidoException, AccionInvalidaException {
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
         Curandero curandero = new Curandero();
         pruebaJugador.comprar(soldado);
@@ -199,7 +199,5 @@ public class JugadorTest {
         pruebaJugador.realizarAccionDeUnidad(curandero, soldado);
         Assert.assertTrue(soldado.obtenerVida() == 95);
     }
-
-
 
 }
