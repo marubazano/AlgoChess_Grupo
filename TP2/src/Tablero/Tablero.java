@@ -2,13 +2,12 @@ package Tablero;
 
 import Excepciones.CasilleroInvalidoException;
 import Excepciones.CasilleroOcupadoException;
+import Unidades.Batallon;
 import Unidades.Movible;
 import Unidades.SoldadoDeInfanteria;
 import Unidades.Unidad;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Tablero {
     private static final int CANT_FILAS = 20;
@@ -47,9 +46,6 @@ public class Tablero {
     }
 
     public void mover(Movible unidadMovible, Direccion direccion) {
-        //reviso si hay batallon
-        if (hayBatallon(unidadMovible,direccion)==true) return;
-
         //calcular la nueva Tablero.Coordenada
         Coordenada coordenadaActual = unidadMovible.obtenerCoordenada();
         try {
@@ -65,6 +61,22 @@ public class Tablero {
         catch (CasilleroInvalidoException e) {
             e.getMensaje();
         }
+    }
+
+    public void moverBatallon(SoldadoDeInfanteria soldado1, SoldadoDeInfanteria soldado2, SoldadoDeInfanteria soldado3, Direccion direccion) throws CasilleroInvalidoException {
+        int distancia12 = soldado1.obtenerCoordenada().distanciaNumerica(soldado2.obtenerCoordenada());
+        int distancia23 = soldado2.obtenerCoordenada().distanciaNumerica(soldado3.obtenerCoordenada());
+        int distancia13 = soldado1.obtenerCoordenada().distanciaNumerica(soldado3.obtenerCoordenada());
+        int sumaDistancias = distancia12 + distancia13 + distancia23;
+        if (sumaDistancias == 3 || sumaDistancias== 4){ //hay batallon
+            Batallon batallon = new Batallon(soldado1,soldado2,soldado3);
+            Queue<SoldadoDeInfanteria> colaSoldados = new LinkedList<>();
+            colaSoldados.add(soldado1);
+            colaSoldados.add(soldado2);
+            colaSoldados.add(soldado3);
+            batallon.mover(this,direccion,colaSoldados);
+        }
+        else System.out.println("Excepcion de batallon");
     }
 
     public ArrayList<Unidad> obtenerUnidadesContiguas(Unidad unidad) {
@@ -90,50 +102,6 @@ public class Tablero {
         return contiguas;
     }
 
-    public boolean hayBatallon(Movible unidadMovible, Direccion direccion){
-        SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
-        if (unidadMovible.getClass() == soldado.getClass()){
-            ArrayList<Unidad> batallon = armarBatallon(unidadMovible);
-            if (batallon.size() == 3){//HAY BATALLON GENTE EEEEEE
-                for (int i = 0 ; i < batallon.size() ; i++) {
-                    moverDeBatallon((Movible)batallon.get(i),direccion);
-                }
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public ArrayList<Unidad> armarBatallon(Movible soldado){
-        ArrayList<Unidad> contiguas = obtenerUnidadesContiguas(soldado);
-        ArrayList<Unidad> batallon = new ArrayList<Unidad>();
-        batallon.add(soldado);
-        int cantBatallon = 2;
-        for (int i = 0 ; i < contiguas.size() ; i++) {
-            if (contiguas.get(i).getClass() == soldado.getClass()){
-                batallon.add(contiguas.get(i));
-                cantBatallon--;
-                if (cantBatallon == 0) break;
-            }
-        }
-        return batallon;
-    }
-
-    public void moverDeBatallon(Movible unidadMovible, Direccion direccion) {
-        Coordenada coordenadaActual = unidadMovible.obtenerCoordenada();
-        try {
-            Coordenada nuevaCoordenada = coordenadaActual.desplazar(direccion);
-            ubicarUnidad(unidadMovible, nuevaCoordenada);
-            Casillero casilleroActual = obtenerCasillero(coordenadaActual);
-            casilleroActual.vaciarCasillero();
-            unidadMovible.mover(nuevaCoordenada);
-        } //Si uno de los soldados no puede moverse, continua en el casillero donde estaba
-        catch (Excepciones.CasilleroOcupadoException e) {
-        }
-        catch (CasilleroInvalidoException e) {
-        }
-    }
-
     public ArrayList<Unidad> obtenerUnidades(){
         Collection<Casillero> casilleros = tablero.values();
         ArrayList<Unidad> unidades = new ArrayList<>();
@@ -142,6 +110,22 @@ public class Tablero {
                 unidades.add(actual.obtenerUnidad());
         }
         return unidades;
+    }
+
+    public Unidad obtenerContiguaEnDireccion(Unidad unidad, Direccion direccion) throws CasilleroInvalidoException {
+        Coordenada desplazada;
+        Coordenada actual = unidad.obtenerCoordenada();
+        desplazada = actual.desplazar(direccion);
+        Casillero casillero = obtenerCasillero(desplazada);
+        try {
+            if (casillero.estaOcupado()) {
+                Unidad contigua = casillero.obtenerUnidad();
+                return contigua;
+            }
+        } catch (NullPointerException e) {
+            throw new CasilleroInvalidoException(e);
+        }
+        return null;
     }
 
 }

@@ -7,19 +7,20 @@
 
 **Contribuidores**
 
-- Marina Bazano Sammartino
-    - mail: marinabazano@gmail.com
-    - padrón: 102349
-    - git: marubazano
+- María Cecilia Fedele Edo
+    - mail: fedelececilia@gmail.com
+    - padrón: 102573
+    - git: fedelececilia 
 - Joaquín Guido Hojman De la Rosa
     - mail: hojmanjoaquin@gmail.com
     - padrón: 102264
     - git: joaquinhojman
 - Leonardo Emmanuel Giampieri Mutti
     - mail: lgiampieri62@gmail.com
-    - padrón: 102308
+    - padrón: 102358
     - git: leogm99
-- María Cecilia Fedele Edo
-    - mail: fedelececilia@gmail.com
-    - padrón: 102573
-    - git: fedelececilia 
+- Marina Bazano Sammartino
+    - mail: marinabazano@gmail.com
+    - padrón: 102349
+    - git: marubazano
+

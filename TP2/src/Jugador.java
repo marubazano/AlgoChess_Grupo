@@ -87,6 +87,10 @@ public class Jugador {
         tablero.mover(unidadMovible, direccion);
     }
 
+    public void mover(Batallon batallon, Direccion direccion) {
+
+    }
+
     public boolean estaEnLadoDelTableroCorrespondiente(Coordenada coordenada) {
         if (this.nroJugador == 1) {
             if (coordenada.obtenerVertical() <= 10) return true;
@@ -126,5 +130,15 @@ public class Jugador {
         return false;
     }
 
+    public void moverBatallon(SoldadoDeInfanteria soldado1, SoldadoDeInfanteria soldado2, SoldadoDeInfanteria soldado3, Direccion direccion) {
+        //verificar que sean contiguos
+
+
+        //Batallon batallon = new Batallon(soldado1, soldado2, soldado3);
+        //return batallon;
+
+        //ahora lo movemos
+
+    }
 }
 

@@ -48,11 +48,20 @@ public class Coordenada {
         Coordenada distancia = new Coordenada(distEnX,distEnY);
         return distancia;*/
         //Distancia de tablero o chebyshev
-        Coordenada resta = restarCoordenada(otraCoordenada);
-        int distanciaNumerica = max(abs(resta.obtenerHorizontal()), abs(resta.obtenerVertical()));
+        int distanciaNumerica = distanciaNumerica(otraCoordenada);
         return Distancia.obtenerDistancia(distanciaNumerica);
 
     }
+
+    public int distanciaNumerica (Coordenada otraCoordenada){
+        Coordenada resta = restarCoordenada(otraCoordenada);
+        int distanciaNumerica = max(abs(resta.obtenerHorizontal()), abs(resta.obtenerVertical()));
+        return distanciaNumerica;
+    }
+
+
+
+
 
     @Override
     public boolean equals(Object obj) {
