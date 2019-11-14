@@ -199,7 +199,7 @@ public class UnidadTest {
         tablero.ubicarUnidad(soldado, coordenadaSoldado);
         ArrayList<Unidad> unidadesAliadas = new ArrayList<>();
         jinete.realizarAccion(soldado, tablero, unidadesAliadas);
-        Assert.assertTrue(soldado.obtenerVida()==100);
+        Assert.fail();//  .assertTrue(soldado.obtenerVida()==100);
     }
 
     @Test(expected = AccionInvalidaException.class)
@@ -216,6 +216,6 @@ public class UnidadTest {
         ArrayList<Unidad> unidadesAliadas = new ArrayList<>();
         unidadesAliadas.add(catapulta);
         jinete.realizarAccion(soldado, tablero, unidadesAliadas);
-        Assert.assertTrue(soldado.obtenerVida()==100);
+        Assert.fail(); //Assert.assertTrue(soldado.obtenerVida()==100);
     }
 }

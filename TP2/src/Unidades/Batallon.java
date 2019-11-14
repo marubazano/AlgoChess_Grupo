@@ -20,7 +20,7 @@ public class Batallon{
         batallon.add(soldado3);
     }
 
-    public void mover(Tablero tablero, Direccion direccion, Queue colaSoldados) throws CasilleroInvalidoException {
+    public void mover(Tablero tablero, Direccion direccion, Queue colaSoldados) {
         int cantMovsMax = 5;
         while (!colaSoldados.isEmpty() && cantMovsMax > 0){
             SoldadoDeInfanteria soldado = (SoldadoDeInfanteria) colaSoldados.poll();
