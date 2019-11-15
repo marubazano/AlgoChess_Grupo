@@ -1,12 +1,7 @@
-import Excepciones.CasilleroInvalidoException;
-import Excepciones.CasilleroOcupadoException;
-import Excepciones.PuntosInsuficientesException;
-import Tablero.Tablero;
-import Unidades.*;
-import org.junit.*;
 import Tablero.*;
 import Unidades.*;
 import Excepciones.*;
+import org.junit.*;
 
 public class JugadorTest {
     private Tablero tablero = new Tablero();

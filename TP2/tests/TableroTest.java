@@ -1,9 +1,8 @@
 import Excepciones.CasilleroInvalidoException;
 import Excepciones.CasilleroOcupadoException;
-import org.junit.*;
 import Tablero.*;
 import Unidades.*;
-import Excepciones.*;
+import org.junit.*;
 
 public class TableroTest {
     private Tablero pruebaTablero = new Tablero();

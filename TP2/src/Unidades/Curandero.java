@@ -1,6 +1,6 @@
 package Unidades;
-import Tablero.*;
 
+import Tablero.*;
 import java.util.ArrayList;
 
 public class Curandero extends Movible {

@@ -1,6 +1,5 @@
 package Tablero;
 
-
 public enum Distancia {
     CERCANA,
     MEDIANA,

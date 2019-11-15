@@ -1,12 +1,9 @@
 package Unidades;
 
-import Excepciones.AccionInvalidaException;
 import Excepciones.CasilleroInvalidoException;
 import Tablero.Tablero;
 import Tablero.Direccion;
-
 import java.util.*;
-import java.util.ArrayList.*;
 
 public class Batallon {
     private ArrayList<SoldadoDeInfanteria> batallon = new ArrayList<>();

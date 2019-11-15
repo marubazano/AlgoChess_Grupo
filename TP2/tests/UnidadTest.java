@@ -1,18 +1,12 @@
-import Excepciones.CasilleroInvalidoException;
-import Excepciones.CasilleroOcupadoException;
-import Tablero.Tablero;
-import Unidades.*;
-import org.junit.*;
 import Tablero.*;
 import Unidades.*;
 import Excepciones.*;
-
 import java.util.ArrayList;
+import org.junit.*;
 
-/*
-   Al ser abstracta, tenemos que usar un objeto
-   tipo mock, no heredados de unidad.
- */
+//Al ser abstracta, tenemos que usar un objeto tipo mock, no heredados de unidad.
+
+
 public class UnidadTest {
     private Unidad prueba;
     private Tablero tablero = new Tablero();

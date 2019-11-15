@@ -1,9 +1,6 @@
 package Unidades;
+
 import Tablero.*;
-
-import Unidades.Movible;
-import Unidades.Unidad;
-
 import java.util.ArrayList;
 
 public class SoldadoDeInfanteria extends Movible {
