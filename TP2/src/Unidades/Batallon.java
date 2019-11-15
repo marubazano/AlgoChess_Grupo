@@ -14,7 +14,11 @@ public class Batallon {
         batallon.add(soldado3);
     }
 
-    public void mover(Tablero tablero, Direccion direccion, Queue colaSoldados) {
+    public void mover(Tablero tablero, Direccion direccion, SoldadoDeInfanteria soldado1, SoldadoDeInfanteria soldado2, SoldadoDeInfanteria soldado3) {
+        Queue<SoldadoDeInfanteria> colaSoldados = new LinkedList<>();
+        colaSoldados.add(soldado1);
+        colaSoldados.add(soldado2);
+        colaSoldados.add(soldado3);
         int cantMovsMax = 5;
         while (!colaSoldados.isEmpty() && cantMovsMax > 0) {
             SoldadoDeInfanteria soldado = (SoldadoDeInfanteria) colaSoldados.poll();

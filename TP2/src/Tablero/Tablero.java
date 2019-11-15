@@ -70,11 +70,7 @@ public class Tablero {
         int sumaDistancias = distancia12 + distancia13 + distancia23;
         if (sumaDistancias == 3 || sumaDistancias== 4){ //hay batallon
             Batallon batallon = new Batallon(soldado1, soldado2, soldado3);
-            Queue<SoldadoDeInfanteria> colaSoldados = new LinkedList<>();
-            colaSoldados.add(soldado1);
-            colaSoldados.add(soldado2);
-            colaSoldados.add(soldado3);
-            batallon.mover(this, direccion, colaSoldados);
+            batallon.mover(this, direccion, soldado1, soldado2, soldado3);
         }
         else System.out.println("Excepcion de batallón");
     }
