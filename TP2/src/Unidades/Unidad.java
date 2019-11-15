@@ -19,8 +19,8 @@ public abstract class Unidad {
         return this.vida;
     }
 
-    public void recibirDaño(float daño) {
-        this.vida -= daño;
+    public void recibirDanio(float danio) {
+        this.vida -= danio;
     }
 
     public void recibirCura(float cura) {
@@ -40,6 +40,5 @@ public abstract class Unidad {
     }
 
     public abstract void realizarAccion(Unidad unidad, Tablero tablero, ArrayList<Unidad> unidades) throws AccionInvalidaException;
-
 }
 

@@ -69,14 +69,14 @@ public class Tablero {
         int distancia13 = soldado1.obtenerCoordenada().distanciaNumerica(soldado3.obtenerCoordenada());
         int sumaDistancias = distancia12 + distancia13 + distancia23;
         if (sumaDistancias == 3 || sumaDistancias== 4){ //hay batallon
-            Batallon batallon = new Batallon(soldado1,soldado2,soldado3);
+            Batallon batallon = new Batallon(soldado1, soldado2, soldado3);
             Queue<SoldadoDeInfanteria> colaSoldados = new LinkedList<>();
             colaSoldados.add(soldado1);
             colaSoldados.add(soldado2);
             colaSoldados.add(soldado3);
-            batallon.mover(this,direccion,colaSoldados);
+            batallon.mover(this, direccion, colaSoldados);
         }
-        else System.out.println("Excepcion de batallon");
+        else System.out.println("Excepcion de batallón");
     }
 
     public ArrayList<Unidad> obtenerUnidadesContiguas(Unidad unidad) {
@@ -85,7 +85,6 @@ public class Tablero {
         for (Direccion dir : Direccion.values()) { //itero por todas las dirs adyacentes a la unidad
             Coordenada actual = unidad.obtenerCoordenada();
             desplazada = actual.desplazar(dir);
-            //try {
             Casillero casillero = obtenerCasillero(desplazada);
             try {
                 if (casillero.estaOcupado()) {
@@ -96,13 +95,10 @@ public class Tablero {
                 continue;
             }
         }
-            //catch (Excepciones.CasilleroInvalidoException e) {
-                //continue; //feito feito
-            //}
         return contiguas;
     }
 
-    public ArrayList<Unidad> obtenerUnidades(){
+    public ArrayList<Unidad> obtenerUnidades() {
         Collection<Casillero> casilleros = tablero.values();
         ArrayList<Unidad> unidades = new ArrayList<>();
         for(Casillero actual : casilleros){
@@ -122,10 +118,10 @@ public class Tablero {
                 Unidad contigua = casillero.obtenerUnidad();
                 return contigua;
             }
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             throw new CasilleroInvalidoException(e);
         }
         return null;
     }
-
 }

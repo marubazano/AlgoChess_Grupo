@@ -1,13 +1,13 @@
 package Unidades;
 
 public class Arma {
-    private int daño;
+    private int danio;
 
-    public Arma(int daño) {
-        this.daño = daño;
+    public Arma(int danio) {
+        this.danio = danio;
     }
 
-    public int obtenerDañoDeArma() {
-        return this.daño;
+    public int obtenerDanioDeArma() {
+        return this.danio;
     }
 }

@@ -25,7 +25,7 @@ public class Jugador {
         this.tablero = tablero;
         this.puntos = 20;
         this.nroJugador = nroJugador;
-        this.estado="JUGANDO";
+        this.estado = "JUGANDO";
     }
 
     public void agregarUnidadAJugador(Unidad unidad) {
@@ -34,7 +34,7 @@ public class Jugador {
 
     public void eliminarUnidadDelJugador(Unidad unidad) {
         this.unidades.remove(unidad);
-        if (unidades.size() == 0) this.estado="PERDEDOR";
+        if (unidades.size() == 0) this.estado = "PERDEDOR";
     }
 
     public int obtenerCantidadUnidades() {
@@ -87,9 +87,9 @@ public class Jugador {
         tablero.mover(unidadMovible, direccion);
     }
 
-    public void mover(Batallon batallon, Direccion direccion) {
+    /*public void mover(Batallon batallon, Direccion direccion) {
 
-    }
+    }*/
 
     public boolean estaEnLadoDelTableroCorrespondiente(Coordenada coordenada) {
         if (this.nroJugador == 1) {
@@ -104,7 +104,7 @@ public class Jugador {
         return this.estado;
     }
 
-    public void realizarAccionDeUnidad(Unidad unaUnidad, Unidad otraUnidad) throws AccionInvalidaException{
+    public void realizarAccionDeUnidad(Unidad unaUnidad, Unidad otraUnidad) throws AccionInvalidaException {
         //Dos posibilidades:
         //1) Recibe un aliado y un enemigo, el aliado ataca al enemigo.
         //2) Recibe un Curandero (aliado) y un aliado, el curandero cura al aliado.
@@ -112,25 +112,25 @@ public class Jugador {
         else realizarAccionDeUnidadDeAtaque(unaUnidad, otraUnidad);
     }
 
-    public void realizarAccionDeUnidadDeAtaque (Unidad unaUnidad, Unidad otraUnidad) throws AccionInvalidaException{
+    public void realizarAccionDeUnidadDeAtaque(Unidad unaUnidad, Unidad otraUnidad) throws AccionInvalidaException {
         if (this.unidades.contains(otraUnidad)) return; //trató de atacar A una unidad aliada
         if (!this.unidades.contains(unaUnidad)) return; //trató de atacar CON una unidad enemiga
         unaUnidad.realizarAccion(otraUnidad, this.tablero, this.unidades);
     }
 
-    public void realizarAccionDeCurandero (Unidad curandero, Unidad unidadACurar) throws AccionInvalidaException {
+    public void realizarAccionDeCurandero(Unidad curandero, Unidad unidadACurar) throws AccionInvalidaException {
         if (!this.unidades.contains(unidadACurar)) return; //trató de curar A unidad enemiga
         if (!this.unidades.contains(curandero)) return; // trato de curar CON un curandero enemigo
         curandero.realizarAccion(unidadACurar,tablero,unidades);
     }
 
-    public boolean esCurandero (Unidad unidad){
+    public boolean esCurandero(Unidad unidad) {
         Curandero esCurandero = new Curandero();
         if(unidad.getClass() == esCurandero.getClass()) return true;
         return false;
     }
 
-    public void moverBatallon(SoldadoDeInfanteria soldado1, SoldadoDeInfanteria soldado2, SoldadoDeInfanteria soldado3, Direccion direccion) {
+    /*public void moverBatallon(SoldadoDeInfanteria soldado1, SoldadoDeInfanteria soldado2, SoldadoDeInfanteria soldado3, Direccion direccion) {
         //verificar que sean contiguos
 
 
@@ -139,6 +139,6 @@ public class Jugador {
 
         //ahora lo movemos
 
-    }
+    }*/
 }
 

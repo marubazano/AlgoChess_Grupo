@@ -10,5 +10,4 @@ public class AccionInvalidaException extends Exception {
     public void getMensaje(){
         System.out.println(mensaje);
     }
-
 }

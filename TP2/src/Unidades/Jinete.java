@@ -10,7 +10,7 @@ public class Jinete extends Movible {
 
     private HashMap<Distancia, Arma> armas;
 
-    public Jinete(){
+    public Jinete() {
         super(100, 3);
         armas = new HashMap<>();
         Arma arcoYFlecha = new Arma(15); //ataca media distancia
@@ -31,31 +31,32 @@ public class Jinete extends Movible {
         Distancia distancia = coordenadaJinete.calcularDistacia(coordenadaEnemiga);
         ArrayList<Unidad> unidadesTablero = tablero.obtenerUnidades();
         ArrayList<Unidad> enemigas = obtenerUnidadesEnemigas(unidadesTablero, unidadesAliadas);
-        if((haySoldadoAliadoCerca(unidadesAliadas) || !hayEnemigosCerca(enemigas)) && (distancia == Distancia.MEDIANA)){
-            unidadEnemiga.recibirDaño(armaSegunDistancia(distancia));
+        if ((haySoldadoAliadoCerca(unidadesAliadas) || !hayEnemigosCerca(enemigas)) && (distancia == Distancia.MEDIANA)) {
+            unidadEnemiga.recibirDanio(armaSegunDistancia(distancia));
         }
-        else if((hayEnemigosCerca(enemigas) && !hayAliadoCerca(unidadesAliadas)) && distancia == Distancia.CERCANA){
-            unidadEnemiga.recibirDaño(armaSegunDistancia(distancia));
+        else if ((hayEnemigosCerca(enemigas) && !hayAliadoCerca(unidadesAliadas)) && distancia == Distancia.CERCANA) {
+            unidadEnemiga.recibirDanio(armaSegunDistancia(distancia));
         }
-        else{
+        else {
             throw new AccionInvalidaException();
         }
     }
 
-    public int armaSegunDistancia(Distancia distancia){
+    public int armaSegunDistancia(Distancia distancia) {
         int danioArma;
         try {
-            danioArma = armas.get(distancia).obtenerDañoDeArma();
-        } catch(NullPointerException e){
+            danioArma = armas.get(distancia).obtenerDanioDeArma();
+        }
+        catch (NullPointerException e) {
             return 0;
         }
         return danioArma;
     }
 
-    public boolean hayAliadoCerca(ArrayList<Unidad> unidadesAliadas){
+    public boolean hayAliadoCerca(ArrayList<Unidad> unidadesAliadas) {
         boolean hayAliado = false;
-        for(Unidad actual : unidadesAliadas){
-            if(actual != this) { //No quiero encontrar la distancia a self
+        for (Unidad actual : unidadesAliadas) {
+            if (actual != this) { //No quiero encontrar la distancia a self
                 Distancia distancia = actual.obtenerCoordenada().calcularDistacia(this.obtenerCoordenada());
                 if (distancia == Distancia.CERCANA) {
                     hayAliado = true;
@@ -65,22 +66,22 @@ public class Jinete extends Movible {
         return hayAliado;
     }
 
-    public boolean haySoldadoAliadoCerca(ArrayList<Unidad> unidadesAliadas){
+    public boolean haySoldadoAliadoCerca(ArrayList<Unidad> unidadesAliadas) {
         boolean haySoldado = false;
-        for(Unidad actual : unidadesAliadas){
+        for (Unidad actual : unidadesAliadas) {
             Distancia distancia = actual.obtenerCoordenada().calcularDistacia(this.obtenerCoordenada());
-            if(actual instanceof SoldadoDeInfanteria && distancia == Distancia.CERCANA) {
+            if (actual instanceof SoldadoDeInfanteria && distancia == Distancia.CERCANA) {
                 haySoldado = true;
             }
         }
         return haySoldado;
     }
 
-    public boolean hayEnemigosCerca(ArrayList<Unidad> unidadesEnemigas){
+    public boolean hayEnemigosCerca(ArrayList<Unidad> unidadesEnemigas) {
         boolean hayEnemigoCerca = false;
-        for(Unidad enemiga : unidadesEnemigas){
+        for (Unidad enemiga : unidadesEnemigas) {
             Distancia distancia = enemiga.obtenerCoordenada().calcularDistacia(this.obtenerCoordenada());
-            if(distancia == Distancia.CERCANA)
+            if (distancia == Distancia.CERCANA)
                 hayEnemigoCerca = true;
         }
         return hayEnemigoCerca;
@@ -88,8 +89,8 @@ public class Jinete extends Movible {
 
     public ArrayList<Unidad> obtenerUnidadesEnemigas(ArrayList<Unidad> unidadesTablero, ArrayList<Unidad> unidadesAliadas) {
         ArrayList<Unidad> enemigas = new ArrayList<>();
-        for(Unidad actual : unidadesTablero){
-            if(!unidadesAliadas.contains(actual) && actual != this){ //No nos queremos agregar en las unidades enemigas!!!
+        for (Unidad actual : unidadesTablero) {
+            if (!unidadesAliadas.contains(actual) && actual != this) { //No nos queremos agregar en las unidades enemigas!!!
                 enemigas.add(actual);
             }
         }

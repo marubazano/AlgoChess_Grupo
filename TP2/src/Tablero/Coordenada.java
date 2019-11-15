@@ -11,7 +11,7 @@ public class Coordenada {
         this.y = y;
     }
 
-    public Coordenada desplazar(Direccion direccion){
+    public Coordenada desplazar(Direccion direccion) {
         Coordenada dir = direccion.obtenerDireccion();
         int horizontal = this.x + dir.obtenerHorizontal();
         int vertical = this.y + dir.obtenerVertical();
@@ -27,45 +27,33 @@ public class Coordenada {
         return y;
     }
 
-
-    public boolean compararCoordenada(Coordenada coordenada){
+    public boolean compararCoordenada(Coordenada coordenada) {
         return (this.x == coordenada.obtenerHorizontal() && this.y == coordenada.obtenerVertical());
     }
 
-    public Coordenada restarCoordenada(Coordenada otraCoordenada){
+    public Coordenada restarCoordenada(Coordenada otraCoordenada) {
         int horizontal = this.x - otraCoordenada.obtenerHorizontal();
         int vertical = this.y - otraCoordenada.obtenerVertical();
         return new Coordenada(horizontal, vertical);
     }
 
-    public Distancia calcularDistacia (Coordenada otraCoordenada){
-        /*int x1 = this.x;
-        int y1 = this.y;
-        int x2 = otraCoordenada.obtenerHorizontal();
-        int y2 = otraCoordenada.obtenerVertical();
-        int distEnX = x1-x2;
-        int distEnY = y1-y2;
-        Coordenada distancia = new Coordenada(distEnX,distEnY);
-        return distancia;*/
+    public Distancia calcularDistacia(Coordenada otraCoordenada) {
         //Distancia de tablero o chebyshev
         int distanciaNumerica = distanciaNumerica(otraCoordenada);
         return Distancia.obtenerDistancia(distanciaNumerica);
 
     }
 
-    public int distanciaNumerica (Coordenada otraCoordenada){
+    public int distanciaNumerica(Coordenada otraCoordenada) {
         Coordenada resta = restarCoordenada(otraCoordenada);
         int distanciaNumerica = max(abs(resta.obtenerHorizontal()), abs(resta.obtenerVertical()));
         return distanciaNumerica;
     }
 
 
-
-
-
     @Override
     public boolean equals(Object obj) {
-        return (((Coordenada)obj).x==this.x) && (((Coordenada)obj).y==this.y);
+        return (((Coordenada)obj).x == this.x) && (((Coordenada)obj).y == this.y);
     }
 
     @Override

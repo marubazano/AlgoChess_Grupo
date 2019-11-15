@@ -10,5 +10,4 @@ public class CasilleroInvalidoException extends Exception {
     public void getMensaje(){
         System.out.println(mensaje);
     }
-
 }

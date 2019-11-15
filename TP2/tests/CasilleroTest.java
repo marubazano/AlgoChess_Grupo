@@ -42,5 +42,6 @@ public class CasilleroTest {
         Coordenada coordenada = new Coordenada(0,0);
         pruebaCasillero.ocuparCasilleroPorUnidad(unidad, coordenada);
         pruebaCasillero.ocuparCasilleroPorUnidad(unidad2, coordenada);
+        Assert.fail();
     }
 }

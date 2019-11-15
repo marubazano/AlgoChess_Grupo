@@ -18,14 +18,14 @@ public class JugadorTest {
     }
 
     @Test
-    public void seAgregaUnidadAlJugador(){
+    public void seAgregaUnidadAlJugador() {
         Unidad prueba = new Catapulta();
         pruebaJugador.agregarUnidadAJugador(prueba);
         Assert.assertEquals(pruebaJugador.obtenerCantidadUnidades(), 1);
     }
 
     @Test
-    public void seAgregaUnidadesAlJugador(){
+    public void seAgregaUnidadesAlJugador() {
         Unidad prueba_1 = new Catapulta();
         Unidad prueba_2 = new Curandero();
         Unidad prueba_3 = new Jinete();
@@ -72,6 +72,7 @@ public class JugadorTest {
         pruebaJugador.comprar(catapulta_3);
         pruebaJugador.comprar(soldado);
         pruebaJugador.comprar(catapulta_4);
+        Assert.fail();
     }
 
     @Test
@@ -109,7 +110,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void jugadorPuedeMoverUnidadEnTodasLasDirecciones(){
+    public void jugadorPuedeMoverUnidadEnTodasLasDirecciones() {
         Jinete jinete = new Jinete();
         Coordenada coordenada = new Coordenada(4,6);
         pruebaJugador.ubicarUnidad(jinete, coordenada);
@@ -122,7 +123,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void jugadorSeQuedaSinUnidadesEsPerdedor(){
+    public void jugadorSeQuedaSinUnidadesEsPerdedor() {
         Assert.assertEquals(pruebaJugador.obtenerEstado(),"JUGANDO");
         Jinete jinete = new Jinete();
         Coordenada coordenada = new Coordenada(4,6);
@@ -132,7 +133,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void jugadorSeQuedaSinUnidadesEsPerdedorConVariasUnidades(){
+    public void jugadorSeQuedaSinUnidadesEsPerdedorConVariasUnidades() {
         Assert.assertEquals(pruebaJugador.obtenerEstado(),"JUGANDO");
         Jinete jinete = new Jinete();
         Coordenada coordenada = new Coordenada(4,6);
@@ -168,7 +169,7 @@ public class JugadorTest {
         pruebaJugador.ubicarUnidad(catapulta,coordenada);
         tablero.ubicarUnidad(soldado,coordenada2);
         pruebaJugador.realizarAccionDeUnidad(catapulta,soldado);
-        Assert.assertTrue(soldado.obtenerVida()==80);
+        Assert.assertTrue(soldado.obtenerVida() == 80);
     }
 
     @Test
@@ -194,10 +195,9 @@ public class JugadorTest {
         Coordenada coordenada2 = new Coordenada(4, 4);
         pruebaJugador.ubicarUnidad(soldado, coordenada);
         tablero.ubicarUnidad(curandero, coordenada2);
-        soldado.recibirDaño(20);
+        soldado.recibirDanio(20);
         Assert.assertTrue(soldado.obtenerVida() == 80);
         pruebaJugador.realizarAccionDeUnidad(curandero, soldado);
         Assert.assertTrue(soldado.obtenerVida() == 95);
     }
-
 }

@@ -24,12 +24,6 @@ public class Casillero {
         this.estaOcupado = true;
     }
 
-    /*public void mover(Unidades.Movible unidad, Tablero.Coordenada nuevaCoordenada) {
-
-        unidadQueOcupa.mover(nuevaCoordenada);
-        vaciarCasillero();
-    }*/
-
     public void vaciarCasillero() {
         this.unidadQueOcupa = null;
         this.estaOcupado = false;

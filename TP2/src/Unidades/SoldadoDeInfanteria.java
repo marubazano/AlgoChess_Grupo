@@ -8,20 +8,20 @@ import java.util.ArrayList;
 
 public class SoldadoDeInfanteria extends Movible {
 
-    private Arma puños; //Pelea con los puños?
+    private Arma punios; //Pelea con los puños?
 
-    public SoldadoDeInfanteria(){
+    public SoldadoDeInfanteria() {
         super(100,1);
-        this.puños = new Arma(10);
+        this.punios = new Arma(10);
     }
 
     @Override
     public void realizarAccion(Unidad unidadEnemiga, Tablero tablero, ArrayList<Unidad> unidades) {
-        int daño = obtenerDañoDeArma();
-        unidadEnemiga.recibirDaño(daño);
+        int danio = obtenerDanioDeArma();
+        unidadEnemiga.recibirDanio(danio);
     }
 
-    public int obtenerDañoDeArma() {
-        return this.puños.obtenerDañoDeArma();
+    public int obtenerDanioDeArma() {
+        return this.punios.obtenerDanioDeArma();
     }
 }
