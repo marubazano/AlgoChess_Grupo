@@ -1,9 +1,5 @@
 import Excepciones.CasilleroInvalidoException;
 import Excepciones.CasilleroOcupadoException;
-import Tablero.Tablero;
-import Unidades.Catapulta;
-import Unidades.Jinete;
-import Unidades.Unidad;
 import org.junit.*;
 import Tablero.*;
 import Unidades.*;
@@ -43,27 +39,31 @@ public class TableroTest {
         unJugador.ubicarUnidad(unaUnidad, coordenada);
         Assert.assertFalse(unJugador.ubicarUnidad(unaUnidad, coordenada));
     }
-/*
+
     @Test
-    public void tableroAsignaUnidadesContiguasCorrectamente() throws Excepciones.CasilleroInvalidoException, Excepciones.CasilleroOcupadoException{
-        Unidades.Jinete jinete = new Unidades.Jinete();
-        Unidades.Curandero curandero = new Unidades.Curandero();
-        Unidades.Catapulta catapulta = new Unidades.Catapulta();
-        Unidades.SoldadoDeInfanteria soldado = new Unidades.SoldadoDeInfanteria();
-        Tablero.Coordenada coordenadaJinete = new Tablero.Coordenada(2,4);
-        Tablero.Coordenada coordenadaCurandero = new Tablero.Coordenada(3,5);
-        Tablero.Coordenada coordenadaCatapulta = new Tablero.Coordenada(1,5);
-        Tablero.Coordenada coordenadaSoldado = new Tablero.Coordenada(3,2);
+    public void tableroAsignaUnidadesContiguasCorrectamente() throws CasilleroInvalidoException, CasilleroOcupadoException{
+        Jinete jinete = new Jinete();
+        Curandero curandero = new Curandero();
+        Catapulta catapulta = new Catapulta();
+        SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
+        SoldadoDeInfanteria soldado2 = new SoldadoDeInfanteria();
+        Coordenada coordenadaJinete = new Coordenada(2,4);
+        Coordenada coordenadaCurandero = new Coordenada(3,5);
+        Coordenada coordenadaCatapulta = new Coordenada(1,5);
+        Coordenada coordenadaSoldado1 = new Coordenada(3,1);
+        Coordenada coordenadaSoldado2 = new Coordenada(2,3);
         pruebaTablero.ubicarUnidad(jinete, coordenadaJinete);
         pruebaTablero.ubicarUnidad(curandero, coordenadaCurandero);
         pruebaTablero.ubicarUnidad(catapulta, coordenadaCatapulta);
-        pruebaTablero.ubicarUnidad(soldado, coordenadaSoldado);
+        pruebaTablero.ubicarUnidad(soldado1, coordenadaSoldado1);
+        pruebaTablero.ubicarUnidad(soldado2, coordenadaSoldado2);
 
-        Assert.assertEquals(jinete.obtenerUnidadesContiguas().size(), 2);
-        Assert.assertEquals(curandero.obtenerUnidadesContiguas().size(), 1);
-        Assert.assertEquals(catapulta.obtenerUnidadesContiguas().size(), 1);
-        Assert.assertEquals(soldado.obtenerUnidadesContiguas().size(), 0);
-    }*/
+        Assert.assertEquals(pruebaTablero.obtenerUnidadesContiguas(jinete).size(), 3);
+        Assert.assertEquals(pruebaTablero.obtenerUnidadesContiguas(curandero).size(), 1);
+        Assert.assertEquals(pruebaTablero.obtenerUnidadesContiguas(catapulta).size(), 1);
+        Assert.assertEquals(pruebaTablero.obtenerUnidadesContiguas(soldado1).size(), 0);
+        Assert.assertEquals(pruebaTablero.obtenerUnidadesContiguas(soldado2).size(), 1);
+    }
 
     @Test
     public void batallonSeMueveCorrectamente() throws CasilleroOcupadoException, CasilleroInvalidoException {
