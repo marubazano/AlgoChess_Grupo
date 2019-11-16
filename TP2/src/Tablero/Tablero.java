@@ -64,11 +64,6 @@ public class Tablero {
         }
     }
 
-    public void moverBatallon(Movible movible1, Movible movible2, Movible movible3, Direccion direccion) throws BatallonInvalidoException {
-        Batallon batallon = new Batallon(movible1, movible2, movible3);
-        batallon.mover(this, direccion);
-    }
-
     public ArrayList<Unidad> obtenerUnidadesContiguas(Unidad unidad) {
         Coordenada desplazada;
         ArrayList<Unidad> contiguas = new ArrayList<>();

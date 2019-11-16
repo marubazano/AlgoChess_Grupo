@@ -12,7 +12,7 @@ public abstract class Unidad {
     public Unidad(float vida, int costo) {
         this.vida = vida;
         this.costo = costo;
-        this.coordenada = null; //Poner las coordenadas para cuando atacamos, calcular las coordenadas a las que hace daño desde el lugar en que está la unidad
+        this.coordenada = null;
     }
 
     public float obtenerVida() {

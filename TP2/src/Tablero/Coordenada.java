@@ -38,7 +38,7 @@ public class Coordenada {
     }
 
     public Distancia calcularDistacia(Coordenada otraCoordenada) {
-        //Distancia de tablero o chebyshev
+        //Distancia de tablero
         int distanciaNumerica = distanciaNumerica(otraCoordenada);
         return Distancia.obtenerDistancia(distanciaNumerica);
 
@@ -49,7 +49,6 @@ public class Coordenada {
         int distanciaNumerica = max(abs(resta.obtenerHorizontal()), abs(resta.obtenerVertical()));
         return distanciaNumerica;
     }
-
 
     @Override
     public boolean equals(Object obj) {

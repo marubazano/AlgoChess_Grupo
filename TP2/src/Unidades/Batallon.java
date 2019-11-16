@@ -9,6 +9,7 @@ import java.util.*;
 
 public class Batallon {
     private ArrayList<Movible> batallon = new ArrayList<>();
+    int CANTIDADMAXIMADEMOVIMIENTOS = 5;
 
     public Batallon(Movible movible1, Movible movible2, Movible movible3) throws BatallonInvalidoException {
         if (esBatallon(movible1, movible2, movible3) && sonSoldados(movible1, movible2, movible3)) {
@@ -26,8 +27,7 @@ public class Batallon {
         for (Movible movible : batallon) {
             colaMovibles.add(movible);
         }
-        //colaMovibles.addAll(batallon);
-        int cantMovsMax = 5;
+        int cantMovsMax = CANTIDADMAXIMADEMOVIMIENTOS;
         while (!colaMovibles.isEmpty() && cantMovsMax > 0) {
             Movible movible = colaMovibles.poll();
             try {
@@ -46,16 +46,13 @@ public class Batallon {
         int distancia23 = movible2.obtenerCoordenada().distanciaNumerica(movible3.obtenerCoordenada());
         int distancia13 = movible1.obtenerCoordenada().distanciaNumerica(movible3.obtenerCoordenada());
         int sumaDistancias = distancia12 + distancia13 + distancia23;
-        if (sumaDistancias == 3 || sumaDistancias == 4) {
+        if (sumaDistancias == 3 || sumaDistancias == 4) { //Si la suma de distancias entre soldados es 3 o 4, hay batallon
             return true;
         }
         return false;
     }
 
     public boolean sonSoldados(Movible movible1, Movible movible2, Movible movible3) {
-        if ((movible1 instanceof SoldadoDeInfanteria) && (movible2 instanceof SoldadoDeInfanteria) && (movible3 instanceof SoldadoDeInfanteria)) {
-            return true;
-        }
-        return false;
+        return ((movible1 instanceof SoldadoDeInfanteria) && (movible2 instanceof SoldadoDeInfanteria) && (movible3 instanceof SoldadoDeInfanteria));
     }
 }

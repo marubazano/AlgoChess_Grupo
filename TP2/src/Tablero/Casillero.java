@@ -18,7 +18,7 @@ public class Casillero {
     }
 
     public void ocuparCasilleroPorUnidad(Unidad unidad, Coordenada coordenada) throws CasilleroOcupadoException {
-        if (this.estaOcupado()) { throw new CasilleroOcupadoException(); }
+        if (this.estaOcupado()) throw new CasilleroOcupadoException();
         this.unidadQueOcupa = unidad;
         unidad.ubicarEnCoodenada(coordenada);
         this.estaOcupado = true;

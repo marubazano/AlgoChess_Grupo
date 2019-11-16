@@ -13,7 +13,7 @@ public class Jugador {
 
     public Jugador(String nombre, Tablero tablero, int nroJugador) {
         this.nombre = nombre;
-        this.unidades = new ArrayList<>(); //Se declara así para poner cualquier objeto hijo
+        this.unidades = new ArrayList<>();
         this.tablero = tablero;
         this.puntos = 20;
         this.nroJugador = nroJugador;
@@ -26,7 +26,7 @@ public class Jugador {
 
     public void eliminarUnidadDelJugador(Unidad unidad) {
         this.unidades.remove(unidad);
-        if (unidades.size() == 0) this.estado = "PERDEDOR";
+        if (unidades.size() == 0) this.estado = "PERDEDOR"; //FIN DEL JUEGO
     }
 
     public int obtenerCantidadUnidades() {
@@ -41,14 +41,7 @@ public class Jugador {
         return this.puntos;
     }
 
-    //Métodos para comprar
-
-    public boolean tieneSuficientesPuntos(Unidad unidad) {
-        if (unidad.obtenerCosto() <= obtenerPuntos()) {
-            return true;
-        }
-        return false;
-    }
+    public boolean tieneSuficientesPuntos(Unidad unidad) { return (unidad.obtenerCosto() <= obtenerPuntos()); }
 
     public void comprar(Unidad unidad) throws PuntosInsuficientesException {
         if (tieneSuficientesPuntos(unidad)) {
@@ -75,13 +68,7 @@ public class Jugador {
         return true;
     }
 
-    public void mover(Movible unidadMovible, Direccion direccion) {
-        tablero.mover(unidadMovible, direccion);
-    }
-
-    /*public void mover(Batallon batallon, Direccion direccion) {
-
-    }*/
+    public void mover(Movible unidadMovible, Direccion direccion) { tablero.mover(unidadMovible, direccion); }
 
     public boolean estaEnLadoDelTableroCorrespondiente(Coordenada coordenada) {
         if (this.nroJugador == 1) {
@@ -92,45 +79,25 @@ public class Jugador {
         return false;
     }
 
-    public String obtenerEstado() {
-        return this.estado;
-    }
+    public String obtenerEstado() { return this.estado; }
 
     public void realizarAccionDeUnidad(Unidad unaUnidad, Unidad otraUnidad) throws AccionInvalidaException {
         //Dos posibilidades:
         //1) Recibe un aliado y un enemigo, el aliado ataca al enemigo.
         //2) Recibe un Curandero (aliado) y un aliado, el curandero cura al aliado.
-        if (esCurandero(unaUnidad)) realizarAccionDeCurandero(unaUnidad,otraUnidad);
-        else realizarAccionDeUnidadDeAtaque(unaUnidad, otraUnidad);
+        if (accionValida(unaUnidad,otraUnidad)) unaUnidad.realizarAccion(otraUnidad,this.tablero,this.unidades);
+        else throw new AccionInvalidaException();
     }
 
-    public void realizarAccionDeUnidadDeAtaque(Unidad unaUnidad, Unidad otraUnidad) throws AccionInvalidaException {
-        if (this.unidades.contains(otraUnidad)) return; //trató de atacar A una unidad aliada
-        if (!this.unidades.contains(unaUnidad)) return; //trató de atacar CON una unidad enemiga
-        unaUnidad.realizarAccion(otraUnidad, this.tablero, this.unidades);
+    public boolean accionValida (Unidad unidad1, Unidad unidad2) throws AccionInvalidaException{
+        if (this.unidades.contains(unidad2) && !esCurandero(unidad1)) return false;  //trató de atacar A una unidad aliada
+        if (!this.unidades.contains(unidad1) && !esCurandero(unidad2)) return false; //trató de atacar CON una unidad enemiga
+        if (!this.unidades.contains(unidad2) && esCurandero(unidad1)) return false; //trató de curar A unidad enemiga
+        if (!this.unidades.contains(unidad1) && esCurandero(unidad2)) return false; // trato de curar CON un curandero enemigo
+        return true;
     }
 
-    public void realizarAccionDeCurandero(Unidad curandero, Unidad unidadACurar) throws AccionInvalidaException {
-        if (!this.unidades.contains(unidadACurar)) return; //trató de curar A unidad enemiga
-        if (!this.unidades.contains(curandero)) return; // trato de curar CON un curandero enemigo
-        curandero.realizarAccion(unidadACurar,tablero,unidades);
-    }
+    public boolean esCurandero(Unidad unidad) { return (unidad instanceof Curandero); }
 
-    public boolean esCurandero(Unidad unidad) {
-        Curandero esCurandero = new Curandero();
-        if(unidad.getClass() == esCurandero.getClass()) return true;
-        return false;
-    }
-
-    /*public void moverBatallon(SoldadoDeInfanteria soldado1, SoldadoDeInfanteria soldado2, SoldadoDeInfanteria soldado3, Direccion direccion) {
-        //verificar que sean contiguos
-
-
-        //Batallon batallon = new Batallon(soldado1, soldado2, soldado3);
-        //return batallon;
-
-        //ahora lo movemos
-
-    }*/
 }
 
