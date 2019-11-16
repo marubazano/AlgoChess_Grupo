@@ -1,5 +1,6 @@
 package Tablero;
 
+import Excepciones.BatallonInvalidoException;
 import Excepciones.CasilleroInvalidoException;
 import Excepciones.CasilleroOcupadoException;
 import Unidades.Batallon;
@@ -63,16 +64,9 @@ public class Tablero {
         }
     }
 
-    public void moverBatallon(SoldadoDeInfanteria soldado1, SoldadoDeInfanteria soldado2, SoldadoDeInfanteria soldado3, Direccion direccion) throws CasilleroInvalidoException {
-        int distancia12 = soldado1.obtenerCoordenada().distanciaNumerica(soldado2.obtenerCoordenada());
-        int distancia23 = soldado2.obtenerCoordenada().distanciaNumerica(soldado3.obtenerCoordenada());
-        int distancia13 = soldado1.obtenerCoordenada().distanciaNumerica(soldado3.obtenerCoordenada());
-        int sumaDistancias = distancia12 + distancia13 + distancia23;
-        if (sumaDistancias == 3 || sumaDistancias== 4){ //hay batallon
-            Batallon batallon = new Batallon(soldado1, soldado2, soldado3);
-            batallon.mover(this, direccion, soldado1, soldado2, soldado3);
-        }
-        else System.out.println("Excepcion de batallón");
+    public void moverBatallon(Movible movible1, Movible movible2, Movible movible3, Direccion direccion) throws BatallonInvalidoException {
+        Batallon batallon = new Batallon(movible1, movible2, movible3);
+        batallon.mover(this, direccion);
     }
 
     public ArrayList<Unidad> obtenerUnidadesContiguas(Unidad unidad) {
