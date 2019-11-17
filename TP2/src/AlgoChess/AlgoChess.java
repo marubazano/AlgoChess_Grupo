@@ -1,3 +1,5 @@
+package AlgoChess;
+
 import Tablero.Tablero;
 
 public class AlgoChess {
@@ -20,7 +22,7 @@ public class AlgoChess {
         //soy joaco y opino que hay que hacer una funcion generica para los dos jugadores. Si repetimos codigo queda
         // como "mala practica".
 
-        this.jugador1 = new Jugador(nombreJugador1, this.tablero);
-        this.jugador2 = new Jugador(nombreJugador2, this.tablero);
+        this.jugador1 = new AlgoChess.Jugador(nombreJugador1, this.tablero);
+        this.jugador2 = new AlgoChess.Jugador(nombreJugador2, this.tablero);
     }*/
 }

@@ -1,4 +1,4 @@
-import Excepciones.BatallonInvalidoException;
+import AlgoChess.Jugador;
 import Excepciones.CasilleroInvalidoException;
 import Excepciones.CasilleroOcupadoException;
 import Tablero.*;

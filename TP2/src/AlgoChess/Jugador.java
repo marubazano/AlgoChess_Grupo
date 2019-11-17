@@ -1,3 +1,5 @@
+package AlgoChess;
+
 import Excepciones.*;
 import Tablero.*;
 import Unidades.*;
