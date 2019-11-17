@@ -1,6 +1,7 @@
 package vista;
 
 import javafx.application.Application;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,11 +19,18 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();*/
 
-        StackPane layout = new StackPane();
+        /*StackPane layout = new StackPane();
         Scene scene = new Scene(layout);
         Button button = new Button("Hola");
         layout.getChildren().add(button);
         stage.setTitle("ventana");
+        stage.setScene(scene);*/
+
+        StackPane layout = new StackPane();
+        Scene scene = new Scene(layout);
+        Label label = new Label();
+        label.setText("Texto de la etiqueta");
+        layout.getChildren().add(label);
         stage.setScene(scene);
 
         stage.show();
