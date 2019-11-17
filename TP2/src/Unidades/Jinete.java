@@ -12,8 +12,8 @@ public class Jinete extends Movible {
     public Jinete() {
         super(100, 3);
         armas = new HashMap<>();
-        Arma arcoYFlecha = new Arma(15); //ataca media distancia
-        Arma espada = new Arma(5); //ataca cuerpo a cuerpo
+        Arma arcoYFlecha = new Arma(15); //ataca a media distancia con arco y flecha
+        Arma espada = new Arma(5); //ataca cuerpo a cuerpo con espada
         armas.put(Distancia.CERCANA, espada);
         armas.put(Distancia.MEDIANA, arcoYFlecha);
     }

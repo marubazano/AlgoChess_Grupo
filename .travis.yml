@@ -1,9 +1,15 @@
 language: java
+
+install: true
+
+sudo: false
+
 jdk:
   - openjdk8
 
-script:
+script: "cd Aggregation; mvn test -B"
   - mvn test
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 

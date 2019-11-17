@@ -167,7 +167,7 @@ public class JugadorTest {
         Assert.assertTrue(soldado.obtenerVida() == 80);
     }
 
-    @Test
+    @Test(expected = AccionInvalidaException.class)
     public void jugadorNoAtaca() throws PuntosInsuficientesException,CasilleroOcupadoException, CasilleroInvalidoException, AccionInvalidaException {
         Unidad soldado = new SoldadoDeInfanteria();
         SoldadoDeInfanteria soldadoEnemigo = new SoldadoDeInfanteria();
@@ -177,7 +177,7 @@ public class JugadorTest {
         pruebaJugador.ubicarUnidad(soldado, coordenada);
         tablero.ubicarUnidad(soldadoEnemigo, coordenada2);
         pruebaJugador.realizarAccionDeUnidad(soldado, soldado);
-        Assert.assertTrue(soldadoEnemigo.obtenerVida() == 100);
+        Assert.fail();
     }
 
     @Test

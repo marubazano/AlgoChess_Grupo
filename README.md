@@ -1,8 +1,10 @@
-#AlgoChess_Grupo
-##Trabajo Práctico 2 - Algoritmos y Programación 3 - Grupo
+# AlgoChess_Grupo
 
 
-######__Desarrollo de una aplicación de manera grupal aplicando todos los conceptos vistos en el curso, utilizando un lenguaje de tipado estático (Java) con un diseño del modelo orientado a objetos y trabajando con las técnicas de TDD e Integración Contínua.__
+## Trabajo Práctico 2 - Algoritmos y Programación 3 - Grupo
+
+
+### __Desarrollo de una aplicación de manera grupal aplicando todos los conceptos vistos en el curso, utilizando un lenguaje de tipado estático (Java) con un diseño del modelo orientado a objetos y trabajando con las técnicas de TDD e Integración Contínua.__
 
 
 **Contribuidores**
