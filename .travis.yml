@@ -1,13 +1,8 @@
 language: java
-
-install: true
-
-sudo: false
-
 jdk:
-  - openjdk8
+  - openjdk11
 
-script: "cd Aggregation; mvn test -B"
+script:
   - mvn test
 
 after_success:
