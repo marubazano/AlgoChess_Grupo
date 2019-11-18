@@ -2,6 +2,7 @@ package vista;
 
 
 import AlgoChess.Jugador;
+import Excepciones.PuntosInsuficientesException;
 import Tablero.Tablero;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -9,15 +10,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-
-import java.io.FileNotFoundException;
 
 public class Main extends Application {
 
     Stage window;
-    Scene escenaJuego;
     Jugador jugador1;
     Jugador jugador2;
     Tablero tablero;
@@ -30,7 +29,7 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage stage) throws FileNotFoundException {
+    public void start(Stage stage) throws PuntosInsuficientesException {
         window = stage;
 
         window.setTitle("AlgoChess - Menú Principal");
@@ -41,23 +40,27 @@ public class Main extends Application {
         this.reproducirMusicaDeFondo();
         this.prepararMenuInicio();
 
-
+      //  SeleccionUnidades seleccionUnidades = new SeleccionUnidades(this.jugador1,this.jugador2);
+      //  seleccionUnidades.main();
     }
 
     public void prepararMenuInicio() {
 
         window.setTitle("AlgoChess");
-        window.setMaxHeight(500);
-        window.setMinHeight(500);
-        window.setMaxWidth(900);
-        window.setMinWidth(900);
+        window.setMaxHeight(700);
+        window.setMinHeight(700);
+        window.setMaxWidth(1000);
+        window.setMinWidth(1000);
 
         Button jugar = new Button("Comenzar");
+        jugar.setStyle("-fx-font: 23 arial; -fx-base: #000000; -fx-border-color: #6d1fd8; -fx-text-fill: #f04ef5");
         Button salir = new Button("Salir");
+        salir.setStyle("-fx-font: 23 arial; -fx-base: #000000; -fx-border-color: #ec443f; -fx-text-fill: #ec443f");
+
 
         Pane layout = new Pane ();
 
-        Image titleBackground = new Image("Vista/imagenes/tft.jpg", 950, 800, false, true);
+        Image titleBackground = new Image("Vista/imagenes/menu.jpg", 950, 800, false, true);
         BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
 
@@ -65,7 +68,7 @@ public class Main extends Application {
         layout.getChildren().add(jugar);
         layout.getChildren().add(salir);
         jugar.setLayoutX(400);
-        jugar.setLayoutY(400);
+        jugar.setLayoutY(450);
 
         jugar.setOnAction(e -> buttonCrearUsuarios() );
         salir.setOnAction(e -> System.exit(0));
@@ -77,17 +80,19 @@ public class Main extends Application {
 
     public void buttonCrearUsuarios (){
         window.setTitle("AlgoChess");
-        window.setMaxHeight(500);
-        window.setMinHeight(500);
-        window.setMaxWidth(900);
-        window.setMinWidth(900);
+        window.setMaxHeight(700);
+        window.setMinHeight(700);
+        window.setMaxWidth(1000);
+        window.setMinWidth(1000);
 
         Button ingresar = new Button("Ingresar");
+        ingresar.setStyle("-fx-font: 23 arial; -fx-base: #000000; -fx-border-color: #6d1fd8; -fx-text-fill: #f04ef5");
         Button salir = new Button("Salir");
+        salir.setStyle("-fx-font: 23 arial; -fx-base: #000000; -fx-border-color: #ec443f; -fx-text-fill: #ec443f");
 
         Pane layout = new Pane ();
 
-        Image titleBackground = new Image("Vista/imagenes/tft.jpg", 950, 800, false, true);
+        Image titleBackground = new Image("Vista/imagenes/menu.jpg", 950, 800, false, true);
         BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
 
@@ -127,10 +132,10 @@ public class Main extends Application {
     }
 
     public void reproducirMusicaDeFondo(){
-      /*  String musicFile = "src/Sonidos/Minecraft Background Music.mp3"; Poner archivo que correponda
-        Media sound = new Media(new File(musicFile).toURI().toString());
+      //  String musicFile = "src/Sonidos/phoenix-ft-cailin-russo-and-chrissy-costanza-worlds-2019-league-of-legends.mp3";
+        Media sound = new Media("file:///C:/Users/Gama/Documents/AlgoChess_Grupo/TP2/src/Sonidos/phoenix-ft-cailin-russo-and-chrissy-costanza-worlds-2019-league-of-legends.mp3");
         this.mediaPlayer = new MediaPlayer(sound);
-        this.mediaPlayer.play();*/
+        this.mediaPlayer.play();
     }
 
 }
