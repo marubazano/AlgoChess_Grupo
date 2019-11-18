@@ -1,3 +1,4 @@
+package AlgoChess;
 import Tablero.Tablero;
 
 public class AlgoChess {
