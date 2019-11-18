@@ -2,18 +2,12 @@ package vista;
 
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import java.io.File;
-import java.util.Random;
+
+import java.io.FileNotFoundException;
 
 public class Main extends Application {
 
@@ -27,7 +21,7 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage stage){
+    public void start(Stage stage) throws FileNotFoundException {
         window = stage;
 
         window.setTitle("AlgoChess - Menú Principal");
@@ -35,15 +29,9 @@ public class Main extends Application {
         this.reproducirMusicaDeFondo();
         this.prepararMenuInicio();
 
-        StackPane layout = new StackPane();
-
-        Scene scene = new Scene(layout);
-
-        window.setScene(scene);
-        window.show();
     }
 
-    public void prepararMenuInicio() {
+    public void prepararMenuInicio() throws FileNotFoundException {
 
         window.setTitle("AlgoChess");
         window.setMaxHeight(500);
@@ -54,19 +42,22 @@ public class Main extends Application {
         Button jugar = new Button("JUGAR");
         Button salir = new Button("Salir");
 
-        StackPane layout = new StackPane();
+        Pane layout = new Pane ();
         layout.getChildren().add(jugar);
         layout.getChildren().add(salir);
+        jugar.setLayoutX(400);
+        jugar.setLayoutY(400);
 
         jugar.setOnAction(e -> window.setScene(escenaJuego));
         salir.setOnAction(e -> System.exit(0));
 
-        /*Image titleBackground = new Image("~/IdeaProjects/AlgoChess_Grupo/TP2/src/vista/imagenes/tft.jpg", 950, 800, false, true);
-        BackgroundImage imagenTitulo = new BackgroundImage(titleBackground,
-                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);           NO ENCUENTRA LA IMAGEN REVISAR   */
+      //  Image titleBackground = new Image("imagenes\\tft.jpg", 950, 800, false, true);
+       // BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        //BackgroundSize.DEFAULT); SIGUE SIN FUNCIONAR
 
-
+        Scene scene = new Scene(layout);
+        window.setScene(scene);
+        window.show();
     }
 
     public void reproducirMusicaDeFondo(){
