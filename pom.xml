@@ -62,6 +62,13 @@
             <artifactId>javafx-fxml</artifactId>
             <version>11</version>
         </dependency>
+	    
+	<dependency>
+            <groupId>javax.media</groupId>
+	    <artifactId>jmf</artifactId>
+   	    <version>2.1.1e</version>
+	</dependency>
+
     </dependencies>
     
 </project>
