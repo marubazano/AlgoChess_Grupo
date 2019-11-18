@@ -2,7 +2,6 @@ package vista;
 
 
 import AlgoChess.Jugador;
-import Excepciones.PuntosInsuficientesException;
 import Tablero.Tablero;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -29,7 +28,7 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage stage) throws PuntosInsuficientesException {
+    public void start(Stage stage) throws Exception {
         window = stage;
 
         window.setTitle("AlgoChess - Menú Principal");
@@ -39,12 +38,9 @@ public class Main extends Application {
 
         this.reproducirMusicaDeFondo();
         this.prepararMenuInicio();
-
-      //  SeleccionUnidades seleccionUnidades = new SeleccionUnidades(this.jugador1,this.jugador2);
-      //  seleccionUnidades.main();
     }
 
-    public void prepararMenuInicio() {
+    public void prepararMenuInicio() throws Exception{
 
         window.setTitle("AlgoChess");
         window.setMaxHeight(700);
@@ -70,7 +66,13 @@ public class Main extends Application {
         jugar.setLayoutX(400);
         jugar.setLayoutY(450);
 
-        jugar.setOnAction(e -> buttonCrearUsuarios() );
+        jugar.setOnAction(e -> {
+            try {
+                buttonCrearUsuarios();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
         salir.setOnAction(e -> System.exit(0));
 
         Scene scene = new Scene(layout);
@@ -78,7 +80,7 @@ public class Main extends Application {
         window.show();
     }
 
-    public void buttonCrearUsuarios (){
+    public void buttonCrearUsuarios () throws Exception{
         window.setTitle("AlgoChess");
         window.setMaxHeight(700);
         window.setMinHeight(700);
@@ -112,7 +114,11 @@ public class Main extends Application {
         ingresar.setLayoutY(350);
 
         ingresar.setOnAction(e -> {
-            crearJugadores(nombreJugador1.getText(),nombreJugador2.getText());
+            try {
+                crearJugadores(nombreJugador1.getText(),nombreJugador2.getText());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         });
         nombreJugador1.setOnAction(e ->{
 
@@ -124,14 +130,17 @@ public class Main extends Application {
         window.show();
     }
 
-    public void crearJugadores(String nombre1, String nombre2){
+    public void crearJugadores(String nombre1, String nombre2)throws Exception{
         Jugador jugador1 = new Jugador(nombre1,this.tablero,1);
         Jugador jugador2 = new Jugador(nombre2,this.tablero,2);
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
+
+        SeleccionUnidades seleccionUnidades = new SeleccionUnidades(this.jugador1,this.jugador2);
+        seleccionUnidades.start(window);
     }
 
-    public void reproducirMusicaDeFondo(){
+    public void reproducirMusicaDeFondo() {
       //  String musicFile = "src/Sonidos/phoenix-ft-cailin-russo-and-chrissy-costanza-worlds-2019-league-of-legends.mp3";
         Media sound = new Media("file:///C:/Users/Gama/Documents/AlgoChess_Grupo/TP2/src/Sonidos/phoenix-ft-cailin-russo-and-chrissy-costanza-worlds-2019-league-of-legends.mp3");
         this.mediaPlayer = new MediaPlayer(sound);

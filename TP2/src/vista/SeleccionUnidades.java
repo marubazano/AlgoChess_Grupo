@@ -6,13 +6,15 @@ import Unidades.Catapulta;
 import Unidades.Curandero;
 import Unidades.Jinete;
 import Unidades.SoldadoDeInfanteria;
+import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-public class SeleccionUnidades {
+public class SeleccionUnidades extends Application {
 
     private Jugador jugador1;
     private Jugador jugador2;
@@ -23,25 +25,51 @@ public class SeleccionUnidades {
         this.jugador2 = jugador2;
     }
 
-    public void main () throws Excepciones.PuntosInsuficientesException{
+    @Override
+    public void start(Stage stage) throws Exception {
+        this.window = stage;
         seleccionarUnidadesPorJugador(jugador1);
         seleccionarUnidadesPorJugador(jugador2);
     }
 
-    public void seleccionarUnidadesPorJugador (Jugador jugador) throws Excepciones.PuntosInsuficientesException {
-        window.setTitle("AlgoChess");
+
+    public void seleccionarUnidadesPorJugador (Jugador jugador) {
+        window.setTitle("Seleccionar Unidades");
         window.setMaxHeight(700);
         window.setMinHeight(700);
         window.setMaxWidth(1000);
         window.setMinWidth(1000);
 
-        Button soldado = new Button("Comenzar");
-        Button jinete = new Button("Comenzar");
-        Button catapulta = new Button("Comenzar");
-        Button curandero = new Button("Comenzar");
+        Image imagenSoldado = new Image("Vista/imagenes/gato_soldado_precio.png", 200, 200, false, true);
+        ImageView imageViewSoldado = new ImageView(imagenSoldado);
+        Button soldado = new Button("Soldado",imageViewSoldado);
+        soldado.setMinSize(200,200);
+        soldado.setMaxSize(200,200);
+        soldado.setPrefSize(200,200);
+
+        Image imagenJinete = new Image("Vista/imagenes/gato_jinete_precio.png", 200, 200, false, true);
+        ImageView imageViewJinete = new ImageView(imagenJinete);
+        Button jinete = new Button("jinete",imageViewJinete);
+        jinete.setMinSize(200,200);
+        jinete.setMaxSize(200,200);
+        jinete.setPrefSize(200,200);
+
+        Image imagenCatapulta = new Image("Vista/imagenes/gato_catapulta_precio.png", 200, 200, false, true);
+        ImageView imageViewCatapulta = new ImageView(imagenCatapulta);
+        Button catapulta = new Button("catapulta",imageViewCatapulta);
+        catapulta.setMinSize(200,200);
+        catapulta.setMaxSize(200,200);
+        catapulta.setPrefSize(200,200);
+
+        Image imagenCurandero = new Image("Vista/imagenes/gato_curandero_precio.png", 200, 200, false, true);
+        ImageView imageViewCurandero = new ImageView(imagenCurandero);
+        Button curandero = new Button("catapulta",imageViewCurandero);
+        curandero.setMinSize(200,200);
+        curandero.setMaxSize(200,200);
+        curandero.setPrefSize(200,200);
+
         Button salir = new Button("Salir");
         salir.setStyle("-fx-font: 23 arial; -fx-base: #000000; -fx-border-color: #ec443f; -fx-text-fill: #ec443f");
-
 
         Pane layout = new Pane ();
 
@@ -51,17 +79,17 @@ public class SeleccionUnidades {
 
         layout.setBackground(new Background(imagenTitulo));
         layout.getChildren().add(soldado);
-        soldado.setLayoutX(0);
+        soldado.setLayoutX(50);
         soldado.setLayoutY(450);
         layout.getChildren().add(jinete);
-        jinete.setLayoutX(200);
+        jinete.setLayoutX(250);
         jinete.setLayoutY(450);
         layout.getChildren().add(catapulta);
-        catapulta.setLayoutX(400);
+        catapulta.setLayoutX(450);
         catapulta.setLayoutY(450);
         layout.getChildren().add(curandero);
-        soldado.setLayoutX(600);
-        soldado.setLayoutY(450);
+        curandero.setLayoutX(650);
+        curandero.setLayoutY(450);
         layout.getChildren().add(salir);
 
         soldado.setOnAction(e -> {
@@ -70,6 +98,7 @@ public class SeleccionUnidades {
                 jugador.comprar(soldado1);
             } catch (PuntosInsuficientesException ex) {
                 ex.printStackTrace();
+                return;
             }
         });
         jinete.setOnAction(e -> {
@@ -78,6 +107,7 @@ public class SeleccionUnidades {
                 jugador.comprar(jinete1);
             } catch (PuntosInsuficientesException ex) {
                 ex.printStackTrace();
+                return;
             }
         });
         catapulta.setOnAction(e -> {
@@ -86,6 +116,7 @@ public class SeleccionUnidades {
                 jugador.comprar(catapulta1);
             } catch (PuntosInsuficientesException ex) {
                 ex.printStackTrace();
+                return;
             }
         });
         curandero.setOnAction(e -> {
@@ -94,6 +125,7 @@ public class SeleccionUnidades {
                 jugador.comprar(curandero1);
             } catch (PuntosInsuficientesException ex) {
                 ex.printStackTrace();
+                return;
             }
         });
 
@@ -103,8 +135,6 @@ public class SeleccionUnidades {
         Scene scene = new Scene(layout);
         window.setScene(scene);
         window.show();
-
     }
-
 
 }
