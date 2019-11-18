@@ -4,7 +4,8 @@ package vista;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
@@ -51,9 +52,10 @@ public class Main extends Application {
         jugar.setOnAction(e -> window.setScene(escenaJuego));
         salir.setOnAction(e -> System.exit(0));
 
-      //  Image titleBackground = new Image("imagenes\\tft.jpg", 950, 800, false, true);
-       // BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-        //BackgroundSize.DEFAULT); SIGUE SIN FUNCIONAR
+        Image titleBackground = new Image("Vista/imagenes/tft.jpg", 950, 800, false, true);
+        BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        BackgroundSize.DEFAULT);
+        layout.setBackground(new Background(imagenTitulo));
 
         Scene scene = new Scene(layout);
         window.setScene(scene);
