@@ -44,6 +44,12 @@ public class Main extends Application {
         Button salir = new Button("Salir");
 
         Pane layout = new Pane ();
+
+        Image titleBackground = new Image("Vista/imagenes/tft.jpg", 950, 800, false, true);
+        BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+
+        layout.setBackground(new Background(imagenTitulo));
         layout.getChildren().add(jugar);
         layout.getChildren().add(salir);
         jugar.setLayoutX(400);
@@ -51,11 +57,6 @@ public class Main extends Application {
 
         jugar.setOnAction(e -> window.setScene(escenaJuego));
         salir.setOnAction(e -> System.exit(0));
-
-        Image titleBackground = new Image("Vista/imagenes/tft.jpg", 950, 800, false, true);
-        BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-        BackgroundSize.DEFAULT);
-        layout.setBackground(new Background(imagenTitulo));
 
         Scene scene = new Scene(layout);
         window.setScene(scene);
