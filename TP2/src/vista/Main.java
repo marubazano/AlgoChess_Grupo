@@ -56,7 +56,7 @@ public class Main extends Application {
 
         Pane layout = new Pane ();
 
-        Image titleBackground = new Image("Vista/imagenes/menu.jpg", 950, 800, false, true);
+        Image titleBackground = new Image("marina@marina-Inspiron-5548:~/IdeaProjects/AlgoChess_Grupo/TP2/src/vista/imagenes", 950, 800, false, true);
         BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
 
@@ -94,7 +94,7 @@ public class Main extends Application {
 
         Pane layout = new Pane ();
 
-        Image titleBackground = new Image("Vista/imagenes/menu.jpg", 950, 800, false, true);
+        Image titleBackground = new Image("file:///home/marina/IdeaProjects/AlgoChess_Grupo/TP2/src/Vista/imagenes/menu.jpg", 950, 800, false, true);
         BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
 
@@ -142,7 +142,7 @@ public class Main extends Application {
 
     public void reproducirMusicaDeFondo() {
       //  String musicFile = "src/Sonidos/phoenix-ft-cailin-russo-and-chrissy-costanza-worlds-2019-league-of-legends.mp3";
-        Media sound = new Media("file:///C:/Users/Gama/Documents/AlgoChess_Grupo/TP2/src/Sonidos/phoenix-ft-cailin-russo-and-chrissy-costanza-worlds-2019-league-of-legends.mp3");
+        Media sound = new Media("file:///home/marina/IdeaProjects/AlgoChess_Grupo/TP2/src/Sonidos/phoenix-ft-cailin-russo-and-chrissy-costanza-worlds-2019-league-of-legends.mp3");
         this.mediaPlayer = new MediaPlayer(sound);
         this.mediaPlayer.play();
     }
