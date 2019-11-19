@@ -9,6 +9,7 @@ import Unidades.SoldadoDeInfanteria;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -39,6 +40,32 @@ public class SeleccionUnidades extends Application {
         window.setMinHeight(700);
         window.setMaxWidth(1000);
         window.setMinWidth(1000);
+
+
+        // PRUEBA DE GRIDPANE ------- NO LLEGA A MOSTRARSE NO SE POR QUE PERO ASí
+        // ES LA LÓGICA, LO PODEMOS HACER ASÍ CON LABELS O DIRECTAMENTE CON TEXTBOXS
+        // O BUTTONS
+
+        GridPane tablero = new GridPane();
+        tablero.setPrefSize(200,200);
+        tablero.setHgap(5);
+        tablero.setVgap(5);
+        //tablero.setStyle("-fx-border-color: #ffffff; -fx-base: #000000");
+
+        Label casillero = new Label("H");
+        casillero.setStyle("-fx-font: 20 arial; -fx-text-fill: #ec443f, -fx-base: #000000");
+
+        tablero.add(casillero,0,0);
+        tablero.add(casillero,1,0);
+        tablero.add(casillero,2,0);
+        tablero.add(casillero,1,1);
+        tablero.add(casillero,0,1);
+        tablero.add(casillero,0,2);
+        tablero.add(casillero,1,2);
+        tablero.add(casillero,2,2);
+
+
+
 
         Image imagenSoldado = new Image("Vista/imagenes/gato_soldado_precio.png", 200, 200, false, true);
         ImageView imageViewSoldado = new ImageView(imagenSoldado);
@@ -91,6 +118,12 @@ public class SeleccionUnidades extends Application {
         curandero.setLayoutX(650);
         curandero.setLayoutY(450);
         layout.getChildren().add(salir);
+
+
+
+        layout.getChildren().add(tablero);
+        tablero.setLayoutX(100);
+        tablero.setLayoutX(100);
 
         soldado.setOnAction(e -> {
             SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();

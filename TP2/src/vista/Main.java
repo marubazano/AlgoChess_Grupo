@@ -102,8 +102,8 @@ public class Main extends Application {
         Pane layout = new Pane ();
         layout.setPrefSize(1000,700);
 
-        TextField nombreJugador1 = new TextField("Jugador 1: Ingrese su nombre");
-        TextField nombreJugador2 = new TextField("Jugador 2: Ingrese su nombre");
+        TextField nombreJugador1 = new TextField("Nombre de jugador 1");
+        TextField nombreJugador2 = new TextField("Nombre de jugador 2");
 
         layout.setBackground(new Background(imagenTitulo));
         layout.getChildren().add(nombreJugador1);
