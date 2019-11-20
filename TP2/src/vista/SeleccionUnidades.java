@@ -9,10 +9,13 @@ import Unidades.SoldadoDeInfanteria;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class SeleccionUnidades extends Application {
@@ -40,6 +43,7 @@ public class SeleccionUnidades extends Application {
         window.setMinHeight(700);
         window.setMaxWidth(1000);
         window.setMinWidth(1000);
+        Pane layout = new Pane ();
 
 
         // PRUEBA DE GRIDPANE ------- NO LLEGA A MOSTRARSE NO SE POR QUE PERO ASí
@@ -47,25 +51,24 @@ public class SeleccionUnidades extends Application {
         // O BUTTONS
 
         GridPane tablero = new GridPane();
-        tablero.setPrefSize(200,200);
-        tablero.setHgap(5);
-        tablero.setVgap(5);
+        tablero.setPrefSize(50,50);
+        tablero.setHgap(0);
+        tablero.setVgap(0);
         //tablero.setStyle("-fx-border-color: #ffffff; -fx-base: #000000");
 
-        Label casillero = new Label("H");
-        casillero.setStyle("-fx-font: 20 arial; -fx-text-fill: #ec443f, -fx-base: #000000");
+        for (int x = 1; x<=20; x++){
+            for (int y = 1; y<=20; y++ ) {
+                Rectangle casillero = new Rectangle(30,30);
+                casillero.setFill(Color.WHITE);
+                casillero.setStroke(Color.BLACK);
+                Text numero = new Text();
+                numero.setFont(Font.font(10));
+                numero.setText("("+x+","+y+")");
 
-        tablero.add(casillero,0,0);
-        tablero.add(casillero,1,0);
-        tablero.add(casillero,2,0);
-        tablero.add(casillero,1,1);
-        tablero.add(casillero,0,1);
-        tablero.add(casillero,0,2);
-        tablero.add(casillero,1,2);
-        tablero.add(casillero,2,2);
-
-
-
+                tablero.add(new StackPane(casillero, numero), y, x);
+               // casillero.setOnMouseClicked(event -> );
+            }
+        }
 
         Image imagenSoldado = new Image("Vista/imagenes/gato_soldado_precio.png", 200, 200, false, true);
         ImageView imageViewSoldado = new ImageView(imagenSoldado);
@@ -97,8 +100,6 @@ public class SeleccionUnidades extends Application {
 
         Button salir = new Button("Salir");
         salir.setStyle("-fx-font: 23 arial; -fx-base: #000000; -fx-border-color: #ec443f; -fx-text-fill: #ec443f");
-
-        Pane layout = new Pane ();
 
         Image titleBackground = new Image("Vista/imagenes/menu.jpg", 950, 800, false, true);
         BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
