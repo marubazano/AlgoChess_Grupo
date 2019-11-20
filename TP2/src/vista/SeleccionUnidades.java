@@ -12,10 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class SeleccionUnidades extends Application {
@@ -45,30 +41,8 @@ public class SeleccionUnidades extends Application {
         window.setMinWidth(1000);
         Pane layout = new Pane ();
 
+        TableroVista vistaTablero = new TableroVista();
 
-        // PRUEBA DE GRIDPANE ------- NO LLEGA A MOSTRARSE NO SE POR QUE PERO ASí
-        // ES LA LÓGICA, LO PODEMOS HACER ASÍ CON LABELS O DIRECTAMENTE CON TEXTBOXS
-        // O BUTTONS
-
-        GridPane tablero = new GridPane();
-        tablero.setPrefSize(50,50);
-        tablero.setHgap(0);
-        tablero.setVgap(0);
-        //tablero.setStyle("-fx-border-color: #ffffff; -fx-base: #000000");
-
-        for (int x = 1; x<=20; x++){
-            for (int y = 1; y<=20; y++ ) {
-                Rectangle casillero = new Rectangle(30,30);
-                casillero.setFill(Color.WHITE);
-                casillero.setStroke(Color.BLACK);
-                Text numero = new Text();
-                numero.setFont(Font.font(10));
-                numero.setText("("+x+","+y+")");
-
-                tablero.add(new StackPane(casillero, numero), y, x);
-               // casillero.setOnMouseClicked(event -> );
-            }
-        }
 
         Image imagenSoldado = new Image("Vista/imagenes/gato_soldado_precio.png", 200, 200, false, true);
         ImageView imageViewSoldado = new ImageView(imagenSoldado);
@@ -120,11 +94,9 @@ public class SeleccionUnidades extends Application {
         curandero.setLayoutY(450);
         layout.getChildren().add(salir);
 
-
-
-        layout.getChildren().add(tablero);
-        tablero.setLayoutX(100);
-        tablero.setLayoutX(100);
+        layout.getChildren().add(vistaTablero.getTablero());
+        vistaTablero.getTablero().setLayoutX(100);
+        vistaTablero.getTablero().setLayoutX(100);
 
         soldado.setOnAction(e -> {
             SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
