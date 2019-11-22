@@ -1,16 +1,15 @@
 package Tablero;
 
-import Excepciones.BatallonInvalidoException;
+import AlgoChess.Observable;
 import Excepciones.CasilleroInvalidoException;
 import Excepciones.CasilleroOcupadoException;
-import Unidades.Batallon;
 import Unidades.Movible;
-import Unidades.SoldadoDeInfanteria;
 import Unidades.Unidad;
+import javafx.scene.Node;
 
 import java.util.*;
 
-public class Tablero {
+public class Tablero extends Observable {
     private static final int CANT_FILAS = 20;
     private static final int CANT_COLUMNAS = 20;
     protected HashMap<Coordenada, Casillero> tablero;
@@ -40,6 +39,7 @@ public class Tablero {
     public void ubicarUnidad(Unidad unidad, Coordenada coordenada) throws CasilleroOcupadoException, CasilleroInvalidoException {
         try {
             obtenerCasillero(coordenada).ocuparCasilleroPorUnidad(unidad, coordenada);
+            notificarObservadores();
         }
         catch (NullPointerException e) {
             throw new CasilleroInvalidoException(e);
@@ -55,6 +55,7 @@ public class Tablero {
             Casillero casilleroActual = obtenerCasillero(coordenadaActual);
             casilleroActual.vaciarCasillero();
             unidadMovible.mover(nuevaCoordenada);
+            notificarObservadores();
         }
         catch (CasilleroOcupadoException e) {
             e.getMensaje();

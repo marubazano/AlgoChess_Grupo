@@ -2,13 +2,21 @@ package vista;
 
 
 import AlgoChess.Jugador;
+import Controlador.ControladorTeclado;
 import Tablero.Tablero;
+import Tablero.Direccion;
+import Tablero.Coordenada;
+import Unidades.Curandero;
+import Unidades.Jinete;
+import Unidades.Movible;
+import Unidades.Unidad;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -21,7 +29,6 @@ public class Main extends Application {
     Tablero tablero;
     MediaPlayer mediaPlayer;
 
-
     public static void main(String[] args){
         launch(args);
     }
@@ -29,18 +36,53 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        window = stage;
+        BotonesMenu botones = new BotonesMenu();
+        Pane botonesGui = new Pane();
+        botonesGui.setPrefSize(800,600);
+        tablero = new Tablero();
+        TableroVista gui = new TableroVista(tablero);
+        Movible curandero = new Curandero();
+        Movible jinete = new Jinete();
+        Coordenada coordenada = new Coordenada(4,5);
+        Coordenada coordenadajin = new Coordenada(3,5);
+        tablero.ubicarUnidad(curandero, coordenada);
+        tablero.ubicarUnidad(jinete, coordenadajin);
+        UnidadVista vista = new UnidadVista(gui, curandero);
+        tablero.agregarObservador(vista);
+
+        VBox vbox = new VBox();
+        /*
+          Para ver el menu de inicio se podria descomentar esto y comentar
+          lo que tenga que ver con el tablero (tablerovista, unidades etc)
+
+         */
+        /*Image imagenFondo = new Image(getClass().getResourceAsStream("imagenes/menu.jpg"), 800, 600, false, false);
+        ImageView vistaFondo = new ImageView(imagenFondo);
+        botonesGui.getChildren().add(vistaFondo);
+        botonesGui.getChildren().add(botones);
+        vbox.getChildren().add(botonesGui);*/
+        vbox.getChildren().add(gui);
+
+        Scene scene = new Scene(vbox);
+        scene.setOnKeyPressed(new ControladorTeclado(curandero, tablero));
+        stage.setTitle("AlgoChess");
+        stage.setScene(scene);
+        stage.setMinWidth(800);
+        stage.setMinHeight(600);
+        stage.show();
+
+
+        /*window = stage;
 
         window.setTitle("AlgoChess - Menú Principal");
 
-        Tablero tablero = new Tablero();
-        this.tablero = tablero;
+        tablero = new Tablero();
 
-        this.reproducirMusicaDeFondo();
-        this.prepararMenuInicio();
+        //this.reproducirMusicaDeFondo();
+        //this.prepararMenuInicio();*/
     }
 
-    public void prepararMenuInicio() throws Exception{
+   /* public void prepararMenuInicio() throws Exception{
 
         window.setTitle("AlgoChess");
         window.setMaxHeight(700);
@@ -81,12 +123,6 @@ public class Main extends Application {
     }
 
     public void buttonCrearUsuarios () throws Exception{
-        window.setTitle("AlgoChess");
-        window.setMaxHeight(700);
-        window.setMinHeight(700);
-        window.setMaxWidth(1000);
-        window.setMinWidth(1000);
-
         Button ingresar = new Button("Ingresar");
         ingresar.setStyle("-fx-font: 23 arial; -fx-base: #000000; -fx-border-color: #6d1fd8; -fx-text-fill: #f04ef5");
         Button salir = new Button("Salir");
@@ -142,10 +178,9 @@ public class Main extends Application {
 
     public void reproducirMusicaDeFondo() {
         String musicFile = "/TP2/src/Sonidos/phoenix-ft-cailin-russo-and-chrissy-costanza-worlds-2019-league-of-legends.mp3";
-        System.out.println(System.getProperty("user.dir"));
         Media sound = new Media("file:///" + System.getProperty("user.dir").replace('\\', '/') + musicFile);
         this.mediaPlayer = new MediaPlayer(sound);
         this.mediaPlayer.play();
     }
-
+*/
 }
