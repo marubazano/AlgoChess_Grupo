@@ -34,7 +34,7 @@ public class SeleccionUnidades extends Application {
 
 
     public void seleccionarUnidadesPorJugador (Jugador jugador) {
-        window.setTitle("Seleccionar Unidades");
+       /* window.setTitle("Seleccionar Unidades");
         window.setMaxHeight(700);
         window.setMinHeight(700);
         window.setMaxWidth(1000);
@@ -140,7 +140,7 @@ public class SeleccionUnidades extends Application {
 
         Scene scene = new Scene(layout);
         window.setScene(scene);
-        window.show();
+        window.show();*/
     }
 
 }
