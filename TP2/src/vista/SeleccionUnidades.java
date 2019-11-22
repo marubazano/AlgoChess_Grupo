@@ -39,6 +39,10 @@ public class SeleccionUnidades extends Application {
         window.setMinHeight(700);
         window.setMaxWidth(1000);
         window.setMinWidth(1000);
+        Pane layout = new Pane ();
+
+        TableroVista vistaTablero = new TableroVista();
+
 
         Image imagenSoldado = new Image("Vista/imagenes/gato_soldado_precio.png", 200, 200, false, true);
         ImageView imageViewSoldado = new ImageView(imagenSoldado);
@@ -71,8 +75,6 @@ public class SeleccionUnidades extends Application {
         Button salir = new Button("Salir");
         salir.setStyle("-fx-font: 23 arial; -fx-base: #000000; -fx-border-color: #ec443f; -fx-text-fill: #ec443f");
 
-        Pane layout = new Pane ();
-
         Image titleBackground = new Image("Vista/imagenes/menu.jpg", 950, 800, false, true);
         BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
@@ -91,6 +93,10 @@ public class SeleccionUnidades extends Application {
         curandero.setLayoutX(650);
         curandero.setLayoutY(450);
         layout.getChildren().add(salir);
+
+        layout.getChildren().add(vistaTablero.getTablero());
+        vistaTablero.getTablero().setLayoutX(100);
+        vistaTablero.getTablero().setLayoutX(100);
 
         soldado.setOnAction(e -> {
             SoldadoDeInfanteria soldado1 = new SoldadoDeInfanteria();
