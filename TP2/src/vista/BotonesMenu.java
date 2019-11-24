@@ -7,6 +7,6 @@ public class BotonesMenu extends HBox {
         super();
         this.setHeight(20);
         this.getChildren().add(new BotonSalir());
-        this.getChildren().add(new BotonComenzar());
+        //this.getChildren().add(new BotonComenzar());
     }
 }

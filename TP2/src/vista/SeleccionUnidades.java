@@ -1,17 +1,7 @@
 package vista;
 
 import AlgoChess.Jugador;
-import Excepciones.PuntosInsuficientesException;
-import Unidades.Catapulta;
-import Unidades.Curandero;
-import Unidades.Jinete;
-import Unidades.SoldadoDeInfanteria;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class SeleccionUnidades extends Application {
@@ -44,28 +34,28 @@ public class SeleccionUnidades extends Application {
         TableroVista vistaTablero = new TableroVista();
 
 
-        Image imagenSoldado = new Image("Vista/imagenes/gato_soldado_precio.png", 200, 200, false, true);
+        Image imagenSoldado = new Image(getClass().getResourceAsStream("/vista/imagenes/gato_soldado_precio.png"), 200, 200, false, true);
         ImageView imageViewSoldado = new ImageView(imagenSoldado);
         Button soldado = new Button("Soldado",imageViewSoldado);
         soldado.setMinSize(200,200);
         soldado.setMaxSize(200,200);
         soldado.setPrefSize(200,200);
 
-        Image imagenJinete = new Image("Vista/imagenes/gato_jinete_precio.png", 200, 200, false, true);
+        Image imagenJinete = new Image(getClass().getResourceAsStream("/vista/imagenes/gato_jinete_precio.png"), 200, 200, false, true);
         ImageView imageViewJinete = new ImageView(imagenJinete);
         Button jinete = new Button("jinete",imageViewJinete);
         jinete.setMinSize(200,200);
         jinete.setMaxSize(200,200);
         jinete.setPrefSize(200,200);
 
-        Image imagenCatapulta = new Image("Vista/imagenes/gato_catapulta_precio.png", 200, 200, false, true);
+        Image imagenCatapulta = new Image(getClass().getResourceAsStream("/vista/imagenes/gato_catapulta_precio.png"), 200, 200, false, true);
         ImageView imageViewCatapulta = new ImageView(imagenCatapulta);
         Button catapulta = new Button("catapulta",imageViewCatapulta);
         catapulta.setMinSize(200,200);
         catapulta.setMaxSize(200,200);
         catapulta.setPrefSize(200,200);
 
-        Image imagenCurandero = new Image("Vista/imagenes/gato_curandero_precio.png", 200, 200, false, true);
+        Image imagenCurandero = new Image(getClass().getResourceAsStream("/vista/imagenes/gato_curandero_precio.png"), 200, 200, false, true);
         ImageView imageViewCurandero = new ImageView(imagenCurandero);
         Button curandero = new Button("catapulta",imageViewCurandero);
         curandero.setMinSize(200,200);
@@ -75,7 +65,7 @@ public class SeleccionUnidades extends Application {
         Button salir = new Button("Salir");
         salir.setStyle("-fx-font: 23 arial; -fx-base: #000000; -fx-border-color: #ec443f; -fx-text-fill: #ec443f");
 
-        Image titleBackground = new Image("Vista/imagenes/menu.jpg", 950, 800, false, true);
+        Image titleBackground = new Image(getClass().getResourceAsStream("/vista/imagenes/menu.jpg"), 950, 800, false, true);
         BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
 

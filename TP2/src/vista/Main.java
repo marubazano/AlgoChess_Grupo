@@ -2,22 +2,11 @@ package vista;
 
 
 import AlgoChess.Jugador;
-import Controlador.ControladorTeclado;
 import Tablero.Tablero;
-import Tablero.Direccion;
-import Tablero.Coordenada;
-import Unidades.Curandero;
-import Unidades.Jinete;
-import Unidades.Movible;
-import Unidades.Unidad;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
@@ -36,7 +25,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        BotonesMenu botones = new BotonesMenu();
+        /*BotonesMenu botones = new BotonesMenu();
         Pane botonesGui = new Pane();
         botonesGui.setPrefSize(800,600);
         tablero = new Tablero();
@@ -50,7 +39,7 @@ public class Main extends Application {
         UnidadVista vista = new UnidadVista(gui, curandero);
         tablero.agregarObservador(vista);
 
-        VBox vbox = new VBox();
+        VBox vbox = new VBox();*/
         /*
           Para ver el menu de inicio se podria descomentar esto y comentar
           lo que tenga que ver con el tablero (tablerovista, unidades etc)
@@ -61,15 +50,35 @@ public class Main extends Application {
         botonesGui.getChildren().add(vistaFondo);
         botonesGui.getChildren().add(botones);
         vbox.getChildren().add(botonesGui);*/
-        vbox.getChildren().add(gui);
+        //vbox.getChildren().add(gui);
 
-        Scene scene = new Scene(vbox);
+        /*Scene scene = new Scene(vbox);
         scene.setOnKeyPressed(new ControladorTeclado(curandero, tablero));
         stage.setTitle("AlgoChess");
         stage.setScene(scene);
         stage.setMinWidth(800);
         stage.setMinHeight(600);
+        stage.show();*/
+
+        StackPane stackPane = new StackPane();
+        BotonComenzar comenzar = new BotonComenzar(stackPane);
+
+        Image titleBackground = new Image(getClass().getResourceAsStream("imagenes/menu.jpg"), 950, 800, false, true);
+        BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+
+
+        stackPane.setBackground(new Background(imagenTitulo));
+        stackPane.getChildren().add(comenzar);
+
+        Scene scene = new Scene(stackPane);
+        stage.setTitle("AlgoChess");
+        stage.setScene(scene);
+        stage.setMinWidth(950);
+        stage.setMinHeight(800);
         stage.show();
+
+
 
 
         /*window = stage;
@@ -184,3 +193,4 @@ public class Main extends Application {
     }
 */
 }
+
