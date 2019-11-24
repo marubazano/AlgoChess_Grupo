@@ -5,9 +5,10 @@ import Excepciones.CasilleroInvalidoException;
 import Excepciones.CasilleroOcupadoException;
 import Unidades.Movible;
 import Unidades.Unidad;
-import javafx.scene.Node;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 
 public class Tablero extends Observable {
     private static final int CANT_FILAS = 20;

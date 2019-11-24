@@ -1,18 +1,13 @@
 package vista;
 
 import AlgoChess.Jugador;
+import Tablero.Casillero;
 import Unidades.Catapulta;
-import Unidades.SoldadoDeInfanteria;
 import Unidades.Curandero;
 import Unidades.Jinete;
-import Unidades.Unidad;
+import Unidades.SoldadoDeInfanteria;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-
-import Tablero.*;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.layout.*;
 
 public class CasilleroVista extends Pane {
     Casillero casillero;
@@ -26,7 +21,7 @@ public class CasilleroVista extends Pane {
         this.jugador2 = jugador2;
     }
 
-    private void mostrarCasillero() {
+    public void mostrarCasillero() {
         if (!this.casillero.estaOcupado()) {
             if ((this.casillero.obtenerUnidad()) instanceof SoldadoDeInfanteria) {
                 if (jugador1.obtenerListaUnidades().contains(this.casillero.obtenerUnidad())) {

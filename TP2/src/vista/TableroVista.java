@@ -33,10 +33,20 @@ public class TableroVista extends Group {
                 Casillero casillero = tablero.obtenerCasillero(coordenada);
                 CasilleroVista casilleroVista = new CasilleroVista(casillero, jugador1, jugador2);
                 tableroGui.add(casilleroVista,i,j);
+                this.casillero[i][j] = casilleroVista;
             }
         }
 
         this.agregarVista(tableroGui);
+    }
+
+    public void agregarVistaAlMapa (){
+        for (int i=1; i<=alto; i++ ){
+            for ( int j=1; j<= ancho; j++){
+                CasilleroVista casilleroVista = this.casillero[i][j];
+                casilleroVista.mostrarCasillero();
+            }
+        }
     }
 
     public void agregarVista(Node vista){
