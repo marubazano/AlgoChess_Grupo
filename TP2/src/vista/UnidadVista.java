@@ -1,6 +1,6 @@
 package vista;
 
-import AlgoChess.Observador;
+import Controlador.Observador;
 import Unidades.Unidad;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

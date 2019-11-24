@@ -81,6 +81,10 @@ public class Jugador {
         return false;
     }
 
+    public ArrayList obtenerListaUnidades() {
+        return this.unidades;
+    }
+
     public String obtenerEstado() { return this.estado; }
 
     public void realizarAccionDeUnidad(Unidad unaUnidad, Unidad otraUnidad) throws AccionInvalidaException {
