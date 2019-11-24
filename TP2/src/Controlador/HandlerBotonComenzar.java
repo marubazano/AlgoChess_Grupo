@@ -17,12 +17,12 @@ public class HandlerBotonComenzar implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent evento){
-        BotonJugar jugar = new BotonJugar(hbox);
-
         TextField jugador1 = new TextField("Ingrese nombre jugador 1");
         TextField jugador2 = new TextField("Ingrese nombre jugador 2");
         jugador1.setMaxWidth(220);
         jugador2.setMaxWidth(220);
+
+        BotonJugar jugar = new BotonJugar(hbox, jugador1, jugador2);
 
         VBox panelNombreJugadores = new VBox(40);
         panelNombreJugadores.setAlignment(Pos.CENTER);
