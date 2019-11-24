@@ -4,6 +4,7 @@ package vista;
 import AlgoChess.Jugador;
 import Tablero.Tablero;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -61,7 +62,18 @@ public class Main extends Application {
         stage.show();*/
 
         StackPane stackPane = new StackPane();
-        BotonComenzar comenzar = new BotonComenzar(stackPane);
+        VBox canvas = new VBox();
+        HBox contenedorBotonSalir = new HBox();
+        HBox contenedorPrincipal = new HBox();
+        contenedorPrincipal.setMinHeight(700);
+
+        BotonComenzar comenzar = new BotonComenzar(contenedorPrincipal);
+        contenedorPrincipal.setAlignment(Pos.CENTER);
+        contenedorPrincipal.getChildren().add(comenzar);
+        BotonSalir salir = new BotonSalir();
+        contenedorBotonSalir.getChildren().add(salir);
+        canvas.getChildren().add(contenedorBotonSalir);
+        canvas.getChildren().add(contenedorPrincipal);
 
         Image titleBackground = new Image(getClass().getResourceAsStream("imagenes/menu.jpg"), 950, 800, false, true);
         BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
@@ -69,7 +81,8 @@ public class Main extends Application {
 
 
         stackPane.setBackground(new Background(imagenTitulo));
-        stackPane.getChildren().add(comenzar);
+        stackPane.getChildren().add(canvas);
+
 
         Scene scene = new Scene(stackPane);
         stage.setTitle("AlgoChess");

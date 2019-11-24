@@ -4,20 +4,20 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import vista.BotonJugar;
 
 public class HandlerBotonComenzar implements EventHandler<ActionEvent> {
-    StackPane stackPane;
+    HBox hbox;
 
-    public HandlerBotonComenzar(StackPane stackPane){
-        this.stackPane = stackPane;
+    public HandlerBotonComenzar(HBox hbox){
+        this.hbox = hbox;
     }
 
     @Override
     public void handle(ActionEvent evento){
-        BotonJugar jugar = new BotonJugar();
+        BotonJugar jugar = new BotonJugar(hbox);
 
         TextField jugador1 = new TextField("Ingrese nombre jugador 1");
         TextField jugador2 = new TextField("Ingrese nombre jugador 2");
@@ -28,8 +28,9 @@ public class HandlerBotonComenzar implements EventHandler<ActionEvent> {
         panelNombreJugadores.setAlignment(Pos.CENTER);
         panelNombreJugadores.getChildren().addAll(jugador1, jugador2, jugar);
 
-        stackPane.getChildren().remove(0);
-        stackPane.getChildren().add(panelNombreJugadores);
+        hbox.getChildren().add(panelNombreJugadores);
+        hbox.getChildren().remove(0);
+        evento.consume();
     }
 
 }
