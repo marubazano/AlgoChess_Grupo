@@ -27,7 +27,7 @@ public class UnidadVista implements Observador {
         imagenUnidad.setFitWidth(20*2);
         imagenUnidad.setImage(new Image(getClass().getResourceAsStream("imagenes/gato_curandero.jpg")));
 
-        tableroGui.agregarVistaAlMapa(imagenUnidad, unidad.obtenerCoordenada().obtenerHorizontal()-1, unidad.obtenerCoordenada().obtenerVertical()-1);
+        tableroGui.agregarVistaAlMapa();
         dibujar();
     }
 
@@ -48,6 +48,6 @@ public class UnidadVista implements Observador {
             this.imagenUnidad.setScaleX(Math.abs(imagenUnidad.getScaleX()));
         this.posHorizontalAnterior = unidad.obtenerCoordenada().obtenerHorizontal();
         this.posVerticalAnterior = unidad.obtenerCoordenada().obtenerVertical();
-        tableroGui.agregarVistaAlMapa(this.imagenUnidad, horActual-1, vertActual-1);
+        tableroGui.agregarVistaAlMapa();
     }
 }

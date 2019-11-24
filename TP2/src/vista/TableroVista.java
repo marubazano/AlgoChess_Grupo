@@ -1,6 +1,9 @@
 package vista;
 
+import AlgoChess.Jugador;
 import Tablero.Tablero;
+import Tablero.Casillero;
+import Tablero.Coordenada;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.*;
@@ -10,40 +13,40 @@ public class TableroVista extends Group {
     public static final double casilleroSize = 2;
     public static final int ancho = 20;
     public static final int alto = 20;
+    Tablero tablero;
+
+    Jugador jugador1;
+    Jugador jugador2;
 
     private GridPane tableroGui;
 
-    private Pane[][] panes;
+    private CasilleroVista[][] casillero;
 
-    public TableroVista(Tablero tablero){
+    public TableroVista(Tablero tablero, Jugador jugador1, Jugador jugador2){
+        this.jugador1 = jugador1;
+        this.jugador2 = jugador2;
+        this.tablero = tablero;
         tableroGui = new GridPane();
-        panes = new Pane[ancho][alto];
-        for(int i = 0; i < alto; i++ ){
-            for(int j = 0; j < ancho; j++){
-                Pane actual = new Pane();
-                actual.setStyle("-fx-border-color: black");
-                actual.setMinWidth(this.ancho * casilleroSize);
-                actual.setMinHeight(this.alto * casilleroSize);
-                panes[i][j] = actual;
-                tableroGui.add(actual, i, j);
+        for(int i = 1; i <= alto; i++) {
+            for(int j = 1; j <= ancho; j++) {
+                Coordenada coordenada = new Coordenada(i, j);
+                Casillero casillero = tablero.obtenerCasillero(coordenada);
+                CasilleroVista casilleroVista = new CasilleroVista(casillero, jugador1, jugador2);
+                tableroGui.add(casilleroVista,i,j);
+                this.casillero[i][j] = casilleroVista;
             }
         }
+
         this.agregarVista(tableroGui);
     }
 
-    public void agregarVistaAlMapa(Node vista, int x, int y){
-        //Primero saco todas las vistas actuales
-        //Luego agrego la(s) deseada(s)
-        for(int i = 0; i < ancho; i++){
-            for(int j = 0; j < alto; j++){
-                try{
-                    panes[j][i].getChildren().remove(vista); //Col/fila
-                } catch(Exception e) {
-                    //handle
-                }
+    public void agregarVistaAlMapa (){
+        for (int i=1; i<=alto; i++ ){
+            for ( int j=1; j<= ancho; j++){
+                CasilleroVista casilleroVista = this.casillero[i][j];
+                casilleroVista.mostrarCasillero();
             }
         }
-        panes[y][x].getChildren().add(0, vista);
     }
 
     public void agregarVista(Node vista){

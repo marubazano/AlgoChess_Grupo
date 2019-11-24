@@ -41,8 +41,7 @@ public class Tablero extends Observable {
         try {
             obtenerCasillero(coordenada).ocuparCasilleroPorUnidad(unidad, coordenada);
             notificarObservadores();
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             throw new CasilleroInvalidoException(e);
         }
     }
