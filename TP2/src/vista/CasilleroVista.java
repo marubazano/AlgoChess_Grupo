@@ -53,4 +53,8 @@ public class CasilleroVista extends Pane {
             }
         }
     }
+
+    public void update(){
+        setOnKeyPressed(keyEvent -> {this.mostrarCasillero();});
+    }
 }
