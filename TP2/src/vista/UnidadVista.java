@@ -1,12 +1,14 @@
 package vista;
 
-import Controlador.Observador;
-import Unidades.Unidad;
+import Unidades.Unidad;;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.Pane;
 
 
-public class UnidadVista implements Observador {
+public class UnidadVista extends Pane{
     private static final int escalaUnidad = 1;
     private TableroVista tableroGui;
     ImageView imagenUnidad;
@@ -18,17 +20,11 @@ public class UnidadVista implements Observador {
     public UnidadVista(TableroVista tableroGui, Unidad unidad){
         this.tableroGui = tableroGui;
         this.unidad = unidad;
-        posHorizontalAnterior = unidad.obtenerCoordenada().obtenerHorizontal();
-        posVerticalAnterior = unidad.obtenerCoordenada().obtenerVertical();
         imagenUnidad = new ImageView();
         imagenUnidad.setScaleX(escalaUnidad);
         imagenUnidad.setScaleY(escalaUnidad);
-        imagenUnidad.setFitHeight(20*2); //CantidadCasilleros * escala de la vista (no borrar)
-        imagenUnidad.setFitWidth(20*2);
-        imagenUnidad.setImage(new Image(getClass().getResourceAsStream("imagenes/gato_curandero.jpg")));
-
-        tableroGui.agregarVistaAlMapa();
-        dibujar();
+        imagenUnidad.setFitHeight(20); //CantidadCasilleros * escala de la vista (no borrar)
+        imagenUnidad.setFitWidth(20);
     }
 
     private void dibujar() {
@@ -37,7 +33,7 @@ public class UnidadVista implements Observador {
         //tableroGui.updateVista(imagenUnidad);
     }
 
-    @Override
+    /*@Override
     public void change(){
         int horActual = unidad.obtenerCoordenada().obtenerHorizontal();
         int vertActual = unidad.obtenerCoordenada().obtenerVertical();
@@ -49,5 +45,5 @@ public class UnidadVista implements Observador {
         this.posHorizontalAnterior = unidad.obtenerCoordenada().obtenerHorizontal();
         this.posVerticalAnterior = unidad.obtenerCoordenada().obtenerVertical();
         tableroGui.agregarVistaAlMapa();
-    }
+    }*/
 }

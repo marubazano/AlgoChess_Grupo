@@ -110,8 +110,4 @@ public class Tablero extends Observable {
         }
         return null;
     }
-
-    public HashMap<Coordenada, Casillero> obtenerTablero(){
-        return this.tablero;
-    }
 }

@@ -12,6 +12,7 @@ public class Jugador {
     private int puntos;
     private int nroJugador; // Valdra 1 o 2, segun el numero del jugador
     private String estado;
+    private boolean esTurno;
 
     public Jugador(String nombre, Tablero tablero, int nroJugador) {
         this.nombre = nombre;
@@ -81,7 +82,7 @@ public class Jugador {
         return false;
     }
 
-    public ArrayList obtenerListaUnidades() {
+    public ArrayList<Unidad> obtenerListaUnidades() {
         return this.unidades;
     }
 
@@ -104,6 +105,14 @@ public class Jugador {
     }
 
     public boolean esCurandero(Unidad unidad) { return (unidad instanceof Curandero); }
+
+    public void asignarTurno(boolean turno){
+        this.esTurno = turno;
+    }
+
+    public boolean esTurno(){
+        return this.esTurno;
+    }
 
 }
 
