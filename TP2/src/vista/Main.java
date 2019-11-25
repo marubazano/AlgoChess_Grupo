@@ -19,6 +19,7 @@ public class Main extends Application {
     Jugador jugador2;
     Tablero tablero;
     MediaPlayer mediaPlayer;
+    //TableroVista tableroVista;                            SE CREA EN MenuSeleccionDeUnidades
 
     public static void main(String[] args){
         launch(args);
@@ -78,22 +79,59 @@ public class Main extends Application {
         HBox contenedorPrincipal = new HBox();
         contenedorPrincipal.setMinHeight(700);
         contenedorPrincipal.setAlignment(Pos.CENTER);
-        TextField jugador1 = new TextField("Ingrese nombre jugador 1");
-        TextField jugador2 = new TextField("Ingrese nombre jugador 2");
-        jugador1.textProperty().addListener((observableValue, s, t1) ->{});
-        jugador2.textProperty().addListener((observableValue, s, t1) ->{});
-        jugador1.setMaxWidth(220);
-        jugador2.setMaxWidth(220);
+        TextField nombreJugador1 = new TextField("Ingrese nombre jugador 1");
+        TextField nombreJugador2 = new TextField("Ingrese nombre jugador 2");
+        nombreJugador1.textProperty().addListener((observableValue, s, t1) ->{});
+        nombreJugador2.textProperty().addListener((observableValue, s, t1) ->{});
+        nombreJugador1.setMaxWidth(220);
+        nombreJugador2.setMaxWidth(220);
         VBox panelNombreJugadores = new VBox(40);
         panelNombreJugadores.setAlignment(Pos.CENTER);
         canvas.getChildren().add(contenedorBotonSalir);
-        BotonJugar jugar = new BotonJugar(contenedorPrincipal, jugador1, jugador2);
+        BotonJugar jugar = new BotonJugar(contenedorPrincipal, nombreJugador1, nombreJugador2);
         jugar.setOnAction(actionEvent -> {
-           // stage.setScene();
+            Tablero tablero = new Tablero();
+            System.out.println(nombreJugador1.getText());
+            stage.setScene(MenuSeleccionDeUnidades(tablero, new Jugador(nombreJugador1.getText(), tablero, 1), new Jugador(nombreJugador2.getText(), tablero, 2)));
         });
-        panelNombreJugadores.getChildren().addAll(jugador1, jugador2, jugar);
+        panelNombreJugadores.getChildren().addAll(nombreJugador1, nombreJugador2, jugar);
         contenedorPrincipal.getChildren().add(panelNombreJugadores);
         canvas.getChildren().add(contenedorPrincipal);
+        stackPane.getChildren().add(canvas);
+        return new Scene(stackPane);
+    }
+
+    public Scene MenuSeleccionDeUnidades(Tablero tablero, Jugador jugador1, Jugador jugador2) {
+        StackPane stackPane = principal();
+        VBox canvas = new VBox();
+        HBox contenedorBotonSalir = new HBox();
+        BotonSalir salir = new BotonSalir();
+        contenedorBotonSalir.getChildren().add(salir);
+
+        HBox contenedorPrincipal = new HBox(20);                                      //VER ESPACIAMIENTO
+        contenedorPrincipal.setMinHeight(700);
+        contenedorPrincipal.setAlignment(Pos.CENTER);
+
+        SeleccionDeUnidades seleccion = new SeleccionDeUnidades(jugador1, jugador2);
+
+        VBox contenedorUnidades1 = new VBox(20);                                       //VER ESPACIAMIENTO
+        contenedorUnidades1.setAlignment(Pos.CENTER);
+        for (BotonUnidad boton1 : seleccion.unidadesPosiblesJugador1()) {
+            contenedorUnidades1.getChildren().add(boton1);
+        }
+
+        VBox contenedorUnidades2 = new VBox(20);                                       //VER ESPACIAMIENTO
+        contenedorUnidades2.setAlignment(Pos.CENTER);
+        for (BotonUnidad boton2 : seleccion.unidadesPosiblesJugador2()) {
+            contenedorUnidades2.getChildren().add(boton2);
+        }
+
+        TableroVista tableroVista = new TableroVista(tablero, jugador1, jugador2);
+        HBox contenedorTableroVista = new HBox();
+        contenedorTableroVista.getChildren().add(tableroVista);
+
+        contenedorPrincipal.getChildren().addAll(contenedorUnidades1, contenedorTableroVista, contenedorUnidades2);
+        canvas.getChildren().addAll(contenedorBotonSalir, contenedorPrincipal);
         stackPane.getChildren().add(canvas);
         return new Scene(stackPane);
     }

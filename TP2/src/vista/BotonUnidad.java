@@ -15,8 +15,8 @@ public class BotonUnidad extends Button{
 
     public BotonUnidad(String imagenRuta, Unidad unidad, Jugador jugador){
         super();
-        this.setPrefSize(90,90);
-        imagen = new Image(imagenRuta);
+        this.setPrefSize(100,100);
+        imagen = new Image(getClass().getResourceAsStream(imagenRuta), 100, 100, false, false);
         ImageView imageView = new ImageView(imagen);
         this.setGraphic(imageView);
         if(!jugador.tieneSuficientesPuntos(unidad)){
