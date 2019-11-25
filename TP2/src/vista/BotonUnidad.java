@@ -1,27 +1,28 @@
 package vista;
 
 import AlgoChess.Jugador;
-import Controlador.HandlerBotonComenzar;
 import Controlador.HandlerBotonUnidad;
+import Unidades.Unidad;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+
 
 public class BotonUnidad extends Button{
 
     Image imagen;
 
-    public BotonUnidad(String imagenRuta, String tipo, Jugador jugador){
+    public BotonUnidad(String imagenRuta, Unidad unidad, Jugador jugador){
         super();
-        //this.setText("COMENZAR");
         this.setPrefSize(90,90);
-        Image imagen = new Image(imagenRuta);
+        imagen = new Image(imagenRuta);
         ImageView imageView = new ImageView(imagen);
         this.setGraphic(imageView);
-        //this.setAlignment(Pos.CENTER);
-        this.setOnAction(new HandlerBotonUnidad(tipo, jugador));
-        //stackPane.getChildren().remove(this);
+        if(!jugador.tieneSuficientesPuntos(unidad)){
+            this.setDisable(true); //Si el jugador no tiene puntos suficientes no esta el boton
+        }
+        this.setAlignment(Pos.CENTER);
+        this.setOnAction(new HandlerBotonUnidad(unidad, jugador));
     }
 }

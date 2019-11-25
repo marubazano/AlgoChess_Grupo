@@ -1,32 +1,40 @@
 package vista;
 
 import AlgoChess.Jugador;
-import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
+import Unidades.*;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class SeleccionDeUnidades {
-
-
     Jugador jugador1;
     Jugador jugador2;
+
+    BotonUnidad gatoSoldado;
+    BotonUnidad gatoJinete;
+    BotonUnidad gatoCurandero;
+    BotonUnidad gatoCatapulta;
+    BotonUnidad perroSoldado;
+    BotonUnidad perroJinete;
+    BotonUnidad perroCurandero;
+    BotonUnidad perroCatapulta;
+    BotonPasar pasar = new BotonPasar();
+
+    public SeleccionDeUnidades(){
+        BotonUnidad gatoSoldado = new BotonUnidad("imagenes/gato_soldado_precio.png", Unidad.factoryUnidad("soldado"), jugador1);
+        BotonUnidad gatoJinete = new BotonUnidad("imagenes/gato_jinete_precio.png", Unidad.factoryUnidad("jinete"), jugador1);
+        BotonUnidad gatoCurandero = new BotonUnidad("imagenes/gato_curandero_precio.png", Unidad.factoryUnidad("curandero"), jugador1);
+        BotonUnidad gatoCatapulta = new BotonUnidad("imagenes/gato_catapulta_precio.png", Unidad.factoryUnidad("catapulta"), jugador1);
+        BotonUnidad perroSoldado = new BotonUnidad("imagenes/perro_soldado_precio.png", Unidad.factoryUnidad("soldado"), jugador2);
+        BotonUnidad perroJinete = new BotonUnidad("imagenes/perro_jinete_precio.png",Unidad.factoryUnidad("jinete"), jugador2);
+        BotonUnidad perroCurandero = new BotonUnidad("imagenes/perro_curandero_precio.png", Unidad.factoryUnidad("curandero"), jugador2);
+        BotonUnidad perroCatapulta = new BotonUnidad("imagenes/perro_catapulta_precio.png", Unidad.factoryUnidad("catapulta"), jugador2);
+
+    }
 
     public void start(Jugador jugador1, Jugador jugador2) {
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
     }
-
-
-    BotonUnidad gatoSoldado = new BotonUnidad("imagenes/gato_soldado_precio.png", "soldado", jugador1);
-    BotonUnidad gatoJinete = new BotonUnidad("imagenes/gato_jinete_precio.png", "jinete", jugador1);
-    BotonUnidad gatoCurandero = new BotonUnidad("imagenes/gato_curandero_precio.png", "curandero", jugador1);
-    BotonUnidad gatoCatapulta = new BotonUnidad("imagenes/gato_catapulta_precio.png", "catapulta", jugador1);
-    BotonUnidad perroSoldado = new BotonUnidad("imagenes/perro_soldado_precio.png", "soldado", jugador2);
-    BotonUnidad perroJinete = new BotonUnidad("imagenes/perro_jinete_precio.png","jinete", jugador2);
-    BotonUnidad perroCurandero = new BotonUnidad("imagenes/perro_curandero_precio.png", "curandero", jugador2);
-    BotonUnidad perroCatapulta = new BotonUnidad("imagenes/perro_catapulta_precio.png", "catapulta", jugador2);
-
-    BotonPasar pasar = new BotonPasar();
 
     public void turnoJugador(Jugador jugador) {  //se llama para cada jugador en el handle de botonComenzar
 

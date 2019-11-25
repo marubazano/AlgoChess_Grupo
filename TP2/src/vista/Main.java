@@ -6,6 +6,7 @@ import Tablero.Tablero;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.media.MediaPlayer;
@@ -13,7 +14,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    Stage window;
+    Stage stage;
     Jugador jugador1;
     Jugador jugador2;
     Tablero tablero;
@@ -26,82 +27,75 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        /*BotonesMenu botones = new BotonesMenu();
-        Pane botonesGui = new Pane();
-        botonesGui.setPrefSize(800,600);
-        tablero = new Tablero();
-        TableroVista gui = new TableroVista(tablero);
-        Movible curandero = new Curandero();
-        Movible jinete = new Jinete();
-        Coordenada coordenada = new Coordenada(4,5);
-        Coordenada coordenadajin = new Coordenada(3,5);
-        tablero.ubicarUnidad(curandero, coordenada);
-        tablero.ubicarUnidad(jinete, coordenadajin);
-        UnidadVista vista = new UnidadVista(gui, curandero);
-        tablero.agregarObservador(vista);
-
-        VBox vbox = new VBox();*/
-        /*
-          Para ver el menu de inicio se podria descomentar esto y comentar
-          lo que tenga que ver con el tablero (tablerovista, unidades etc)
-
-         */
-        /*Image imagenFondo = new Image(getClass().getResourceAsStream("imagenes/menu.jpg"), 800, 600, false, false);
-        ImageView vistaFondo = new ImageView(imagenFondo);
-        botonesGui.getChildren().add(vistaFondo);
-        botonesGui.getChildren().add(botones);
-        vbox.getChildren().add(botonesGui);*/
-        //vbox.getChildren().add(gui);
-
-        /*Scene scene = new Scene(vbox);
-        scene.setOnKeyPressed(new ControladorTeclado(curandero, tablero));
+        this.stage = stage;
+        Scene scene = MenuInicio();
         stage.setTitle("AlgoChess");
         stage.setScene(scene);
-        stage.setMinWidth(800);
-        stage.setMinHeight(600);
-        stage.show();*/
+        stage.setMinWidth(950);
+        stage.setMinHeight(800);
+        stage.show();
+    }
 
+    public StackPane principal(){
         StackPane stackPane = new StackPane();
+        Image titleBackground = new Image(getClass().getResourceAsStream("imagenes/menu.jpg"), 950, 800, false, true);
+        BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+
+        stackPane.setBackground(new Background(imagenTitulo));
+        stackPane.setMinWidth(950);
+        stackPane.setMinHeight(800);
+        return stackPane;
+    }
+
+    public Scene MenuInicio(){
+        StackPane stackPane = principal();
         VBox canvas = new VBox();
         HBox contenedorBotonSalir = new HBox();
+        BotonSalir salir = new BotonSalir();
+        contenedorBotonSalir.getChildren().add(salir);
         HBox contenedorPrincipal = new HBox();
         contenedorPrincipal.setMinHeight(700);
 
         BotonComenzar comenzar = new BotonComenzar(contenedorPrincipal);
         contenedorPrincipal.setAlignment(Pos.CENTER);
         contenedorPrincipal.getChildren().add(comenzar);
-        BotonSalir salir = new BotonSalir();
-        contenedorBotonSalir.getChildren().add(salir);
+        comenzar.setOnAction(actionEvent -> {stage.setScene(CreacionDeUsuarios());});
         canvas.getChildren().add(contenedorBotonSalir);
         canvas.getChildren().add(contenedorPrincipal);
 
-        Image titleBackground = new Image(getClass().getResourceAsStream("imagenes/menu.jpg"), 950, 800, false, true);
-        BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
 
-
-        stackPane.setBackground(new Background(imagenTitulo));
         stackPane.getChildren().add(canvas);
+        return new Scene(stackPane);
+    }
 
-
-        Scene scene = new Scene(stackPane);
-        stage.setTitle("AlgoChess");
-        stage.setScene(scene);
-        stage.setMinWidth(950);
-        stage.setMinHeight(800);
-        stage.show();
-
-
-
-
-        /*window = stage;
-
-        window.setTitle("AlgoChess - Menú Principal");
-
-        tablero = new Tablero();
-
-        //this.reproducirMusicaDeFondo();
-        //this.prepararMenuInicio();*/
+    public Scene CreacionDeUsuarios(){
+        StackPane stackPane = principal();
+        VBox canvas = new VBox();
+        HBox contenedorBotonSalir = new HBox();
+        BotonSalir salir = new BotonSalir();
+        contenedorBotonSalir.getChildren().add(salir);
+        HBox contenedorPrincipal = new HBox();
+        contenedorPrincipal.setMinHeight(700);
+        contenedorPrincipal.setAlignment(Pos.CENTER);
+        TextField jugador1 = new TextField("Ingrese nombre jugador 1");
+        TextField jugador2 = new TextField("Ingrese nombre jugador 2");
+        jugador1.textProperty().addListener((observableValue, s, t1) ->{});
+        jugador2.textProperty().addListener((observableValue, s, t1) ->{});
+        jugador1.setMaxWidth(220);
+        jugador2.setMaxWidth(220);
+        VBox panelNombreJugadores = new VBox(40);
+        panelNombreJugadores.setAlignment(Pos.CENTER);
+        canvas.getChildren().add(contenedorBotonSalir);
+        BotonJugar jugar = new BotonJugar(contenedorPrincipal, jugador1, jugador2);
+        jugar.setOnAction(actionEvent -> {
+           // stage.setScene();
+        });
+        panelNombreJugadores.getChildren().addAll(jugador1, jugador2, jugar);
+        contenedorPrincipal.getChildren().add(panelNombreJugadores);
+        canvas.getChildren().add(contenedorPrincipal);
+        stackPane.getChildren().add(canvas);
+        return new Scene(stackPane);
     }
 
    /* public void prepararMenuInicio() throws Exception{

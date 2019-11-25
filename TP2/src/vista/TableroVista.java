@@ -20,20 +20,21 @@ public class TableroVista extends Group {
 
     private GridPane tableroGui;
 
-    private CasilleroVista[][] casillero;
+    private CasilleroVista[][] casilleros;
 
     public TableroVista(Tablero tablero, Jugador jugador1, Jugador jugador2){
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
         this.tablero = tablero;
         tableroGui = new GridPane();
+        casilleros = new CasilleroVista[ancho][alto];
         for(int i = 1; i <= alto; i++) {
             for(int j = 1; j <= ancho; j++) {
                 Coordenada coordenada = new Coordenada(i, j);
                 Casillero casillero = tablero.obtenerCasillero(coordenada);
                 CasilleroVista casilleroVista = new CasilleroVista(casillero, jugador1, jugador2);
                 tableroGui.add(casilleroVista,i,j);
-                this.casillero[i][j] = casilleroVista;
+                this.casilleros[i-1][j-1] = casilleroVista;
             }
         }
 
@@ -43,8 +44,8 @@ public class TableroVista extends Group {
     public void agregarVistaAlMapa (){
         for (int i=1; i<=alto; i++ ){
             for ( int j=1; j<= ancho; j++){
-                CasilleroVista casilleroVista = this.casillero[i][j];
-                casilleroVista.mostrarCasillero();
+                CasilleroVista casilleroVista = this.casilleros[i-1][j-1];
+                casilleroVista.update();
             }
         }
     }
@@ -57,4 +58,5 @@ public class TableroVista extends Group {
         this.getChildren().remove(vista);
         this.getChildren().add(vista);
     }
+
 }

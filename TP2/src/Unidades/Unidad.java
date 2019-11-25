@@ -40,5 +40,13 @@ public abstract class Unidad {
     }
 
     public abstract void realizarAccion(Unidad unidad, Tablero tablero, ArrayList<Unidad> unidades) throws AccionInvalidaException;
+
+    public static Unidad factoryUnidad(String tipo){
+        if(tipo == "soldado") return new SoldadoDeInfanteria();
+        if(tipo == "jinete") return new Jinete();
+        if(tipo == "curandero") return new Curandero();
+        if(tipo == "catapulta") return new Catapulta();
+        return null;
+    }
 }
 

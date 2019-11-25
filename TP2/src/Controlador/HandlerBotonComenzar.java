@@ -22,7 +22,7 @@ public class HandlerBotonComenzar implements EventHandler<ActionEvent> {
         jugador1.setMaxWidth(220);
         jugador2.setMaxWidth(220);
 
-        BotonJugar jugar = new BotonJugar(hbox, jugador1, jugador2);
+        /*BotonJugar jugar = new BotonJugar(hbox, jugador1, jugador2);
 
         VBox panelNombreJugadores = new VBox(40);
         panelNombreJugadores.setAlignment(Pos.CENTER);
@@ -30,7 +30,7 @@ public class HandlerBotonComenzar implements EventHandler<ActionEvent> {
 
         hbox.getChildren().add(panelNombreJugadores);
         hbox.getChildren().remove(0);
-        evento.consume();
+        evento.consume();*/
     }
 
 }
