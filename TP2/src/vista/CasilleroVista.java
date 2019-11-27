@@ -6,7 +6,9 @@ import Unidades.Catapulta;
 import Unidades.Curandero;
 import Unidades.Jinete;
 import Unidades.SoldadoDeInfanteria;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class CasilleroVista extends Pane {
@@ -14,12 +16,14 @@ public class CasilleroVista extends Pane {
     Image unidad;
     Jugador jugador1;
     Jugador jugador2;
+    Button buton;
 
 
-    public CasilleroVista (Casillero casillero, Jugador jugador1, Jugador jugador2) {
+    public CasilleroVista (Casillero casillero, Jugador jugador1, Jugador jugador2, Button boton) {
         this.casillero = casillero;
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
+        this.buton = boton;
     }
 
     public void mostrarCasillero() {
@@ -52,6 +56,8 @@ public class CasilleroVista extends Pane {
                     unidad = new Image(getClass().getResourceAsStream("imagenes/perro_catapulta.jpg"));
                 }
             }
+            ImageView imageView = new ImageView(unidad);
+            this.buton.setGraphic(imageView);
         }
     }
 

@@ -35,10 +35,9 @@ public class TableroVista extends Group {
             for(int j = 1; j <= ancho; j++) {
                 Coordenada coordenada = new Coordenada(i, j);
                 Casillero casillero = tablero.obtenerCasillero(coordenada);
-                CasilleroVista casilleroVista = new CasilleroVista(casillero, jugador1, jugador2);
                 //casilleroVista.setStyle("-fx-background-color: white; -fx-border-color: black;");
-                BotonTablero boton = new BotonTablero(this, casilleroVista, coordenada);
-
+                BotonTablero boton = new BotonTablero(this, coordenada,jugador1, jugador2);
+                CasilleroVista casilleroVista = new CasilleroVista(casillero, jugador1, jugador2, boton);
                 casilleroVista.getChildren().add(boton);
                 casilleroVista.setPrefSize(33,33);
                 tableroGui.add(casilleroVista, i, j);

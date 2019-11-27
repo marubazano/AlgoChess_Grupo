@@ -1,18 +1,22 @@
 package vista;
 
+import AlgoChess.Jugador;
 import Controlador.HandlerBotonTablero;
-import Tablero.Casillero;
 import Tablero.Coordenada;
 import javafx.scene.control.Button;
 
 public class BotonTablero extends Button {
 
     private CasilleroVista[][] casilleros;
+    private Jugador jugador1;
+    private Jugador jugador2;
 
-    public BotonTablero(TableroVista tableroVista, CasilleroVista casilleroVista, Coordenada coordenada) {
+    public BotonTablero(TableroVista tableroVista, Coordenada coordenada, Jugador jugador1, Jugador jugador2) {
         super();
         this.setPrefSize(33,33);
-        this.setOnMouseClicked(new HandlerBotonTablero(tableroVista, casilleroVista, coordenada));
+        this.jugador1 = jugador1;
+        this.jugador2 = jugador2;
+        this.setOnMouseClicked(new HandlerBotonTablero(tableroVista, coordenada,this, jugador1,jugador2));
 
 //        this.setOnMouseClicked(new HandlerBotonTablero(casilleros, tablero, jugador1, jugador2, coordenada));
         /*this.setOnMouseDragReleased(new EventHandler<DragEvent>() {
@@ -25,4 +29,5 @@ public class BotonTablero extends Button {
             this.setImage()
         }});*/
     }
+
 }
