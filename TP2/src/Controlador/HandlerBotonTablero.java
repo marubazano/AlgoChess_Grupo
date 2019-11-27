@@ -39,18 +39,50 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
         Unidad unidad = tableroVista.obtenerUltimaComprada();
-        if (!jugador1.esTurno()) {
+        if (jugador1.esTurno()) {
             if (jugador1.ubicarUnidad(unidad, coordenada)){
-                System.out.print(tablero.tableroEstaVacio());
                 tableroVista.agregarUltimaUnidadComprada(null);
+                //System.out.print(jugador1.obtenerPuntos());
                 this.mostrarCasillero(unidad);
-
+                if (jugador1.obtenerPuntos() == 0 && jugador2.obtenerPuntos() == 0){
+                    jugador1.asignarTurno(false);
+                    jugador2.asignarTurno(false);
+                }
+                else if (jugador2.obtenerPuntos() == 0 || jugador1.obtenerPuntos() == 0) {
+                    if (jugador1.obtenerPuntos() == 0) {
+                        jugador1.asignarTurno(false);
+                        jugador2.asignarTurno(true);
+                    }
+                    else {
+                        jugador1.asignarTurno(true);
+                        jugador2.asignarTurno(false);
+                    }
+                } else {
+                    jugador1.asignarTurno(false);
+                    jugador2.asignarTurno(true);
+                }
             }
         }else{
             if (jugador2.ubicarUnidad(unidad, coordenada)){
-                System.out.print(tablero.tableroEstaVacio());
                 tableroVista.agregarUltimaUnidadComprada(null);
                 this.mostrarCasillero(unidad);
+                if (jugador1.obtenerPuntos() == 0 && jugador2.obtenerPuntos() == 0){
+                    jugador1.asignarTurno(false);
+                    jugador2.asignarTurno(false);
+                }
+                else if (jugador2.obtenerPuntos() == 0 || jugador1.obtenerPuntos() == 0) {
+                    if (jugador1.obtenerPuntos() == 0){
+                        jugador1.asignarTurno(false);
+                        jugador2.asignarTurno(true);
+                    }
+                    else {
+                        jugador1.asignarTurno(true);
+                        jugador2.asignarTurno(false);
+                    }
+                }else {
+                    jugador1.asignarTurno(true);
+                    jugador2.asignarTurno(false);
+                }
             }
         }
         System.out.println(coordenada.obtenerVertical() + " " + coordenada.obtenerHorizontal());

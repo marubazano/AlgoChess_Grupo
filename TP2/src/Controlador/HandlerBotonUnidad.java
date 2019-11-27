@@ -29,17 +29,17 @@ public class HandlerBotonUnidad implements EventHandler<MouseEvent> {
         if (jugador.esTurno()) {
             try {
                 jugador.comprar(unidad);
+              //  System.out.print(jugador.obtenerPuntos() + " hola");
                 tableroVista.agregarUltimaUnidadComprada(unidad);
                 // UBICAR UNIDAD
-                if (!jugador.tieneSuficientesPuntos(unidad)) {
+               /* if (!jugador.tieneSuficientesPuntos(unidad)) {
                     this.boton.setDisable(true);
-                }
-                System.out.println("Cantidad de unidades de jugador: "+jugador.obtenerCantidadUnidades());
-                System.out.println("Cantidad de unidades de OtroJugador: "+OtroJugador.obtenerCantidadUnidades());
-                if (OtroJugador.obtenerPuntos() != 0) {//Si el otro jugador todavia tiene puntos -> puede comprar -> sino sigue comprando el que tenga
+                }*/
+               /* if (OtroJugador.obtenerPuntos() > 0) {//Si el otro jugador todavia tiene puntos -> puede comprar -> sino sigue comprando el que tenga
                     jugador.asignarTurno(false);
                     OtroJugador.asignarTurno(true);
-                }
+                  //  System.out.println(OtroJugador.obtenerPuntos());
+                }*/
             } catch (PuntosInsuficientesException e) {
                 e.getMensaje();
             }

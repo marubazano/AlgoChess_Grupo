@@ -23,8 +23,8 @@ public class BotonUnidad extends Button{
         this.setAlignment(Pos.CENTER);
         this.tableroVista = tableroVista;
         this.setOnMouseClicked(new HandlerBotonUnidad(unidad, jugador, OtroJugador, this, tableroVista));
-        this.setOnAction(MouseEvent ->{if (!jugador.tieneSuficientesPuntos(unidad)) {
+      /*  this.setOnAction(MouseEvent ->{if (!jugador.tieneSuficientesPuntos(unidad)) {
             this.setDisable(true); //Si el jugador no tiene puntos suficientes no esta el boton
-        }});
+        }});*/
     }
 }
