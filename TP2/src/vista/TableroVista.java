@@ -4,6 +4,7 @@ import AlgoChess.Jugador;
 import Tablero.Casillero;
 import Tablero.Coordenada;
 import Tablero.Tablero;
+import Unidades.Unidad;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
@@ -14,6 +15,7 @@ public class TableroVista extends Group {
     public static final int ancho = 20;
     public static final int alto = 20;
     Tablero tablero;
+    Unidad ultimaComprada;
 
     Jugador jugador1;
     Jugador jugador2;
@@ -34,7 +36,10 @@ public class TableroVista extends Group {
                 Coordenada coordenada = new Coordenada(i, j);
                 Casillero casillero = tablero.obtenerCasillero(coordenada);
                 CasilleroVista casilleroVista = new CasilleroVista(casillero, jugador1, jugador2);
-                casilleroVista.setStyle("-fx-background-color: white; -fx-border-color: black;");
+                //casilleroVista.setStyle("-fx-background-color: white; -fx-border-color: black;");
+                BotonTablero boton = new BotonTablero(this, casillero, coordenada);
+
+                casilleroVista.getChildren().add(boton);
                 casilleroVista.setPrefSize(33,33);
                 tableroGui.add(casilleroVista, i, j);
                 this.casilleros[i-1][j-1] = casilleroVista;
@@ -66,4 +71,14 @@ public class TableroVista extends Group {
         return this.tableroGui;
     }
 
+    public void agregarUltimaUnidadComprada(Unidad unidad) {
+        this.ultimaComprada = unidad;
+
+    }
+
+    public Unidad obtenerUltimaComprada() {
+        return ultimaComprada;
+    }
+
+    public Tablero obtenerTablero(){return this.tablero;}
 }

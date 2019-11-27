@@ -17,20 +17,22 @@ public class SeleccionDeUnidades {
     BotonUnidad perroJinete;
     BotonUnidad perroCurandero;
     BotonUnidad perroCatapulta;
+    TableroVista tableroVista;
 
-    public SeleccionDeUnidades(Jugador jugador1, Jugador jugador2) {
+    public SeleccionDeUnidades(Jugador jugador1, Jugador jugador2, TableroVista tableroVista) {
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
         jugador1.asignarTurno(true);
         jugador2.asignarTurno(false);
-        this.gatoSoldado = new BotonUnidad("imagenes/gato_soldado_precio.png", Unidad.factoryUnidad("soldado"), jugador1, jugador2);
-        this.gatoJinete = new BotonUnidad("imagenes/gato_jinete_precio.png", Unidad.factoryUnidad("jinete"), jugador1, jugador2);
-        this.gatoCurandero = new BotonUnidad("imagenes/gato_curandero_precio.png", Unidad.factoryUnidad("curandero"), jugador1, jugador2);
-        this.gatoCatapulta = new BotonUnidad("imagenes/gato_catapulta_precio.png", Unidad.factoryUnidad("catapulta"), jugador1, jugador2);
-        this.perroSoldado = new BotonUnidad("imagenes/perro_soldado_precio.png", Unidad.factoryUnidad("soldado"), jugador2, jugador1);
-        this.perroJinete = new BotonUnidad("imagenes/perro_jinete_precio.png",Unidad.factoryUnidad("jinete"), jugador2, jugador1);
-        this.perroCurandero = new BotonUnidad("imagenes/perro_curandero_precio.png", Unidad.factoryUnidad("curandero"), jugador2, jugador1);
-        this.perroCatapulta = new BotonUnidad("imagenes/perro_catapulta_precio.png", Unidad.factoryUnidad("catapulta"), jugador2, jugador1);
+        this.tableroVista = tableroVista;
+        this.gatoSoldado = new BotonUnidad("imagenes/gato_soldado_precio.png", Unidad.factoryUnidad("soldado"), jugador1, jugador2, tableroVista);
+        this.gatoJinete = new BotonUnidad("imagenes/gato_jinete_precio.png", Unidad.factoryUnidad("jinete"), jugador1, jugador2, tableroVista);
+        this.gatoCurandero = new BotonUnidad("imagenes/gato_curandero_precio.png", Unidad.factoryUnidad("curandero"), jugador1, jugador2, tableroVista);
+        this.gatoCatapulta = new BotonUnidad("imagenes/gato_catapulta_precio.png", Unidad.factoryUnidad("catapulta"), jugador1, jugador2, tableroVista);
+        this.perroSoldado = new BotonUnidad("imagenes/perro_soldado_precio.png", Unidad.factoryUnidad("soldado"), jugador2, jugador1, tableroVista);
+        this.perroJinete = new BotonUnidad("imagenes/perro_jinete_precio.png",Unidad.factoryUnidad("jinete"), jugador2, jugador1, tableroVista);
+        this.perroCurandero = new BotonUnidad("imagenes/perro_curandero_precio.png", Unidad.factoryUnidad("curandero"), jugador2, jugador1, tableroVista);
+        this.perroCatapulta = new BotonUnidad("imagenes/perro_catapulta_precio.png", Unidad.factoryUnidad("catapulta"), jugador2, jugador1, tableroVista);
     }
 
     public ArrayList<BotonUnidad> unidadesPosiblesJugador1() { //VER SI ESTOY INSTANCIANDO UNIDAD O EN ALGÚN LUGAR TIENE QUE APARECER new();
@@ -110,4 +112,24 @@ public class SeleccionDeUnidades {
         gatoCurandero.setDisable(false);
         gatoCatapulta.setDisable(false);
     }
+
+    public void estadoBotones(Jugador jugador){
+        if (jugador.obtenerPuntos() < 5 ) {
+           if(jugador == this.jugador1) perroCatapulta.setDisable(true);
+           else gatoCatapulta.setDisable(true);
+        }
+        if (jugador.obtenerPuntos() < 3 ) {
+            if(jugador == this.jugador1) perroJinete.setDisable(true);
+            else gatoJinete.setDisable(true);
+        }
+        if (jugador.obtenerPuntos() < 2 ) {
+            if(jugador == this.jugador1) perroCurandero.setDisable(true);
+           else gatoCurandero.setDisable(true);
+        }
+        if (jugador.obtenerPuntos() < 1 ) {
+            if(jugador == this.jugador1) perroSoldado.setDisable(true);
+            else gatoSoldado.setDisable(true);
+        }
+    }
+
 }

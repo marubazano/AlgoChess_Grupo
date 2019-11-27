@@ -2,10 +2,11 @@ package Controlador;
 
 import AlgoChess.Jugador;
 import Excepciones.PuntosInsuficientesException;
-import Unidades.*;
+import Unidades.Unidad;
 import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import vista.TableroVista;
 
 
 public class HandlerBotonUnidad implements EventHandler<MouseEvent> {
@@ -13,12 +14,14 @@ public class HandlerBotonUnidad implements EventHandler<MouseEvent> {
     Jugador jugador;
     Jugador OtroJugador;
     Button boton;
+    TableroVista tableroVista;
 
-    public HandlerBotonUnidad(Unidad unidad, Jugador jugador, Jugador OtroJugador, Button boton){
+    public HandlerBotonUnidad(Unidad unidad, Jugador jugador, Jugador OtroJugador, Button boton, TableroVista tableroVista){
         this.unidad = unidad;
         this.jugador = jugador;
         this.OtroJugador = OtroJugador;
         this.boton = boton;
+        this.tableroVista = tableroVista;
     }
 
     @Override
@@ -26,6 +29,13 @@ public class HandlerBotonUnidad implements EventHandler<MouseEvent> {
         if (jugador.esTurno()) {
             try {
                 jugador.comprar(unidad);
+                tableroVista.agregarUltimaUnidadComprada(unidad);
+                // UBICAR UNIDAD
+                if (!jugador.tieneSuficientesPuntos(unidad)) {
+                    this.boton.setDisable(true);
+                }
+                System.out.println("Cantidad de unidades de jugador: "+jugador.obtenerCantidadUnidades());
+                System.out.println("Cantidad de unidades de OtroJugador: "+OtroJugador.obtenerCantidadUnidades());
                 if (OtroJugador.obtenerPuntos() != 0) {//Si el otro jugador todavia tiene puntos -> puede comprar -> sino sigue comprando el que tenga
                     jugador.asignarTurno(false);
                     OtroJugador.asignarTurno(true);
@@ -33,10 +43,8 @@ public class HandlerBotonUnidad implements EventHandler<MouseEvent> {
             } catch (PuntosInsuficientesException e) {
                 e.getMensaje();
             }
-            mouseEvent.consume();
         } else {
             System.out.println("No es tu turno!");
         }
-
     }
 }

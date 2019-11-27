@@ -109,8 +109,9 @@ public class Main extends Application {
         HBox contenedorPrincipal = new HBox(20);                                      //VER ESPACIAMIENTO
         contenedorPrincipal.setMinHeight(700);
         contenedorPrincipal.setAlignment(Pos.CENTER);
+        TableroVista tableroVista = new TableroVista(tablero, jugador1, jugador2);
 
-        SeleccionDeUnidades seleccion = new SeleccionDeUnidades(jugador1, jugador2);
+        SeleccionDeUnidades seleccion = new SeleccionDeUnidades(jugador1, jugador2, tableroVista);
 
         VBox contenedorUnidades1 = new VBox(20);                                       //VER ESPACIAMIENTO
         contenedorUnidades1.setAlignment(Pos.CENTER);
@@ -124,7 +125,7 @@ public class Main extends Application {
             contenedorUnidades2.getChildren().add(boton2);
         }
 
-        TableroVista tableroVista = new TableroVista(tablero, jugador1, jugador2);
+
         HBox contenedorTableroVista = new HBox();
         contenedorTableroVista.getChildren().add(tableroVista);
         HBox contenedorBotonPasar = new HBox();

@@ -15,6 +15,7 @@ public class CasilleroVista extends Pane {
     Jugador jugador1;
     Jugador jugador2;
 
+
     public CasilleroVista (Casillero casillero, Jugador jugador1, Jugador jugador2) {
         this.casillero = casillero;
         this.jugador1 = jugador1;
