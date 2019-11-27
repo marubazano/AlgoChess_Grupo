@@ -27,6 +27,9 @@ public class TableroVista extends Group {
     StackPane principal;
     Jugador jugador1;
     Jugador jugador2;
+    Unidad unidadEsperando;
+
+    private boolean jugando = false;
 
     public GridPane tableroGui;
     private Stage stage;
@@ -57,6 +60,22 @@ public class TableroVista extends Group {
         }
 
         this.agregarVista(tableroGui);
+    }
+
+    public void cambiarEstado(){
+        this.jugando = true;
+    }
+
+    public boolean obtenerEstado(){
+        return this.jugando;
+    }
+
+    public void cambiarUnidadEsperando(Unidad unidad){
+        this.unidadEsperando = unidad;
+    }
+
+    public Unidad obtenerUnidadEsperando(){
+        return this.unidadEsperando;
     }
 
     public void agregarVistaAlMapa (){
