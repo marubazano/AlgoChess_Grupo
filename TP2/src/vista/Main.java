@@ -110,6 +110,7 @@ public class Main extends Application {
         contenedorPrincipal.setMinHeight(700);
         contenedorPrincipal.setAlignment(Pos.CENTER);
         TableroVista tableroVista = new TableroVista(tablero, jugador1, jugador2);
+        tableroVista.setearStage(this.stage, principal());
 
         SeleccionDeUnidades seleccion = new SeleccionDeUnidades(jugador1, jugador2, tableroVista);
 
@@ -125,17 +126,16 @@ public class Main extends Application {
             contenedorUnidades2.getChildren().add(boton2);
         }
 
-
         HBox contenedorTableroVista = new HBox();
         contenedorTableroVista.getChildren().add(tableroVista);
-        HBox contenedorBotonPasar = new HBox();
+        /*HBox contenedorBotonPasar = new HBox();
         BotonPasar pasar = new BotonPasar();
-        contenedorBotonPasar.getChildren().add(pasar);
+        contenedorBotonPasar.getChildren().add(pasar);*/
 
         contenedorPrincipal.getChildren().addAll(contenedorUnidades1, contenedorTableroVista, contenedorUnidades2);
-        canvas.getChildren().addAll(contenedorBotonSalir, contenedorPrincipal, contenedorBotonPasar);
+        canvas.getChildren().addAll(contenedorBotonSalir, contenedorPrincipal);
         stackPane.getChildren().add(canvas);
-        // pasar.setOnMouseClicked(mouseEvent -> {stage.setScene(MenuUbicacionUnidades(tableroVista, jugador1, jugador2));});
+        //pasar.setOnMouseClicked(mouseEvent -> {});
         // esto seria para pasar a la ubicacion de unidades si no lo hacemos en esta seccion
         return new Scene(stackPane);
     }

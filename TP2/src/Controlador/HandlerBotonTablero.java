@@ -30,7 +30,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
         super();
         this.tableroVista = tableroVista;
         this.coordenada = coordenada;
-        this.tablero = tableroVista.obtenerTablero();
+        //this.tablero = tableroVista.obtenerTablero();
         this.botonTablero = botonTablero;
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
@@ -47,6 +47,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                 if (jugador1.obtenerPuntos() == 0 && jugador2.obtenerPuntos() == 0){
                     jugador1.asignarTurno(false);
                     jugador2.asignarTurno(false);
+                    tableroVista.pantallaDeJuego();
                 }
                 else if (jugador2.obtenerPuntos() == 0 || jugador1.obtenerPuntos() == 0) {
                     if (jugador1.obtenerPuntos() == 0) {
@@ -69,6 +70,8 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                 if (jugador1.obtenerPuntos() == 0 && jugador2.obtenerPuntos() == 0){
                     jugador1.asignarTurno(false);
                     jugador2.asignarTurno(false);
+                    tableroVista.pantallaDeJuego();
+
                 }
                 else if (jugador2.obtenerPuntos() == 0 || jugador1.obtenerPuntos() == 0) {
                     if (jugador1.obtenerPuntos() == 0){
