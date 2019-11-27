@@ -9,10 +9,10 @@ public class BotonTablero extends Button {
 
     private CasilleroVista[][] casilleros;
 
-    public BotonTablero(TableroVista tableroVista, Casillero casillero, Coordenada coordenada) {
+    public BotonTablero(TableroVista tableroVista, CasilleroVista casilleroVista, Coordenada coordenada) {
         super();
         this.setPrefSize(33,33);
-        this.setOnMouseClicked(new HandlerBotonTablero(tableroVista, casillero, coordenada));
+        this.setOnMouseClicked(new HandlerBotonTablero(tableroVista, casilleroVista, coordenada));
 
 //        this.setOnMouseClicked(new HandlerBotonTablero(casilleros, tablero, jugador1, jugador2, coordenada));
         /*this.setOnMouseDragReleased(new EventHandler<DragEvent>() {
