@@ -21,15 +21,18 @@ public enum Direccion {
     }
 
     public static Direccion obtenerDireccionSegunCoordenadas (Coordenada coordenadaOrigen, Coordenada coordenadaDestino){
-        Coordenada diferencia = coordenadaDestino.restarCoordenada(coordenadaDestino);
-        if (diferencia==(new Coordenada(1,0))) return ABAJO;
+        Coordenada diferencia = coordenadaDestino.restarCoordenada(coordenadaOrigen);
+        for(Direccion dir: Direccion.values()){
+            if(dir.obtenerDireccion().compararCoordenada(diferencia)) return dir;
+        }
+        return null;
+        /*if (diferencia==(new Coordenada(1,0))) return ABAJO;
         if (diferencia==(new Coordenada(-1,0))) return ARRIBA;
         if (diferencia==(new Coordenada(0,1))) return DERECHA;
         if (diferencia==(new Coordenada(0,-1))) return IZQUIERDA;
         if (diferencia==(new Coordenada(-1, -1))) return DIAGONALSUPERIORIZQUIERDA;
         if (diferencia==(new Coordenada(-1,1))) return DIAGONALSUPERIORDERECHA;
         if (diferencia==(new Coordenada(1,-1))) return DIAGONALINFERIORIZQUIERDA;
-        else return DIAGONALINFERIORDERECHA;
+        else return DIAGONALINFERIORDERECHA;*/
     }
-
 }
