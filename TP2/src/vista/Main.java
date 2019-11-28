@@ -6,6 +6,7 @@ import Tablero.Tablero;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -107,22 +108,29 @@ public class Main extends Application {
         BotonSalir salir = new BotonSalir();
         contenedorBotonSalir.getChildren().add(salir);
 
+        Label puntajeJugador1 = new Label("Puntaje jugador 1: " + jugador1.obtenerPuntos());
+        puntajeJugador1.setStyle("-fx-text-fill:WHITE;");
+        Label puntajeJugador2 = new Label("Puntaje jugador 2: " + jugador2.obtenerPuntos());
+        puntajeJugador2.setStyle("-fx-text-fill:WHITE;");
+
         HBox contenedorPrincipal = new HBox(20);                                      //VER ESPACIAMIENTO
         contenedorPrincipal.setMinHeight(700);
         contenedorPrincipal.setAlignment(Pos.CENTER);
-        TableroVista tableroVista = new TableroVista(tablero, jugador1, jugador2);
+        TableroVista tableroVista = new TableroVista(tablero, jugador1, jugador2, puntajeJugador1, puntajeJugador2);
         tableroVista.setearStage(this.stage, principal());
 
         SeleccionDeUnidades seleccion = new SeleccionDeUnidades(jugador1, jugador2, tableroVista);
 
         VBox contenedorUnidades1 = new VBox(20);                                       //VER ESPACIAMIENTO
         contenedorUnidades1.setAlignment(Pos.CENTER);
+        contenedorUnidades1.getChildren().add(puntajeJugador1);
         for (BotonUnidad boton1 : seleccion.unidadesPosiblesJugador1()) {
             contenedorUnidades1.getChildren().add(boton1);
         }
 
         VBox contenedorUnidades2 = new VBox(20);                                       //VER ESPACIAMIENTO
         contenedorUnidades2.setAlignment(Pos.CENTER);
+        contenedorUnidades2.getChildren().add(puntajeJugador2);
         for (BotonUnidad boton2 : seleccion.unidadesPosiblesJugador2()) {
             contenedorUnidades2.getChildren().add(boton2);
         }

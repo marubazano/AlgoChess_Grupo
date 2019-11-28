@@ -37,19 +37,19 @@ public class SeleccionDeUnidades {
 
     public ArrayList<BotonUnidad> unidadesPosiblesJugador1() { //VER SI ESTOY INSTANCIANDO UNIDAD O EN ALGÚN LUGAR TIENE QUE APARECER new();
         ArrayList<BotonUnidad> listaBotones1 = new ArrayList<>();
-        listaBotones1.add(gatoSoldado);
-        listaBotones1.add(gatoJinete);
-        listaBotones1.add(gatoCurandero);
-        listaBotones1.add(gatoCatapulta);
+        listaBotones1.add(perroSoldado);
+        listaBotones1.add(perroCurandero);
+        listaBotones1.add(perroJinete);
+        listaBotones1.add(perroCatapulta);
         return listaBotones1;
     }
 
     public ArrayList<BotonUnidad> unidadesPosiblesJugador2() {
         ArrayList<BotonUnidad> listaBotones2 = new ArrayList<>();
-        listaBotones2.add(perroSoldado);
-        listaBotones2.add(perroJinete);
-        listaBotones2.add(perroCurandero);
-        listaBotones2.add(perroCatapulta);
+        listaBotones2.add(gatoSoldado);
+        listaBotones2.add(gatoCurandero);
+        listaBotones2.add(gatoJinete);
+        listaBotones2.add(gatoCatapulta);
         return listaBotones2;
     }
 

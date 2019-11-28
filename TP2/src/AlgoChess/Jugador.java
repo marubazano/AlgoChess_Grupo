@@ -58,15 +58,20 @@ public class Jugador {
 
     public boolean ubicarUnidad(Unidad unidad, Coordenada coordenada) {
         try {
-            if (!estaEnLadoDelTableroCorrespondiente(coordenada)) return false;
+            if (!estaEnLadoDelTableroCorrespondiente(coordenada)) {
+                System.out.println("Estás tratando de ubicar en una celda del lado contario.");
+                return false;
+            }
             tablero.ubicarUnidad(unidad, coordenada);
             agregarUnidadAJugador(unidad);
         }
         catch (CasilleroOcupadoException e) {
             e.getMensaje();
+            return false;
         }
         catch (CasilleroInvalidoException e) {
             e.getMensaje();
+            return false;
         }
         return true;
     }

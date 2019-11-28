@@ -37,7 +37,7 @@ public class TableroVista extends Group {
 
     private CasilleroVista[][] casilleros;
 
-    public TableroVista(Tablero tablero, Jugador jugador1, Jugador jugador2){
+    public TableroVista(Tablero tablero, Jugador jugador1, Jugador jugador2, Label labelPuntajeJugador1, Label labelPuntajeJugador2){
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
         this.tablero = tablero;
@@ -49,7 +49,7 @@ public class TableroVista extends Group {
                 Coordenada coordenada = new Coordenada(i, j);
                 Casillero casillero = tablero.obtenerCasillero(coordenada);
                 //casilleroVista.setStyle("-fx-background-color: white; -fx-border-color: black;");
-                BotonTablero boton = new BotonTablero(this, coordenada,jugador1, jugador2);
+                BotonTablero boton = new BotonTablero(this, coordenada,jugador1, jugador2, labelPuntajeJugador1, labelPuntajeJugador2);
                 if (j >= 11) boton.setStyle("-fx-background-color: #79F1CC;");
                 if (j < 11)  boton.setStyle("-fx-background-color: #F99DB8;");
                 CasilleroVista casilleroVista = new CasilleroVista(casillero, jugador1, jugador2, boton);

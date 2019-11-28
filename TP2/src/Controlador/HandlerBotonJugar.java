@@ -1,11 +1,8 @@
 package Controlador;
 
 import AlgoChess.Jugador;
-import Excepciones.CasilleroInvalidoException;
-import Excepciones.CasilleroOcupadoException;
-import Tablero.Tablero;
 import Tablero.Coordenada;
-import Unidades.Catapulta;
+import Tablero.Tablero;
 import Unidades.Curandero;
 import Unidades.Unidad;
 import javafx.event.ActionEvent;
@@ -41,7 +38,7 @@ public class HandlerBotonJugar implements EventHandler<ActionEvent> {
         Tablero tablero = new Tablero();
         Jugador jugador_1 = new Jugador(nombreJugador1.getText(), tablero, 1);
         Jugador jugador_2 = new Jugador(nombreJugador2.getText(), tablero, 2);
-        TableroVista tablerovista = new TableroVista(tablero, jugador_1, jugador_2);
+        TableroVista tablerovista = new TableroVista(tablero, jugador_1, jugador_2, null, null);
         VBox unidadesJugador1 = new VBox(); //CORREGIR ESPACIAMIENTO
         VBox unidadesJugador2 = new VBox(); //CORREGIR ESPACIAMIENTO
 

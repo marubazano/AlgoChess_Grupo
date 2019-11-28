@@ -6,6 +6,7 @@ import Tablero.Tablero;
 import Tablero.Direccion;
 import Unidades.*;
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -22,8 +23,10 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
     private BotonTablero botonTablero;
     private Jugador jugador1;
     private Jugador jugador2;
+    private Label labelPuntajeJugador1;
+    private Label labelPuntajeJugador2;
 
-    public HandlerBotonTablero(TableroVista tableroVista, Coordenada coordenada, BotonTablero botonTablero, Jugador jugador1, Jugador jugador2){
+    public HandlerBotonTablero(TableroVista tableroVista, Coordenada coordenada, BotonTablero botonTablero, Jugador jugador1, Jugador jugador2, Label labelPuntajeJugador1, Label labelPuntajeJugador2){
         super();
         this.tableroVista = tableroVista;
         this.coordenada = coordenada;
@@ -31,6 +34,8 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
         this.botonTablero = botonTablero;
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
+        this.labelPuntajeJugador1 = labelPuntajeJugador1;
+        this.labelPuntajeJugador2 = labelPuntajeJugador2;
     }
 
     @Override
@@ -48,6 +53,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
         if (jugador1.esTurno()) {
             System.out.println("Es turno de JUGADOR 1.");
             if (jugador1.ubicarUnidad(unidad, coordenada)){
+                labelPuntajeJugador1.setText("Puntaje jugador 1: " + jugador1.obtenerPuntos());
                 tableroVista.agregarUltimaUnidadComprada(null);
                 //System.out.print(jugador1.obtenerPuntos());
                 this.mostrarCasillero(unidad);
@@ -78,6 +84,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
         } else {
             System.out.println("Es turno de JUGADOR 2.");
             if (jugador2.ubicarUnidad(unidad, coordenada)){
+                labelPuntajeJugador2.setText("Puntaje jugador 2: " + jugador2.obtenerPuntos());
                 tableroVista.agregarUltimaUnidadComprada(null);
                 this.mostrarCasillero(unidad);
                 if (jugador1.obtenerPuntos() == 0 && jugador2.obtenerPuntos() == 0){
@@ -102,7 +109,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                 }
             }
         }
-        //System.out.println(coordenada.obtenerVertical() + " " + coordenada.obtenerHorizontal());
+        System.out.println("coord vertical: " + coordenada.obtenerVertical() + " coord horizontal: " + coordenada.obtenerHorizontal());
     }
 
 
