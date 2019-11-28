@@ -181,6 +181,20 @@ public class TableroVista extends Group {
         stage.setScene(new Scene(stackPane));
     }
 
+    public void pantallaGanador(String nombreGanador){
+        StackPane stackPane = this.principal;
+        VBox canvas = new VBox();
+        HBox contenedorSuperior = new HBox();
+        BotonSalir salir = new BotonSalir();
+        contenedorSuperior.getChildren().add(salir);
+        Label ganador = new Label("EL GANADOR ES: " + nombreGanador);
+        //stackPane.getChildren().add(ganador);
+        canvas.getChildren().addAll(contenedorSuperior, ganador);
+        ganador.setStyle("-fx-font-size:30; -fx-text-fill:WHITE;");
+        stage.setScene(new Scene(stackPane));
+    }
+
+
     public void cambiarLabelTurno(String nombreJugadorDeTurno) {
         this.turno.setText("Es el turno del jugador: " + nombreJugadorDeTurno);
     }
