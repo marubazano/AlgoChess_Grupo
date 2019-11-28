@@ -124,7 +124,7 @@ public class TableroVista extends Group {
         this.principal = principal;
     }
 
-    public void pantallaDeJuego(int jugadorInicial){
+    public void pantallaDeJuego(String nombreJugadorInicial){
         StackPane stackPane = this.principal;
         VBox canvas = new VBox();
 
@@ -132,10 +132,10 @@ public class TableroVista extends Group {
         BotonSalir salir = new BotonSalir();
         HBox contenedorEstadosDeJuego = new HBox();
         contenedorEstadosDeJuego.setAlignment(Pos.CENTER);
-        this.turno = new Label("Es el turno del jugador: " + jugadorInicial);
+        this.turno = new Label("Es el turno del jugador: " + nombreJugadorInicial);
         turno.setStyle("-fx-font-size:20; -fx-text-fill:WHITE;");
         this.labelDeAccion = new Label("Compienzan los gatos.");
-        contenedorEstadosDeJuego.getChildren().add(turno);
+        contenedorEstadosDeJuego.getChildren().addAll(turno, labelDeAccion);
         contenedorSuperior.getChildren().addAll(salir, contenedorEstadosDeJuego);
 
         HBox contenedorPrincipal = new HBox(20);                                      //VER ESPACIAMIENTO
@@ -181,7 +181,7 @@ public class TableroVista extends Group {
         stage.setScene(new Scene(stackPane));
     }
 
-    public void cambiarLabelTurno(int jugadorDeTurno) {
-        this.turno.setText("Es el turno del jugador: " + jugadorDeTurno);
+    public void cambiarLabelTurno(String nombreJugadorDeTurno) {
+        this.turno.setText("Es el turno del jugador: " + nombreJugadorDeTurno);
     }
 }
