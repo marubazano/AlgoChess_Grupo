@@ -1,6 +1,7 @@
 package Controlador;
 
 import AlgoChess.Jugador;
+import Excepciones.AccionInvalidaException;
 import Tablero.Coordenada;
 import Tablero.Tablero;
 import Tablero.Direccion;
@@ -158,9 +159,19 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                         return;
                     }
                 }
-
-
-
+                else{
+                    // Si entro aca es porque va a realizar accion (unidad actual != null)
+                    try {
+                        System.out.println("Voy a realizar una accion sobre la unidad con vida: " + unidadActual.obtenerVida());
+                        jugador1.realizarAccionDeUnidad(tableroVista.obtenerUnidadEsperando(), unidadActual);
+                        jugador1.asignarTurno(false);
+                        jugador2.asignarTurno(true);
+                        tableroVista.cambiarUnidadEsperando(null, null);
+                        System.out.println("Realice una accion sobre la unidad y su vida es: " +  unidadActual.obtenerVida());
+                    } catch (AccionInvalidaException e) {
+                        e.getMensaje();
+                    }
+                }
             }
         } else {
             if (tableroVista.obtenerUnidadEsperando() == null) {
@@ -203,6 +214,19 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                         this.mostrarCasillero(tableroVista.obtenerUnidadEsperando());
                         tableroVista.cambiarUnidadEsperando(null, null);
                         return;
+                    }
+                }
+                else{
+                    // Si entro aca es porque va a realizar accion (unidad actual != null)
+                    try {
+                        System.out.println("Voy a realizar una accion sobre la unidad con vida: " + unidadActual.obtenerVida());
+                        jugador2.realizarAccionDeUnidad(tableroVista.obtenerUnidadEsperando(), unidadActual);
+                        jugador1.asignarTurno(true);
+                        jugador2.asignarTurno(false);
+                        System.out.println("Realice una accion sobre la unidad y su vida es: " +  unidadActual.obtenerVida());
+                        tableroVista.cambiarUnidadEsperando(null, null);
+                    } catch (AccionInvalidaException e) {
+                        e.getMensaje();
                     }
                 }
             }
