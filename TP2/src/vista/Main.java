@@ -33,6 +33,7 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.setMinWidth(950);
         stage.setMinHeight(800);
+        //reproducirMusicaDeFondo();
         stage.show();
     }
 
@@ -174,13 +175,12 @@ public class Main extends Application {
     }*/
 
 
-
-    /*public void reproducirMusicaDeFondo() {
-        String musicFile = "/TP2/src/Sonidos/phoenix-ft-cailin-russo-and-chrissy-costanza-worlds-2019-league-of-legends.mp3";
+/*
+    public void reproducirMusicaDeFondo() {
+        String musicFile = "/TP2/src/Sonidos/boca.mp3";
         Media sound = new Media("file:///" + System.getProperty("user.dir").replace('\\', '/') + musicFile);
         this.mediaPlayer = new MediaPlayer(sound);
         this.mediaPlayer.play();
-    }
-*/
+    }*/
 }
 

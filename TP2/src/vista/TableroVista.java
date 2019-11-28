@@ -28,6 +28,7 @@ public class TableroVista extends Group {
     Jugador jugador1;
     Jugador jugador2;
     Unidad unidadEsperando;
+    BotonTablero botonTableroEsperando;
 
     private boolean jugando = false;
 
@@ -66,16 +67,21 @@ public class TableroVista extends Group {
         this.jugando = true;
     }
 
-    public boolean obtenerEstado(){
+    public boolean estaJugando(){
         return this.jugando;
     }
 
-    public void cambiarUnidadEsperando(Unidad unidad){
+    public void cambiarUnidadEsperando(Unidad unidad, BotonTablero boton){
         this.unidadEsperando = unidad;
+        this.botonTableroEsperando = boton;
     }
 
     public Unidad obtenerUnidadEsperando(){
         return this.unidadEsperando;
+    }
+
+    public BotonTablero obtenerBotonTableroEsperando(){
+        return this.botonTableroEsperando;
     }
 
     public void agregarVistaAlMapa (){
