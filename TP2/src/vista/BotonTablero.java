@@ -24,7 +24,7 @@ public class BotonTablero extends Button {
             @Override
             public void handle(DragEvent dragEvent) {
                 System.out.println("hola");
-            }
+            }//
         });*/
         /*this.setOnAction(MouseEvent ->{if (!(tablero.obtenerCasillero(coordenada).estaOcupado())) {
             this.setImage()

@@ -167,7 +167,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                         if (unidadActual.obtenerVida()<=0){ //la unidad realizo la morision y ser DEFETEADA
                             System.out.println("La unidad ha muerto");
                             this.botonTablero.setGraphic(null);
-                         //   tablero.obtenerCasillero(coordenada).vaciarCasillero(); SE VACIA EN JUGADOR
+                        //    tablero.obtenerCasillero(coordenada).vaciarCasillero();
                         }
                         jugador1.asignarTurno(false);
                         jugador2.asignarTurno(true);
@@ -233,7 +233,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                         if (unidadActual.obtenerVida()<=0){ //la unidad realizo la morision y ser DEFETEADA
                             System.out.println("La unidad ha muerto");
                             this.botonTablero.setGraphic(null);
-                           // tablero.obtenerCasillero(coordenada).vaciarCasillero(); SE VACIA EN JUGADOR
+                         //   tablero.obtenerCasillero(coordenada).vaciarCasillero();
                         }
                         jugador1.asignarTurno(true);
                         jugador2.asignarTurno(false);
