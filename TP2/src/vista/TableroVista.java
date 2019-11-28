@@ -138,10 +138,10 @@ public class TableroVista extends Group {
         izquierda.setAlignment(Pos.CENTER);
         // AGREGAR COSAS AL VBOX IZQUIERDO
         Label turno = new Label("Es el turno del jugador: ");
-        Label soldado = new Label("Soldado: ataque-> vida-> ");
-        Label jinete = new Label("Jinete: ataque-> vida-> ");
-        Label curandero = new Label("Curandero: ataque-> vida-> ");
-        Label catapulta = new Label("Catapulta: ataque-> vida-> ");
+        Label soldado = new Label("Soldado: ataque-> 10 vida-> 100");
+        Label jinete = new Label("Jinete: ataque cerca-> 5 ataque lejos-> 15 vida-> 100");
+        Label curandero = new Label("Curandero: curación-> 15 vida-> 75");
+        Label catapulta = new Label("Catapulta: ataque-> 20 vida-> 50");
         turno.setStyle("-fx-font-size:20; -fx-text-fill:WHITE;");
         soldado.setStyle("-fx-font-size:10; -fx-text-fill:WHITE;");
         jinete.setStyle("-fx-font-size:10; -fx-text-fill:WHITE;");
