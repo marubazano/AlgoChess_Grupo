@@ -57,7 +57,7 @@ public class Main extends Application {
         BotonSalir salir = new BotonSalir();
         contenedorBotonSalir.getChildren().add(salir);
         HBox contenedorPrincipal = new HBox();
-        contenedorPrincipal.setMinHeight(700);
+        contenedorPrincipal.setMinHeight(900);
 
         BotonComenzar comenzar = new BotonComenzar(contenedorPrincipal);
         contenedorPrincipal.setAlignment(Pos.CENTER);
