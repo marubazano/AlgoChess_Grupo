@@ -18,7 +18,7 @@ public class Catapulta extends Unidad {
     public void realizarAccion(Unidad unidadEnemiga, Tablero tablero, ArrayList<Unidad> unidades) {
         int danio = obtenerDanioDeArma();
         Set<Unidad> atacadas = new HashSet<>();
-        unidadEnemiga.recibirDanio(danio);
+        unidadEnemiga.recibirDanio(danio, tablero);
         atacadas.add(unidadEnemiga);
         atacarUnidadesContiguas(tablero, atacadas, unidadEnemiga);
     }
@@ -27,7 +27,7 @@ public class Catapulta extends Unidad {
         int danio = obtenerDanioDeArma();
         for (Unidad contigua : tablero.obtenerUnidadesContiguas(unidadEnemiga)) {
             if(!atacadas.contains(contigua)) {
-                contigua.recibirDanio(danio);
+                contigua.recibirDanio(danio, tablero);
                 atacadas.add(contigua);
                 atacarUnidadesContiguas(tablero, atacadas, contigua);
             }

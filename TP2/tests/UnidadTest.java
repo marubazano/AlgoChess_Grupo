@@ -1,8 +1,17 @@
-import Tablero.*;
+import Excepciones.AccionInvalidaException;
+import Excepciones.BatallonInvalidoException;
+import Excepciones.CasilleroInvalidoException;
+import Excepciones.CasilleroOcupadoException;
+import Tablero.Coordenada;
+import Tablero.Direccion;
+import Tablero.Tablero;
 import Unidades.*;
-import Excepciones.*;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import java.util.ArrayList;
-import org.junit.*;
 
 //Al ser abstracta, tenemos que usar un objeto tipo mock, no heredados de unidad.
 
@@ -23,15 +32,19 @@ public class UnidadTest {
 
     @Test
     public void unidadRecibeDanioYActualizaVida() {
-        prueba.recibirDanio(20);
+        prueba.recibirDanio(20, tablero);
         Assert.assertEquals(80, prueba.obtenerVida(), 0.01); //Delta agregado para comparar flotantes, doubles
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
     }
 
     @Test
-    public void SoldadoAtacaEnemigo() {
+    public void SoldadoAtacaEnemigo() throws CasilleroInvalidoException, CasilleroOcupadoException {
         SoldadoDeInfanteria soldado = new SoldadoDeInfanteria();
         Jinete jinete = new Jinete();
+        Coordenada coordenadajinete = new Coordenada(2,3);
+        Coordenada coordenadasoldado = new Coordenada(2,4);
+        tablero.ubicarUnidad(jinete, coordenadajinete);
+        tablero.ubicarUnidad(soldado, coordenadasoldado);
         Assert.assertTrue(jinete.obtenerVida() == 100);
         soldado.realizarAccion(jinete, tablero, null);
         Assert.assertTrue(jinete.obtenerVida() == 90);
@@ -139,7 +152,7 @@ public class UnidadTest {
         Curandero curandero = new Curandero();
         Jinete jinete = new Jinete();
         Assert.assertTrue(jinete.obtenerVida() == 100);
-        jinete.recibirDanio(50);
+        jinete.recibirDanio(50, tablero);
         Assert.assertTrue(jinete.obtenerVida() == 50);
         curandero.realizarAccion(jinete, tablero, null);
         Assert.assertTrue(jinete.obtenerVida() == 65);

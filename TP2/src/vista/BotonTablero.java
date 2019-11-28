@@ -4,9 +4,12 @@ import AlgoChess.Jugador;
 import Controlador.HandlerBotonTablero;
 import Tablero.Casillero;
 import Tablero.Coordenada;
+import Unidades.Unidad;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+
+import java.util.ArrayList;
 
 public class BotonTablero extends Button {
 
@@ -17,13 +20,15 @@ public class BotonTablero extends Button {
     private Image unidad;
     private boolean estado = false;
 
+
     public BotonTablero(TableroVista tableroVista, Coordenada coordenada, Jugador jugador1, Jugador jugador2, Label labelPuntajeJugador1, Label labelPuntajeJugador2) {
         super();
         this.setPrefSize(33,33);
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
         this.setOnMouseClicked(new HandlerBotonTablero(tableroVista, coordenada, this, jugador1, jugador2, labelPuntajeJugador1, labelPuntajeJugador2));
-//        this.setOnMouseClicked(new HandlerBotonTablero(casilleros, tablero, jugador1, jugador2, coordenada));
+
+        //        this.setOnMouseClicked(new HandlerBotonTablero(casilleros, tablero, jugador1, jugador2, coordenada));
         /*this.setOnMouseDragReleased(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent dragEvent) {

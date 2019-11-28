@@ -2,6 +2,7 @@ package Controlador;
 
 import AlgoChess.Jugador;
 import Excepciones.AccionInvalidaException;
+import Excepciones.BatallonInvalidoException;
 import Tablero.Coordenada;
 import Tablero.Direccion;
 import Tablero.Tablero;
@@ -10,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import vista.BotonTablero;
 import vista.CasilleroVista;
@@ -44,14 +46,16 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
         if(!tableroVista.estaJugando()){
             handleSeleccionarUnidad();
         } else {
-            handleJuego();
+            if(mouseEvent.getButton().equals(MouseButton.SECONDARY)){
+                handleBatallon();
+            }
+            else{
+               handleJuego(mouseEvent);
+            }
         }
     }
 
-
     public void handleSeleccionarUnidad(){
-        System.out.println("Jugador 1 tiene: " + jugador1.obtenerListaUnidades());
-        System.out.println("Jugador 2 tiene: " + jugador2.obtenerListaUnidades());
         Unidad unidad = tableroVista.obtenerUltimaComprada();
         if (jugador1.esTurno()) {
             System.out.println("Es turno de JUGADOR 1.");
@@ -116,7 +120,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
     }
 
 
-    public void handleJuego() {
+    public void handleJuego(MouseEvent mouseEvent) {
         if(jugador1.obtenerEstado() == "PERDEDOR") {
             System.out.println("GANO EL JUGADOR 2");
             System.exit(0);
@@ -125,6 +129,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
             System.out.println("GANO EL JUGADOR 1");
             System.exit(0);
         }
+
         Unidad unidadActual = tablero.obtenerCasillero(coordenada).obtenerUnidad();
         if (jugador1.esTurno()) {
             if (tableroVista.obtenerUnidadEsperando() == null) {
@@ -262,6 +267,30 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                 }
             }
         //   this.mostrarCasillero(unidad);
+        }
+    }
+
+    private void handleBatallon()  {
+        Unidad unidadActual = tablero.obtenerCasillero(coordenada).obtenerUnidad();
+        if(unidadActual instanceof SoldadoDeInfanteria){
+            if(this.tableroVista.obtenerListaBatallon().size() <= 2)
+                this.tableroVista.obtenerListaBatallon().add((Movible) unidadActual);
+            else{
+                System.out.println("Se creara el batallon");
+                try {
+                    Batallon batallon = new Batallon(this.tableroVista.obtenerListaBatallon().get(0),
+                        this.tableroVista.obtenerListaBatallon().get(1),
+                        this.tableroVista.obtenerListaBatallon().get(2));
+                    batallon.mover(tableroVista.obtenerTablero(),
+                            Direccion.obtenerDireccionSegunCoordenadas(this.tableroVista.obtenerListaBatallon().get(1).obtenerCoordenada(),
+                                    this.coordenada));
+                    System.out.println("El batallon se movio, supuestamente");
+                    this.botonTablero.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/vista/imagenes/gato_soldado.jpg"), 33, 33, false, false)));
+                } catch (BatallonInvalidoException e) {
+                    e.getMessage();
+                }
+                this.tableroVista.obtenerListaBatallon().clear();
+            }
         }
     }
 

@@ -4,6 +4,7 @@ import AlgoChess.Jugador;
 import Tablero.Casillero;
 import Tablero.Coordenada;
 import Tablero.Tablero;
+import Unidades.Movible;
 import Unidades.Unidad;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -16,6 +17,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 
 
 public class TableroVista extends Group {
@@ -31,6 +33,7 @@ public class TableroVista extends Group {
     BotonTablero botonTableroEsperando;
     Label turno;
     Label labelDeAccion;
+    private ArrayList<Movible> batallon = new ArrayList<>();
 
     private boolean jugando = false;
 
@@ -197,5 +200,9 @@ public class TableroVista extends Group {
 
     public void cambiarLabelTurno(String nombreJugadorDeTurno) {
         this.turno.setText("Es el turno del jugador: " + nombreJugadorDeTurno);
+    }
+
+    public ArrayList<Movible> obtenerListaBatallon() {
+        return batallon;
     }
 }

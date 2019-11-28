@@ -1,7 +1,9 @@
 package Unidades;
 
 import Excepciones.AccionInvalidaException;
-import Tablero.*;
+import Tablero.Coordenada;
+import Tablero.Tablero;
+
 import java.util.ArrayList;
 
 public abstract class Unidad {
@@ -19,8 +21,9 @@ public abstract class Unidad {
         return this.vida;
     }
 
-    public void recibirDanio(float danio) {
+    public void recibirDanio(float danio, Tablero tablero) {
         this.vida -= danio;
+        if(vida <= 0) tablero.obtenerCasillero(coordenada).vaciarCasillero();
     }
 
     public void recibirCura(float cura) {
