@@ -148,10 +148,10 @@ public class TableroVista extends Group {
         VBox izquierda = new VBox(20);                                       //VER ESPACIAMIENTO
         izquierda.setAlignment(Pos.CENTER);
         // AGREGAR COSAS AL VBOX IZQUIERDO
-        Label soldado = new Label("Soldado: ataque-> vida-> ");
-        Label jinete = new Label("Jinete: ataque-> vida-> ");
-        Label curandero = new Label("Curandero: ataque-> vida-> ");
-        Label catapulta = new Label("Catapulta: ataque-> vida-> ");
+        Label soldado = new Label("Soldado: ataque-> 10 vida-> 100");
+        Label jinete = new Label("Jinete: ataque-> 5/15 vida-> 100");
+        Label curandero = new Label("Curandero: cura-> 15 vida-> 75");
+        Label catapulta = new Label("Catapulta: ataque-> 20 vida-> 50");
         soldado.setStyle("-fx-font-size:10; -fx-text-fill:WHITE;");
         jinete.setStyle("-fx-font-size:10; -fx-text-fill:WHITE;");
         curandero.setStyle("-fx-font-size:10; -fx-text-fill:WHITE;");
