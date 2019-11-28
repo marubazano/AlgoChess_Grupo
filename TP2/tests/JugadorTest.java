@@ -164,7 +164,7 @@ public class JugadorTest {
         Coordenada coordenada2 = new Coordenada(14,14);
         pruebaJugador.ubicarUnidad(catapulta,coordenada);
         tablero.ubicarUnidad(soldado,coordenada2);
-        pruebaJugador.realizarAccionDeUnidad(catapulta,soldado);
+        pruebaJugador.realizarAccionDeUnidad(catapulta,soldado, new Jugador("prueba",tablero,2));
         Assert.assertTrue(soldado.obtenerVida() == 80);
     }
 
@@ -177,7 +177,7 @@ public class JugadorTest {
         Coordenada coordenada2 = new Coordenada(11, 11);
         pruebaJugador.ubicarUnidad(soldado, coordenada);
         tablero.ubicarUnidad(soldadoEnemigo, coordenada2);
-        pruebaJugador.realizarAccionDeUnidad(soldado, soldado);
+        pruebaJugador.realizarAccionDeUnidad(soldado, soldado, new Jugador("prueba",tablero,2));
         Assert.fail();
     }
 
@@ -193,7 +193,7 @@ public class JugadorTest {
         tablero.ubicarUnidad(curandero, coordenada2);
         soldado.recibirDanio(20);
         Assert.assertTrue(soldado.obtenerVida() == 80);
-        pruebaJugador.realizarAccionDeUnidad(curandero, soldado);
+        pruebaJugador.realizarAccionDeUnidad(curandero, soldado, new Jugador("prueba",tablero,2));
         Assert.assertTrue(soldado.obtenerVida() == 95);
     }
 }
