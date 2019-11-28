@@ -3,8 +3,8 @@ package Controlador;
 import AlgoChess.Jugador;
 import Excepciones.AccionInvalidaException;
 import Tablero.Coordenada;
-import Tablero.Tablero;
 import Tablero.Direccion;
+import Tablero.Tablero;
 import Unidades.*;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
@@ -163,7 +163,12 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                     // Si entro aca es porque va a realizar accion (unidad actual != null)
                     try {
                         System.out.println("Voy a realizar una accion sobre la unidad con vida: " + unidadActual.obtenerVida());
-                        jugador1.realizarAccionDeUnidad(tableroVista.obtenerUnidadEsperando(), unidadActual);
+                        jugador1.realizarAccionDeUnidad(tableroVista.obtenerUnidadEsperando(), unidadActual,jugador2);
+                        if (unidadActual.obtenerVida()<=0){ //la unidad realizo la morision y ser DEFETEADA
+                            System.out.println("La unidad ha muerto");
+                            this.botonTablero.setGraphic(null);
+                            tablero.obtenerCasillero(coordenada).vaciarCasillero();
+                        }
                         jugador1.asignarTurno(false);
                         jugador2.asignarTurno(true);
                         tableroVista.cambiarUnidadEsperando(null, null);
@@ -220,10 +225,16 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                     // Si entro aca es porque va a realizar accion (unidad actual != null)
                     try {
                         System.out.println("Voy a realizar una accion sobre la unidad con vida: " + unidadActual.obtenerVida());
-                        jugador2.realizarAccionDeUnidad(tableroVista.obtenerUnidadEsperando(), unidadActual);
+                        jugador2.realizarAccionDeUnidad(tableroVista.obtenerUnidadEsperando(), unidadActual,jugador1);
+                        System.out.println("Ahora la unidad tiene vida: " + unidadActual.obtenerVida());
+                        if (unidadActual.obtenerVida()<=0){ //la unidad realizo la morision y ser DEFETEADA
+                            System.out.println("La unidad ha muerto");
+                            this.botonTablero.setGraphic(null);
+                            tablero.obtenerCasillero(coordenada).vaciarCasillero();
+                        }
                         jugador1.asignarTurno(true);
                         jugador2.asignarTurno(false);
-                        System.out.println("Realice una accion sobre la unidad y su vida es: " +  unidadActual.obtenerVida());
+//                        System.out.println("Realice una accion sobre la unidad y su vida es: " +  unidadActual.obtenerVida());
                         tableroVista.cambiarUnidadEsperando(null, null);
                     } catch (AccionInvalidaException e) {
                         e.getMensaje();

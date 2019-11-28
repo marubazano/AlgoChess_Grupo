@@ -93,12 +93,13 @@ public class Jugador {
 
     public String obtenerEstado() { return this.estado; }
 
-    public void realizarAccionDeUnidad(Unidad unaUnidad, Unidad otraUnidad) throws AccionInvalidaException {
+    public void realizarAccionDeUnidad(Unidad unaUnidad, Unidad otraUnidad, Jugador jugadorEnemigo) throws AccionInvalidaException {
         //Dos posibilidades:
         //1) Recibe un aliado y un enemigo, el aliado ataca al enemigo.
         //2) Recibe un Curandero (aliado) y un aliado, el curandero cura al aliado.
         if (accionValida(unaUnidad,otraUnidad)) unaUnidad.realizarAccion(otraUnidad,this.tablero,this.unidades);
         else throw new AccionInvalidaException();
+        if (otraUnidad.obtenerVida()<0) jugadorEnemigo.obtenerListaUnidades().remove(otraUnidad);
     }
 
     public boolean accionValida (Unidad unidad1, Unidad unidad2) throws AccionInvalidaException{
