@@ -99,7 +99,11 @@ public class Jugador {
         //2) Recibe un Curandero (aliado) y un aliado, el curandero cura al aliado.
         if (accionValida(unaUnidad,otraUnidad)) unaUnidad.realizarAccion(otraUnidad,this.tablero,this.unidades);
         else throw new AccionInvalidaException();
-        if (otraUnidad.obtenerVida()<0) jugadorEnemigo.obtenerListaUnidades().remove(otraUnidad);
+        if (otraUnidad.obtenerVida()<=0) {
+            System.out.println("Soy un jugador, elimino la unidad muerta de mi lista de unidades.");
+            jugadorEnemigo.eliminarUnidadDelJugador(otraUnidad);
+            tablero.obtenerCasillero(otraUnidad.obtenerCoordenada()).vaciarCasillero();
+        }
     }
 
     public boolean accionValida (Unidad unidad1, Unidad unidad2) throws AccionInvalidaException{

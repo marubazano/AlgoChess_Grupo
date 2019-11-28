@@ -167,7 +167,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                         if (unidadActual.obtenerVida()<=0){ //la unidad realizo la morision y ser DEFETEADA
                             System.out.println("La unidad ha muerto");
                             this.botonTablero.setGraphic(null);
-                            tablero.obtenerCasillero(coordenada).vaciarCasillero();
+                         //   tablero.obtenerCasillero(coordenada).vaciarCasillero(); SE VACIA EN JUGADOR
                         }
                         jugador1.asignarTurno(false);
                         jugador2.asignarTurno(true);
@@ -211,6 +211,9 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                         return;
                     } else {
                         System.out.println("Entro a mover una unidad (no catapulta) (jug2)");
+                        System.out.println("Coordenada direccion esperando: "+tableroVista.obtenerUnidadEsperando().obtenerCoordenada());
+                        System.out.println("this.coordenada: "+this.coordenada);
+                        System.out.println("Direccion: "+Direccion.obtenerDireccionSegunCoordenadas(tableroVista.obtenerUnidadEsperando().obtenerCoordenada(), this.coordenada));
                         jugador2.mover((Movible) tableroVista.obtenerUnidadEsperando(), Direccion.obtenerDireccionSegunCoordenadas(tableroVista.obtenerUnidadEsperando().obtenerCoordenada(), this.coordenada));
                         jugador1.asignarTurno(true);
                         jugador2.asignarTurno(false);
@@ -230,7 +233,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                         if (unidadActual.obtenerVida()<=0){ //la unidad realizo la morision y ser DEFETEADA
                             System.out.println("La unidad ha muerto");
                             this.botonTablero.setGraphic(null);
-                            tablero.obtenerCasillero(coordenada).vaciarCasillero();
+                           // tablero.obtenerCasillero(coordenada).vaciarCasillero(); SE VACIA EN JUGADOR
                         }
                         jugador1.asignarTurno(true);
                         jugador2.asignarTurno(false);
