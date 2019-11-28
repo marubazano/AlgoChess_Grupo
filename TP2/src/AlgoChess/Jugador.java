@@ -29,7 +29,6 @@ public class Jugador {
 
     public void eliminarUnidadDelJugador(Unidad unidad) {
         this.unidades.remove(unidad);
-        this.tablero.obtenerCasillero(unidad.obtenerCoordenada()).vaciarCasillero();
         if (unidades.size() == 0) this.estado = "PERDEDOR"; //FIN DEL JUEGO
     }
 
@@ -64,7 +63,6 @@ public class Jugador {
                 return false;
             }
             tablero.ubicarUnidad(unidad, coordenada);
-            agregarUnidadAJugador(unidad);
         }
         catch (CasilleroOcupadoException e) {
             e.getMensaje();
@@ -103,6 +101,8 @@ public class Jugador {
         if (otraUnidad.obtenerVida()<=0) {
             System.out.println("Soy un jugador, elimino la unidad muerta de mi lista de unidades.");
             jugadorEnemigo.eliminarUnidadDelJugador(otraUnidad);
+            tablero.obtenerCasillero(otraUnidad.obtenerCoordenada()).vaciarCasillero();
+           // this.tablero.obtenerCasillero(otraUnidad.obtenerCoordenada()).vaciarCasillero();
         }
     }
 

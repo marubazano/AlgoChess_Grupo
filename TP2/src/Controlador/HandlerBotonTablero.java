@@ -50,6 +50,8 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
 
 
     public void handleSeleccionarUnidad(){
+        System.out.println("Jugador 1 tiene: " + jugador1.obtenerListaUnidades());
+        System.out.println("Jugador 2 tiene: " + jugador2.obtenerListaUnidades());
         Unidad unidad = tableroVista.obtenerUltimaComprada();
         if (jugador1.esTurno()) {
             System.out.println("Es turno de JUGADOR 1.");
@@ -115,6 +117,14 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
 
 
     public void handleJuego() {
+        if(jugador1.obtenerEstado() == "PERDEDOR") {
+            System.out.println("GANO EL JUGADOR 2");
+            System.exit(0);
+        }
+        else if(jugador2.obtenerEstado() == "PERDEDOR"){
+            System.out.println("GANO EL JUGADOR 1");
+            System.exit(0);
+        }
         Unidad unidadActual = tablero.obtenerCasillero(coordenada).obtenerUnidad();
         if (jugador1.esTurno()) {
             if (tableroVista.obtenerUnidadEsperando() == null) {
@@ -167,8 +177,10 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                         jugador1.realizarAccionDeUnidad(tableroVista.obtenerUnidadEsperando(), unidadActual,jugador2);
                         if (unidadActual.obtenerVida()<=0){ //la unidad realizo la morision y ser DEFETEADA
                             System.out.println("La unidad ha muerto");
-                            this.botonTablero.setGraphic(null);
-                        //    tablero.obtenerCasillero(coordenada).vaciarCasillero();
+                            this.botonTablero.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/vista/imagenes/muerte.jpg"), 33, 33, false, false)));
+                            this.botonTablero.setDisable(true);
+
+                            //    tablero.obtenerCasillero(coordenada).vaciarCasillero();
                         }
                         jugador1.asignarTurno(false);
                         jugador2.asignarTurno(true);
@@ -235,8 +247,9 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                         System.out.println("Ahora la unidad tiene vida: " + unidadActual.obtenerVida());
                         if (unidadActual.obtenerVida()<=0){ //la unidad realizo la morision y ser DEFETEADA
                             System.out.println("La unidad ha muerto");
-                            this.botonTablero.setGraphic(null);
-                         //   tablero.obtenerCasillero(coordenada).vaciarCasillero();
+                            this.botonTablero.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/vista/imagenes/muerte.jpg"), 33, 33, false, false)));
+                            this.botonTablero.setDisable(true);
+                            //   tablero.obtenerCasillero(coordenada).vaciarCasillero();
                         }
                         jugador1.asignarTurno(true);
                         jugador2.asignarTurno(false);
