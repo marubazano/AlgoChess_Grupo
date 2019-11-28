@@ -30,6 +30,7 @@ public class TableroVista extends Group {
     Unidad unidadEsperando;
     BotonTablero botonTableroEsperando;
     Label turno;
+    Label labelDeAccion;
 
     private boolean jugando = false;
 
@@ -123,13 +124,19 @@ public class TableroVista extends Group {
         this.principal = principal;
     }
 
-    public void pantallaDeJuego(/*int jugadorInicial*/){
+    public void pantallaDeJuego(int jugadorInicial){
         StackPane stackPane = this.principal;
         VBox canvas = new VBox();
 
-        HBox contenedorBotonSalir = new HBox();
+        HBox contenedorSuperior = new HBox();
         BotonSalir salir = new BotonSalir();
-        contenedorBotonSalir.getChildren().add(salir);
+        HBox contenedorEstadosDeJuego = new HBox();
+        contenedorEstadosDeJuego.setAlignment(Pos.CENTER);
+        this.turno = new Label("Es el turno del jugador: " + jugadorInicial);
+        turno.setStyle("-fx-font-size:20; -fx-text-fill:WHITE;");
+        this.labelDeAccion = new Label("Compienzan los gatos.");
+        contenedorEstadosDeJuego.getChildren().add(turno);
+        contenedorSuperior.getChildren().addAll(salir, contenedorEstadosDeJuego);
 
         HBox contenedorPrincipal = new HBox(20);                                      //VER ESPACIAMIENTO
         contenedorPrincipal.setMinHeight(700);
@@ -138,17 +145,15 @@ public class TableroVista extends Group {
         VBox izquierda = new VBox(20);                                       //VER ESPACIAMIENTO
         izquierda.setAlignment(Pos.CENTER);
         // AGREGAR COSAS AL VBOX IZQUIERDO
-        this.turno = new Label("Es el turno del jugador: " /*+ jugadorInicial*/);
         Label soldado = new Label("Soldado: ataque-> vida-> ");
         Label jinete = new Label("Jinete: ataque-> vida-> ");
         Label curandero = new Label("Curandero: ataque-> vida-> ");
         Label catapulta = new Label("Catapulta: ataque-> vida-> ");
-        turno.setStyle("-fx-font-size:20; -fx-text-fill:WHITE;");
         soldado.setStyle("-fx-font-size:10; -fx-text-fill:WHITE;");
         jinete.setStyle("-fx-font-size:10; -fx-text-fill:WHITE;");
         curandero.setStyle("-fx-font-size:10; -fx-text-fill:WHITE;");
         catapulta.setStyle("-fx-font-size:10; -fx-text-fill:WHITE;");
-        izquierda.getChildren().addAll(turno, soldado, jinete, curandero, catapulta);
+        izquierda.getChildren().addAll(soldado, jinete, curandero, catapulta);
 
         HBox contenedorTableroVista = new HBox();
         contenedorTableroVista.getChildren().add(this);
@@ -171,7 +176,7 @@ public class TableroVista extends Group {
         derecha.getChildren().addAll(instrucciones, instruccion1, instruccion2, instruccion3, instruccion4, instruccion5);
 
         contenedorPrincipal.getChildren().addAll(izquierda, contenedorTableroVista, derecha);
-        canvas.getChildren().addAll(contenedorBotonSalir, contenedorPrincipal);
+        canvas.getChildren().addAll(contenedorSuperior, contenedorPrincipal);
         stackPane.getChildren().add(canvas);
         stage.setScene(new Scene(stackPane));
     }

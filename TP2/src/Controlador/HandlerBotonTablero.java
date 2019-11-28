@@ -63,7 +63,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                     jugador2.asignarTurno(true);
                     tableroVista.cambiarEstado();
                     System.out.println("Arranca con turno TRUE el JUGADOR 2.");
-                    tableroVista.pantallaDeJuego();
+                    tableroVista.pantallaDeJuego(2);
                 }
                 else if (jugador2.obtenerPuntos() == 0 || jugador1.obtenerPuntos() == 0) {
                     if (jugador1.obtenerPuntos() == 0) {
@@ -92,7 +92,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                     jugador1.asignarTurno(false);
                     jugador2.asignarTurno(true);
                     tableroVista.cambiarEstado();
-                    tableroVista.pantallaDeJuego();
+                    tableroVista.pantallaDeJuego(2);
 
                 }
                 else if (jugador2.obtenerPuntos() == 0 || jugador1.obtenerPuntos() == 0) {
@@ -156,6 +156,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                         System.out.println("La unidad esperando, que es la que voy a mostrar en el nuevo casillero, es: " + tableroVista.obtenerUnidadEsperando());
                         this.mostrarCasillero(tableroVista.obtenerUnidadEsperando());
                         tableroVista.cambiarUnidadEsperando(null, null);
+                        tableroVista.cambiarLabelTurno(2);
                         return;
                     }
                 }
@@ -173,6 +174,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                         jugador2.asignarTurno(true);
                         tableroVista.cambiarUnidadEsperando(null, null);
                         System.out.println("Realice una accion sobre la unidad y su vida es: " +  unidadActual.obtenerVida());
+                        tableroVista.cambiarLabelTurno(2);
                     } catch (AccionInvalidaException e) {
                         e.getMensaje();
                     }
@@ -221,6 +223,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                         System.out.println("La unidad esperando, que es la que voy a mostrar en el nuevo casillero, es: " + tableroVista.obtenerUnidadEsperando() + " (jug2).");
                         this.mostrarCasillero(tableroVista.obtenerUnidadEsperando());
                         tableroVista.cambiarUnidadEsperando(null, null);
+                        tableroVista.cambiarLabelTurno(1);
                         return;
                     }
                 }
@@ -239,6 +242,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                         jugador2.asignarTurno(false);
 //                        System.out.println("Realice una accion sobre la unidad y su vida es: " +  unidadActual.obtenerVida());
                         tableroVista.cambiarUnidadEsperando(null, null);
+                        tableroVista.cambiarLabelTurno(1);
                     } catch (AccionInvalidaException e) {
                         e.getMensaje();
                     }

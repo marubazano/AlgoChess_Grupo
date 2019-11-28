@@ -2,15 +2,19 @@ package vista;
 
 import AlgoChess.Jugador;
 import Controlador.HandlerBotonTablero;
+import Tablero.Casillero;
 import Tablero.Coordenada;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 
 public class BotonTablero extends Button {
 
     //private CasilleroVista[][] casilleros;
     private Jugador jugador1;
     private Jugador jugador2;
+    private Casillero casillero;
+    private Image unidad;
     private boolean estado = false;
 
     public BotonTablero(TableroVista tableroVista, Coordenada coordenada, Jugador jugador1, Jugador jugador2, Label labelPuntajeJugador1, Label labelPuntajeJugador2) {
@@ -30,5 +34,6 @@ public class BotonTablero extends Button {
             this.setImage()
         }});*/
     }
+
 
 }
