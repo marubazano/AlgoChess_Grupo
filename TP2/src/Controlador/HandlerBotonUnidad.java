@@ -28,30 +28,16 @@ public class HandlerBotonUnidad implements EventHandler<MouseEvent> {
     public void handle(MouseEvent mouseEvent) {
         if (jugador.esTurno()) {
             try {
-                //System.out.println("Puntos antes de comprar: " + jugador.obtenerPuntos());
                 jugador.comprar(unidad);
                 tableroVista.deshabilitarBotonesUnidadDeJugador(jugador.obtenerNumeroJugador()); // PARA QUE NO COMPRE OTRA UNIDAD ANTES DE UBICAR LA ACTUAL
-                System.out.println("COMPRÓ LA UNIDAD!!!");
-                tableroVista.cambiarLabelDeAccionDelTurno("Compró la unidad"/* + unidad.getClass().getName()*/);
-                //System.out.println("Puntos después de comprar: " + jugador.obtenerPuntos());
-              //  System.out.print(jugador.obtenerPuntos() + " hola");
+                tableroVista.cambiarLabelDeAccionDelTurno("Compró la unidad " + unidad.getClass().getSimpleName());
                 tableroVista.agregarUltimaUnidadComprada(unidad);
-                // UBICAR UNIDAD
-               /* if (!jugador.tieneSuficientesPuntos(unidad)) {
-                    this.boton.setDisable(true);
-                }*/
-               /* if (OtroJugador.obtenerPuntos() > 0) {//Si el otro jugador todavia tiene puntos -> puede comprar -> sino sigue comprando el que tenga
-                    jugador.asignarTurno(false);
-                    OtroJugador.asignarTurno(true);
-                  //  System.out.println(OtroJugador.obtenerPuntos());
-                }*/
+
             } catch (PuntosInsuficientesException e) {
-                System.out.println("ENTRA A LA EXCEPCIÓN DE PUNTOS INSUFICIENTES!!!");
-                //this.boton.setDisable(true);
                 e.getMensaje();
             }
         } else {
-            System.out.println("No es tu turno!");
+            tableroVista.cambiarLabelDeAccionDelTurno("No es su turno.");
         }
     }
 }

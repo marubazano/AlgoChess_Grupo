@@ -75,7 +75,14 @@ public class Jugador {
         return true;
     }
 
-    public void mover(Movible unidadMovible, Direccion direccion) { tablero.mover(unidadMovible, direccion); }
+    public void mover(Movible unidadMovible, Direccion direccion) {
+        try {
+            tablero.mover(unidadMovible, direccion);
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
+        }
+    }
 
     public boolean estaEnLadoDelTableroCorrespondiente(Coordenada coordenada) {
         if (this.nroJugador == 1) {

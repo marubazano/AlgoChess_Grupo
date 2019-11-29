@@ -21,22 +21,14 @@ public enum Direccion {
     }
 
     public static Direccion obtenerDireccionSegunCoordenadas (Coordenada coordenadaOrigen, Coordenada coordenadaDestino){
-        System.out.println("ESTOY EN OBTENERDIRECCIONSEGUNCOORDENADAS");
-        System.out.println("coordenadaOrigenEnVertical: "+coordenadaOrigen.obtenerVertical() + " coordenadaOrigenEnHorizontal: "+coordenadaOrigen.obtenerHorizontal());
-        System.out.println("coordenadaDestinoEnVertical: "+coordenadaDestino.obtenerVertical() + " coordenadaDestinoEnHorizontal: "+coordenadaDestino.obtenerHorizontal());
+        //System.out.println("ESTOY EN OBTENERDIRECCIONSEGUNCOORDENADAS");
+        //System.out.println("coordenadaOrigenEnVertical: "+coordenadaOrigen.obtenerVertical() + " coordenadaOrigenEnHorizontal: "+coordenadaOrigen.obtenerHorizontal());
+        //System.out.println("coordenadaDestinoEnVertical: "+coordenadaDestino.obtenerVertical() + " coordenadaDestinoEnHorizontal: "+coordenadaDestino.obtenerHorizontal());
         Coordenada diferencia = coordenadaDestino.restarCoordenada(coordenadaOrigen);
-        System.out.println("La diferencia es en vertical: "+diferencia.obtenerVertical() + " en horizontal: "+diferencia.obtenerHorizontal());
+        //System.out.println("La diferencia es en vertical: "+diferencia.obtenerVertical() + " en horizontal: "+diferencia.obtenerHorizontal());
         for(Direccion dir: Direccion.values()){
             if(dir.obtenerDireccion().compararCoordenada(diferencia)) return dir;
         }
         return null;
-        /*if (diferencia==(new Coordenada(1,0))) return ABAJO;
-        if (diferencia==(new Coordenada(-1,0))) return ARRIBA;
-        if (diferencia==(new Coordenada(0,1))) return DERECHA;
-        if (diferencia==(new Coordenada(0,-1))) return IZQUIERDA;
-        if (diferencia==(new Coordenada(-1, -1))) return DIAGONALSUPERIORIZQUIERDA;
-        if (diferencia==(new Coordenada(-1,1))) return DIAGONALSUPERIORDERECHA;
-        if (diferencia==(new Coordenada(1,-1))) return DIAGONALINFERIORIZQUIERDA;
-        else return DIAGONALINFERIORDERECHA;*/
     }
 }

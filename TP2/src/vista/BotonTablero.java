@@ -4,9 +4,14 @@ import AlgoChess.Jugador;
 import Controlador.HandlerBotonTablero;
 import Tablero.Casillero;
 import Tablero.Coordenada;
+import Unidades.Curandero;
+import Unidades.Jinete;
+import Unidades.SoldadoDeInfanteria;
+import Unidades.Unidad;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class BotonTablero extends Button {
 
@@ -14,8 +19,8 @@ public class BotonTablero extends Button {
     private Jugador jugador1;
     private Jugador jugador2;
     private Casillero casillero;
+    private Coordenada coordenada;
     private Image unidad;
-    private boolean estado = false;
 
 
     public BotonTablero(TableroVista tableroVista, Coordenada coordenada, Jugador jugador1, Jugador jugador2, Label labelPuntajeJugador1, Label labelPuntajeJugador2) {
@@ -23,19 +28,50 @@ public class BotonTablero extends Button {
         this.setPrefSize(33,33);
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
-        this.setOnMouseClicked(new HandlerBotonTablero(tableroVista, coordenada, this, jugador1, jugador2, labelPuntajeJugador1, labelPuntajeJugador2));
-
-        //        this.setOnMouseClicked(new HandlerBotonTablero(casilleros, tablero, jugador1, jugador2, coordenada));
-        /*this.setOnMouseDragReleased(new EventHandler<DragEvent>() {
-            @Override
-            public void handle(DragEvent dragEvent) {
-                System.out.println("hola");
-            }//
-        });*/
-        /*this.setOnAction(MouseEvent ->{if (!(tablero.obtenerCasillero(coordenada).estaOcupado())) {
-            this.setImage()
-        }});*/
+        this.coordenada = coordenada;
+        this.setOnMouseClicked(new HandlerBotonTablero(tableroVista,this, jugador1, jugador2, labelPuntajeJugador1, labelPuntajeJugador2));
     }
+
+    public Coordenada obtenerCoordenada(){
+        return this.coordenada;
+    }
+
+    public void mostrarCasillero(Unidad miUnidad) {
+        if(miUnidad != null) {
+            if (miUnidad instanceof SoldadoDeInfanteria) {
+                if (jugador2.obtenerListaUnidades().contains(miUnidad)) {
+                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/gato_soldado.jpg"), 33, 33, false, false);
+                } else {
+                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/perro_soldado.jpg"), 33, 33, false, false);
+                }
+            } else if (miUnidad instanceof Curandero) {
+                if (jugador2.obtenerListaUnidades().contains(miUnidad)) {
+                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/gato_curandero.jpg"), 33, 33, false, false);
+                } else {
+                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/perro_curandero.jpg"), 33, 33, false, false);
+                }
+            } else if (miUnidad instanceof Jinete) {
+                if (jugador2.obtenerListaUnidades().contains(miUnidad)) {
+                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/gato_jinete.jpg"), 33, 33, false, false);
+                } else {
+                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/perro_jinete.jpg"), 33, 33, false, false);
+                }
+            } else {
+                if (jugador2.obtenerListaUnidades().contains(miUnidad)) {
+                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/gato_catapulta.jpg"), 33, 33, false, false);
+                } else {
+                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/perro_catapulta.jpg"), 33, 33, false, false);
+                }
+            }
+
+            ImageView imageView = new ImageView(unidad);
+            this.setGraphic(imageView);
+        }
+        else{
+            System.out.print("Es null");
+        }
+    }
+
 
 
 }

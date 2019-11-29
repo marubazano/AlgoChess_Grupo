@@ -16,9 +16,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     Stage stage;
-    Jugador jugador1;
-    Jugador jugador2;
-    Tablero tablero;
     MediaPlayer mediaPlayer;
     //TableroVista tableroVista;                            SE CREA EN MenuSeleccionDeUnidades
     Label turno;
@@ -113,13 +110,13 @@ public class Main extends Application {
         BotonSalir salir = new BotonSalir();
         this.turno = new Label("Es turno de jugador: " + jugador1.obtenerNombre() + ".");
         turno.setStyle("-fx-text-fill:WHITE;");
-        this.estadoAccionDelTurno = new Label();
+        this.estadoAccionDelTurno = new Label("Jugador1 seleccione unidad.");
         estadoAccionDelTurno.setStyle("-fx-text-fill:WHITE;");
         contenedorSuperior.getChildren().addAll(salir, this.turno, this.estadoAccionDelTurno);
 
-        Label puntajeJugador1 = new Label("Puntaje jugador 1: " + jugador1.obtenerPuntos());
+        Label puntajeJugador1 = new Label("Puntaje " + jugador1.obtenerNombre() + ": " + jugador1.obtenerPuntos());
         puntajeJugador1.setStyle("-fx-text-fill:WHITE;");
-        Label puntajeJugador2 = new Label("Puntaje jugador 2: " + jugador2.obtenerPuntos());
+        Label puntajeJugador2 = new Label("Puntaje " + jugador2.obtenerNombre() + ": " + jugador2.obtenerPuntos());
         puntajeJugador2.setStyle("-fx-text-fill:WHITE;");
 
         HBox contenedorPrincipal = new HBox(20);                                      //VER ESPACIAMIENTO
@@ -153,8 +150,6 @@ public class Main extends Application {
         contenedorPrincipal.getChildren().addAll(contenedorUnidades1, contenedorTableroVista, contenedorUnidades2);
         canvas.getChildren().addAll(contenedorSuperior, contenedorPrincipal);
         stackPane.getChildren().add(canvas);
-        //pasar.setOnMouseClicked(mouseEvent -> {});
-        // esto seria para pasar a la ubicacion de unidades si no lo hacemos en esta seccion
         return new Scene(stackPane);
     }
 
