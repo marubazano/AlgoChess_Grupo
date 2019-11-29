@@ -124,6 +124,9 @@ public class Jugador {
         return this.esTurno;
     }
 
+    public int obtenerNumeroJugador() {
+        return this.nroJugador;
+    }
 
     public Unidad obtenerUltimaUnidad() {return this.unidades.get(this.unidades.size() -1); }
 

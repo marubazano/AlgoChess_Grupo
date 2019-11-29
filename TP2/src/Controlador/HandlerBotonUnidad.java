@@ -28,8 +28,12 @@ public class HandlerBotonUnidad implements EventHandler<MouseEvent> {
     public void handle(MouseEvent mouseEvent) {
         if (jugador.esTurno()) {
             try {
+                //System.out.println("Puntos antes de comprar: " + jugador.obtenerPuntos());
                 jugador.comprar(unidad);
+                tableroVista.deshabilitarBotonesUnidadDeJugador(jugador.obtenerNumeroJugador()); // PARA QUE NO COMPRE OTRA UNIDAD ANTES DE UBICAR LA ACTUAL
                 System.out.println("COMPRÓ LA UNIDAD!!!");
+                tableroVista.cambiarLabelDeAccionDelTurno("Compró la unidad"/* + unidad.getClass().getName()*/);
+                //System.out.println("Puntos después de comprar: " + jugador.obtenerPuntos());
               //  System.out.print(jugador.obtenerPuntos() + " hola");
                 tableroVista.agregarUltimaUnidadComprada(unidad);
                 // UBICAR UNIDAD

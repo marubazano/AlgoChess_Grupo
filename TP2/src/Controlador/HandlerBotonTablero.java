@@ -112,10 +112,11 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                     tableroVista.deshabilitarBotonesUnidadDeJugador(1);
                     tableroVista.habilitarBotonesUnidadDeJugador(2);
                 }
+                tableroVista.cambiarLabelDeAccionDelTurno("");
             }
             else {
                 System.out.println("no la puede ubicar");
-                tableroVista.cambiarLabelDeAccionDelTurno("El casillero está ocupado. Probá en otro!");
+                tableroVista.cambiarLabelDeAccionDelTurno("El casillero está ocupado. Pruebe en otro!");
             }
         } else {
             System.out.println("Es turno de JUGADOR 2.");
@@ -166,8 +167,9 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                     tableroVista.habilitarBotonesUnidadDeJugador(1);
                     tableroVista.deshabilitarBotonesUnidadDeJugador(2);
                 }
+                tableroVista.cambiarLabelDeAccionDelTurno("");
             } else {
-                tableroVista.cambiarLabelDeAccionDelTurno("El casillero está ocupado. Probá en otro!");
+                tableroVista.cambiarLabelDeAccionDelTurno("El casillero está ocupado. Pruebe en otro!");
             }
         }
         System.out.println("coord vertical: " + coordenada.obtenerVertical() + " coord horizontal: " + coordenada.obtenerHorizontal());
