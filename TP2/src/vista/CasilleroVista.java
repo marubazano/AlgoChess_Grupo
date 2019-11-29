@@ -64,4 +64,12 @@ public class CasilleroVista extends Pane {
     public void update(){
         setOnKeyPressed(keyEvent -> {this.mostrarCasillero();});
     }
+
+    public void deshabilitarBoton() {
+        this.buton.setDisable(true);
+    }
+
+    public void habilitarBoton() {
+        this.buton.setDisable(false);
+    }
 }

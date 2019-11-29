@@ -28,6 +28,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
     private Jugador jugador2;
     private Label labelPuntajeJugador1;
     private Label labelPuntajeJugador2;
+    private Label turno;
 
     public HandlerBotonTablero(TableroVista tableroVista, Coordenada coordenada, BotonTablero botonTablero, Jugador jugador1, Jugador jugador2, Label labelPuntajeJugador1, Label labelPuntajeJugador2){
         super();
@@ -39,6 +40,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
         this.jugador2 = jugador2;
         this.labelPuntajeJugador1 = labelPuntajeJugador1;
         this.labelPuntajeJugador2 = labelPuntajeJugador2;
+        this.turno = turno;
     }
 
     @Override
@@ -58,6 +60,8 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
     public void handleSeleccionarUnidad(){
         Unidad unidad = tableroVista.obtenerUltimaComprada();
         if (jugador1.esTurno()) {
+            tableroVista.deshabilitarLadoTablero(2);
+            tableroVista.deshabilitarBotonesUnidadDeJugador(2);
             System.out.println("Es turno de JUGADOR 1.");
             if (jugador1.ubicarUnidad(unidad, coordenada)){
                 labelPuntajeJugador1.setText("Puntaje jugador 1: " + jugador1.obtenerPuntos());
@@ -65,55 +69,105 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                 //System.out.print(jugador1.obtenerPuntos());
                 this.mostrarCasillero(unidad);
                 if (jugador1.obtenerPuntos() == 0 && jugador2.obtenerPuntos() == 0){
+                    // PASA A PANTALLA DE JUGAR PORQUE AMBOS SE QUEDAN SIN PUNTOS
                     jugador1.asignarTurno(false);
                     jugador2.asignarTurno(true);
                     tableroVista.cambiarEstado();
+                    tableroVista.cambiarLabelTurno(jugador2.obtenerNombre());
+                    tableroVista.habilitarLadoTablero(1);
+                    tableroVista.habilitarLadoTablero(2);
                     System.out.println("Arranca con turno TRUE el JUGADOR 2.");
                     tableroVista.pantallaDeJuego(jugador2.obtenerNombre());
                 }
                 else if (jugador2.obtenerPuntos() == 0 || jugador1.obtenerPuntos() == 0) {
                     if (jugador1.obtenerPuntos() == 0) {
+                        // PASA TURNO A JUGADOR 2 Y NO VUELVE PORQUE JUGADOR 1 NO TIENE MÁS PUNTOS
                         System.out.println("Jugador 1 (perros) tiene 0 puntos y Jugador 2 (gatos) todavía tiene puntos.");
                         jugador1.asignarTurno(false);
                         jugador2.asignarTurno(true);
+                        tableroVista.cambiarLabelTurno(jugador2.obtenerNombre());
+                        tableroVista.deshabilitarLadoTablero(1);
+                        tableroVista.habilitarLadoTablero(2);
+                        tableroVista.deshabilitarBotonesUnidadDeJugador(1);
+                        tableroVista.habilitarBotonesUnidadDeJugador(2);
                     }
                     else {
-                        System.out.println("Jugador 2 (gatos) tiene 0 puntos y Jugador 1 (perros) todavía tiene puntos.");
+                        // SE QUEDA SELECCIONANDO EN JUGADOR 1 PORQUE JUGADOR 2 NO TIENE PUNTOS
+                        System.out.println("SE QUEDA SELECCIONANDO EN JUGADOR 1 PORQUE JUGADOR 2 NO TIENE PUNTOS");
                         jugador1.asignarTurno(true);
                         jugador2.asignarTurno(false);
+                        tableroVista.cambiarLabelTurno(jugador1.obtenerNombre());
+                        tableroVista.habilitarLadoTablero(1);
+                        tableroVista.deshabilitarLadoTablero(2);
+                        tableroVista.habilitarBotonesUnidadDeJugador(1);
+                        tableroVista.deshabilitarBotonesUnidadDeJugador(2);
                     }
                 } else {
+                    // PASA EL TURNO A JUGADOR 2 (AMBOS SIGUEN CON PUNTOS)
                     jugador1.asignarTurno(false);
                     jugador2.asignarTurno(true);
+                    tableroVista.cambiarLabelTurno(jugador2.obtenerNombre());
+                    tableroVista.deshabilitarLadoTablero(1);
+                    tableroVista.habilitarLadoTablero(2);
+                    tableroVista.deshabilitarBotonesUnidadDeJugador(1);
+                    tableroVista.habilitarBotonesUnidadDeJugador(2);
                 }
             }
-            else System.out.println("no la puede ubicar");
+            else {
+                System.out.println("no la puede ubicar");
+                tableroVista.cambiarLabelDeAccionDelTurno("El casillero está ocupado. Probá en otro!");
+            }
         } else {
             System.out.println("Es turno de JUGADOR 2.");
+            tableroVista.deshabilitarLadoTablero(1);
+            tableroVista.deshabilitarBotonesUnidadDeJugador(1);
             if (jugador2.ubicarUnidad(unidad, coordenada)){
                 labelPuntajeJugador2.setText("Puntaje jugador 2: " + jugador2.obtenerPuntos());
                 tableroVista.agregarUltimaUnidadComprada(null);
                 this.mostrarCasillero(unidad);
                 if (jugador1.obtenerPuntos() == 0 && jugador2.obtenerPuntos() == 0){
+                    // PASA A PANTALLA DE JUGAR PORQUE AMBOS SE QUEDAN SIN PUNTOS
                     jugador1.asignarTurno(false);
                     jugador2.asignarTurno(true);
                     tableroVista.cambiarEstado();
+                    tableroVista.cambiarLabelTurno(jugador2.obtenerNombre());
+                    tableroVista.habilitarLadoTablero(1);
+                    tableroVista.habilitarLadoTablero(2);
                     tableroVista.pantallaDeJuego(jugador2.obtenerNombre());
-
                 }
                 else if (jugador2.obtenerPuntos() == 0 || jugador1.obtenerPuntos() == 0) {
                     if (jugador1.obtenerPuntos() == 0){
+                        // SE QUEDA SELECCIONANDO EN JUGADOR 2 PORQUE JUGADOR 1 NO TIENE PUNTOS
                         jugador1.asignarTurno(false);
                         jugador2.asignarTurno(true);
+                        tableroVista.cambiarLabelTurno(jugador2.obtenerNombre());
+                        tableroVista.deshabilitarLadoTablero(1);
+                        tableroVista.habilitarLadoTablero(2);
+                        tableroVista.deshabilitarBotonesUnidadDeJugador(1);
+                        tableroVista.habilitarBotonesUnidadDeJugador(2);
                     }
                     else {
+                        // PASA TURNO A JUGADOR 1 Y NO VUELVE PORQUE JUGADOR 2 NO TIENE MÁS PUNTOS
                         jugador1.asignarTurno(true);
                         jugador2.asignarTurno(false);
+                        tableroVista.cambiarLabelTurno(jugador1.obtenerNombre());
+                        tableroVista.habilitarLadoTablero(1);
+                        tableroVista.deshabilitarLadoTablero(2);
+                        tableroVista.habilitarBotonesUnidadDeJugador(1);
+                        tableroVista.deshabilitarBotonesUnidadDeJugador(2);
                     }
                 }else {
+                    // PASA EL TURNO A JUGADOR 2 (AMBOS SIGUEN CON PUNTOS)
                     jugador1.asignarTurno(true);
                     jugador2.asignarTurno(false);
+                    tableroVista.cambiarLabelTurno(jugador1.obtenerNombre());
+                    tableroVista.habilitarLadoTablero(1);
+                    tableroVista.deshabilitarLadoTablero(2);
+                    tableroVista.habilitarBotonesUnidadDeJugador(1);
+                    tableroVista.deshabilitarBotonesUnidadDeJugador(2);
                 }
+            } else {
+                tableroVista.cambiarLabelDeAccionDelTurno("El casillero está ocupado. Probá en otro!");
             }
         }
         System.out.println("coord vertical: " + coordenada.obtenerVertical() + " coord horizontal: " + coordenada.obtenerHorizontal());

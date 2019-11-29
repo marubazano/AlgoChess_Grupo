@@ -38,7 +38,7 @@ public class HandlerBotonJugar implements EventHandler<ActionEvent> {
         Tablero tablero = new Tablero();
         Jugador jugador_1 = new Jugador(nombreJugador1.getText(), tablero, 1);
         Jugador jugador_2 = new Jugador(nombreJugador2.getText(), tablero, 2);
-        TableroVista tablerovista = new TableroVista(tablero, jugador_1, jugador_2, null, null);
+        TableroVista tablerovista = new TableroVista(tablero, jugador_1, jugador_2, null, null, null, null);
         VBox unidadesJugador1 = new VBox(); //CORREGIR ESPACIAMIENTO
         VBox unidadesJugador2 = new VBox(); //CORREGIR ESPACIAMIENTO
 

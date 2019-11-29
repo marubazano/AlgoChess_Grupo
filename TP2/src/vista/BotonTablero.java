@@ -4,12 +4,9 @@ import AlgoChess.Jugador;
 import Controlador.HandlerBotonTablero;
 import Tablero.Casillero;
 import Tablero.Coordenada;
-import Unidades.Unidad;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-
-import java.util.ArrayList;
 
 public class BotonTablero extends Button {
 

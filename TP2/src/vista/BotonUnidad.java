@@ -13,6 +13,7 @@ public class BotonUnidad extends Button{
 
     Image imagen;
     TableroVista tableroVista;
+    Unidad unidad;
 
     public BotonUnidad(String imagenRuta, Unidad unidad, Jugador jugador, Jugador OtroJugador, TableroVista tableroVista){
         super();
@@ -22,9 +23,14 @@ public class BotonUnidad extends Button{
         this.setGraphic(imageView);
         this.setAlignment(Pos.CENTER);
         this.tableroVista = tableroVista;
+        this.unidad = unidad;
         this.setOnMouseClicked(new HandlerBotonUnidad(unidad, jugador, OtroJugador, this, tableroVista));
       /*  this.setOnAction(MouseEvent ->{if (!jugador.tieneSuficientesPuntos(unidad)) {
             this.setDisable(true); //Si el jugador no tiene puntos suficientes no esta el boton
         }});*/
+    }
+
+    public Unidad obtenerUnidad() {
+        return this.unidad;
     }
 }

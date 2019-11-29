@@ -54,7 +54,7 @@ public class SeleccionDeUnidades {
     }
 
 
-    public void turnoJugador(Jugador jugador) {  //se llama para cada jugador en el handle de botonJugar
+    /*public void turnoJugador(Jugador jugador) {  //se llama para cada jugador en el handle de botonJugar
 
         if (jugador == this.jugador1) {
             desbloquearUnidadesJugador1();
@@ -83,7 +83,7 @@ public class SeleccionDeUnidades {
                 continue;
             }  //feo feo dudoso
         }
-    }
+    }*/
 
     public void bloquearUnidadesJugador2(){
         perroSoldado.setDisable(true);
@@ -113,7 +113,7 @@ public class SeleccionDeUnidades {
         gatoCatapulta.setDisable(false);
     }
 
-    public void estadoBotones(Jugador jugador){
+    /*public void estadoBotones(Jugador jugador){
         if (jugador.obtenerPuntos() < 5 ) {
            if(jugador == this.jugador1) perroCatapulta.setDisable(true);
            else gatoCatapulta.setDisable(true);
@@ -129,6 +129,40 @@ public class SeleccionDeUnidades {
         if (jugador.obtenerPuntos() < 1 ) {
             if(jugador == this.jugador1) perroSoldado.setDisable(true);
             else gatoSoldado.setDisable(true);
+        }
+    }*/
+
+    public void deshabilitarBotonesUnidadDeJugador(int nroJugador) {
+        if (nroJugador == 1) {
+            for (BotonUnidad boton : unidadesPosiblesJugador1()){
+                boton.setDisable(true);
+            }
+        } else {
+            for (BotonUnidad boton : unidadesPosiblesJugador2()){
+                boton.setDisable(true);
+            }
+        }
+    }
+
+    public void habilitarBotonesUnidadDeJugador(int nroJugador) {
+        if (nroJugador == 1) {
+            int puntosJugador1 = jugador1.obtenerPuntos();
+            for (BotonUnidad boton : unidadesPosiblesJugador1()){
+                if (boton.obtenerUnidad().obtenerCosto() <= puntosJugador1) {
+                    boton.setDisable(false);
+                } else {
+                    boton.setDisable(true);
+                }
+            }
+        } else {
+            int puntosJugador2 = jugador2.obtenerPuntos();
+            for (BotonUnidad boton : unidadesPosiblesJugador2()){
+                if (boton.obtenerUnidad().obtenerCosto() <= puntosJugador2) {
+                    boton.setDisable(false);
+                } else {
+                    boton.setDisable(true);
+                }
+            }
         }
     }
 

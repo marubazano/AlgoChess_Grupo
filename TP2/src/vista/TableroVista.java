@@ -32,20 +32,21 @@ public class TableroVista extends Group {
     Unidad unidadEsperando;
     BotonTablero botonTableroEsperando;
     Label turno;
-    Label labelDeAccion;
+    Label labelDeEstadoDeAccionDelTurno;
+    SeleccionDeUnidades seleccionDeUnidades;
     private ArrayList<Movible> batallon = new ArrayList<>();
-
     private boolean jugando = false;
-
     public GridPane tableroGui;
     private Stage stage;
-
     private CasilleroVista[][] casilleros;
 
-    public TableroVista(Tablero tablero, Jugador jugador1, Jugador jugador2, Label labelPuntajeJugador1, Label labelPuntajeJugador2){
+
+    public TableroVista(Tablero tablero, Jugador jugador1, Jugador jugador2, Label labelPuntajeJugador1, Label labelPuntajeJugador2, Label turno, Label estadoAccion){
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
         this.tablero = tablero;
+        this.turno = turno;
+        this.labelDeEstadoDeAccionDelTurno = estadoAccion;
         tableroGui = new GridPane();
         tableroGui.setGridLinesVisible(true);
         casilleros = new CasilleroVista[ancho][alto];
@@ -55,8 +56,8 @@ public class TableroVista extends Group {
                 Casillero casillero = tablero.obtenerCasillero(coordenada);
                 //casilleroVista.setStyle("-fx-background-color: white; -fx-border-color: black;");
                 BotonTablero boton = new BotonTablero(this, coordenada,jugador1, jugador2, labelPuntajeJugador1, labelPuntajeJugador2);
-                if (j >= 11) boton.setStyle("-fx-background-color: #79F1CC;");
-                if (j < 11)  boton.setStyle("-fx-background-color: #F99DB8;");
+                if (j >= 11) boton.setStyle("-fx-background-color: #79F1CC;"); // JUGADOR2
+                if (j < 11)  boton.setStyle("-fx-background-color: #F99DB8;"); // JUGADOR1
                 CasilleroVista casilleroVista = new CasilleroVista(casillero, jugador1, jugador2, boton);
                 casilleroVista.getChildren().add(boton);
                 casilleroVista.setPrefSize(33,33);
@@ -137,8 +138,8 @@ public class TableroVista extends Group {
         contenedorEstadosDeJuego.setAlignment(Pos.CENTER);
         this.turno = new Label("Es el turno del jugador: " + nombreJugadorInicial);
         turno.setStyle("-fx-font-size:20; -fx-text-fill:WHITE;");
-        this.labelDeAccion = new Label("Compienzan los gatos.");
-        contenedorEstadosDeJuego.getChildren().addAll(turno, labelDeAccion);
+        this.labelDeEstadoDeAccionDelTurno = new Label("Compienzan los gatos.");
+        contenedorEstadosDeJuego.getChildren().addAll(turno, labelDeEstadoDeAccionDelTurno);
         contenedorSuperior.getChildren().addAll(salir, contenedorEstadosDeJuego);
 
         HBox contenedorPrincipal = new HBox(20);                                      //VER ESPACIAMIENTO
@@ -199,10 +200,58 @@ public class TableroVista extends Group {
 
 
     public void cambiarLabelTurno(String nombreJugadorDeTurno) {
-        this.turno.setText("Es el turno del jugador: " + nombreJugadorDeTurno);
+        this.turno.setText("Es el turno del jugador: " + nombreJugadorDeTurno + ".");
+    }
+
+    public void cambiarLabelDeAccionDelTurno(String mensaje) {
+        this.labelDeEstadoDeAccionDelTurno.setText(mensaje);
     }
 
     public ArrayList<Movible> obtenerListaBatallon() {
         return batallon;
+    }
+
+    public void deshabilitarLadoTablero(int nroJugador) {
+        if (nroJugador == 1) {
+            for(int i = 1; i <= alto; i++) {
+                for (int j = 1; j <= (ancho / 2); j++) {
+                    casilleros[i-1][j-1].deshabilitarBoton();
+                }
+            }
+        } else {
+            for(int i = 1; i <= alto; i++) {
+                for (int j = (ancho / 2) + 1; j <= ancho; j++) {
+                    casilleros[i-1][j-1].deshabilitarBoton();
+                }
+            }
+        }
+    }
+
+    public void habilitarLadoTablero(int nroJugador) {
+        if (nroJugador == 1) {
+            for(int i = 1; i <= alto; i++) {
+                for (int j = 1; j <= (ancho / 2); j++) {
+                    casilleros[i-1][j-1].habilitarBoton();
+                }
+            }
+        } else {
+            for(int i = 1; i <= alto; i++) {
+                for (int j = (ancho / 2) + 1; j <= ancho; j++) {
+                    casilleros[i-1][j-1].habilitarBoton();
+                }
+            }
+        }
+    }
+
+    public void setearSeleccionDeUnidades(SeleccionDeUnidades seleccionDeUnidades) {
+        this.seleccionDeUnidades = seleccionDeUnidades;
+    }
+
+    public void deshabilitarBotonesUnidadDeJugador(int nroJugador) {
+        this.seleccionDeUnidades.deshabilitarBotonesUnidadDeJugador(nroJugador);
+    }
+
+    public void habilitarBotonesUnidadDeJugador(int nroJugador) {
+        this.seleccionDeUnidades.habilitarBotonesUnidadDeJugador(nroJugador);
     }
 }
