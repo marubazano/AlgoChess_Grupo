@@ -1,6 +1,5 @@
 package Tablero;
 
-import Controlador.Observable;
 import Excepciones.CasilleroInvalidoException;
 import Excepciones.CasilleroOcupadoException;
 import Unidades.Movible;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class Tablero extends Observable {
+public class Tablero {
     private static final int CANT_FILAS = 20;
     private static final int CANT_COLUMNAS = 20;
     protected HashMap<Coordenada, Casillero> tablero;
@@ -40,13 +39,12 @@ public class Tablero extends Observable {
     public void ubicarUnidad(Unidad unidad, Coordenada coordenada) throws CasilleroOcupadoException, CasilleroInvalidoException {
         try {
             obtenerCasillero(coordenada).ocuparCasilleroPorUnidad(unidad, coordenada);
-            notificarObservadores();
         } catch (NullPointerException e) {
             throw new CasilleroInvalidoException(e);
         }
     }
 
-    public void mover(Movible unidadMovible, Direccion direccion) {
+    public boolean mover(Movible unidadMovible, Direccion direccion) {
         //calcular la nueva Tablero.Coordenada
         Coordenada coordenadaActual = unidadMovible.obtenerCoordenada();
         try {
@@ -55,7 +53,7 @@ public class Tablero extends Observable {
             Casillero casilleroActual = obtenerCasillero(coordenadaActual);
             casilleroActual.vaciarCasillero();
             unidadMovible.mover(nuevaCoordenada);
-            notificarObservadores();
+            return true;
         }
         catch (CasilleroOcupadoException e) {
             e.getMensaje();
@@ -63,6 +61,7 @@ public class Tablero extends Observable {
         catch (CasilleroInvalidoException e) {
             e.getMensaje();
         }
+        return false;
     }
 
     public ArrayList<Unidad> obtenerUnidadesContiguas(Unidad unidad) {

@@ -194,14 +194,15 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                     tableroVista.cambiarLabelDeAccionDelTurno("No se puede mover la catapulta. Pruebe con otra acción!");
                     return;
                 } else {
-                    jugadorDeTurno.mover((Movible) tableroVista.obtenerUnidadEsperando(), Direccion.obtenerDireccionSegunCoordenadas(tableroVista.obtenerBotonTableroEsperando().obtenerCoordenada(), this.botonTablero.obtenerCoordenada()));
-                    tableroVista.cambiarLabelDeAccionDelTurno("Movió la unidad " + tableroVista.obtenerUnidadEsperando().getClass().getSimpleName());
-                    jugadorDeTurno.asignarTurno(false);
-                    jugadorSiguiente.asignarTurno(true);
-                    tableroVista.obtenerBotonTableroEsperando().setGraphic(null);
-                    botonTablero.mostrarCasillero(tableroVista.obtenerUnidadEsperando());
-                    tableroVista.cambiarUnidadEsperando(null, null);
-                    tableroVista.cambiarLabelTurno(jugadorSiguiente.obtenerNombre());
+                    if (jugadorDeTurno.mover((Movible) tableroVista.obtenerUnidadEsperando(), Direccion.obtenerDireccionSegunCoordenadas(tableroVista.obtenerBotonTableroEsperando().obtenerCoordenada(), this.botonTablero.obtenerCoordenada()))) {
+                        tableroVista.cambiarLabelDeAccionDelTurno("Movió la unidad " + tableroVista.obtenerUnidadEsperando().getClass().getSimpleName());
+                        jugadorDeTurno.asignarTurno(false);
+                        jugadorSiguiente.asignarTurno(true);
+                        tableroVista.obtenerBotonTableroEsperando().setGraphic(null);
+                        botonTablero.mostrarCasillero(tableroVista.obtenerUnidadEsperando());
+                        tableroVista.cambiarUnidadEsperando(null, null);
+                        tableroVista.cambiarLabelTurno(jugadorSiguiente.obtenerNombre());
+                    }
                     return;
                 }
             }

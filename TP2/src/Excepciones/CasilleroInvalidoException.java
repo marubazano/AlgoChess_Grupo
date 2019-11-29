@@ -1,7 +1,7 @@
 package Excepciones;
 
 public class CasilleroInvalidoException extends Exception {
-    private static final String mensaje = "El casillero al que queres ir esta fuera del tablero!";
+    private static final String mensaje = "El casillero al que queres ir es inválido!";
 
     public CasilleroInvalidoException(Exception ex){
         super(ex);

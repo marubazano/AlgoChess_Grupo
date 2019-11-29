@@ -63,7 +63,6 @@ public class BotonTablero extends Button {
                     unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/perro_catapulta.jpg"), 33, 33, false, false);
                 }
             }
-
             ImageView imageView = new ImageView(unidad);
             this.setGraphic(imageView);
         }
