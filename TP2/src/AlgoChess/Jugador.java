@@ -18,7 +18,7 @@ public class Jugador {
         this.nombre = nombre;
         this.unidades = new ArrayList<>();
         this.tablero = tablero;
-        this.puntos = 20;
+        this.puntos = 10;
         this.nroJugador = nroJugador;
         this.estado = "JUGANDO";
     }
