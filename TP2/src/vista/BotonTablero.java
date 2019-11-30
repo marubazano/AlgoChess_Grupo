@@ -40,27 +40,27 @@ public class BotonTablero extends Button {
         if(miUnidad != null) {
             if (miUnidad instanceof SoldadoDeInfanteria) {
                 if (jugador2.obtenerListaUnidades().contains(miUnidad)) {
-                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/gato_soldado.jpg"), 33, 33, false, false);
+                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/gato_soldado.jpg"), 70, 70, false, false);
                 } else {
-                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/perro_soldado.jpg"), 33, 33, false, false);
+                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/perro_soldado.jpg"), 70, 70, false, false);
                 }
             } else if (miUnidad instanceof Curandero) {
                 if (jugador2.obtenerListaUnidades().contains(miUnidad)) {
-                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/gato_curandero.jpg"), 33, 33, false, false);
+                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/gato_curandero.jpg"), 70, 70, false, false);
                 } else {
-                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/perro_curandero.jpg"), 33, 33, false, false);
+                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/perro_curandero.jpg"), 70, 70, false, false);
                 }
             } else if (miUnidad instanceof Jinete) {
                 if (jugador2.obtenerListaUnidades().contains(miUnidad)) {
-                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/gato_jinete.jpg"), 33, 33, false, false);
+                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/gato_jinete.jpg"), 70, 70, false, false);
                 } else {
-                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/perro_jinete.jpg"), 33, 33, false, false);
+                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/perro_jinete.jpg"), 70, 70, false, false);
                 }
             } else {
                 if (jugador2.obtenerListaUnidades().contains(miUnidad)) {
-                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/gato_catapulta.jpg"), 33, 33, false, false);
+                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/gato_catapulta.jpg"), 70, 70, false, false);
                 } else {
-                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/perro_catapulta.jpg"), 33, 33, false, false);
+                    unidad = new Image(getClass().getResourceAsStream("/vista/imagenes/perro_catapulta.jpg"), 70, 70, false, false);
                 }
             }
             ImageView imageView = new ImageView(unidad);
