@@ -56,7 +56,7 @@ public class TableroVista extends Group {
                 if (j < 6)  boton.setStyle("-fx-background-color: #F99DB8;"); // JUGADOR1
                 CasilleroVista casilleroVista = new CasilleroVista(boton);
                 casilleroVista.getChildren().add(boton);
-                casilleroVista.setPrefSize(70,70);
+                casilleroVista.setPrefSize(60,60);
                 tableroGui.add(casilleroVista, i, j);
                 this.casilleros[i-1][j-1] = casilleroVista;
             }

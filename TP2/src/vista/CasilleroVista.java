@@ -9,7 +9,7 @@ public class CasilleroVista extends Pane {
 
     public CasilleroVista (Button boton) {
         this.buton = boton;
-        this.buton.setPrefSize(70,70);
+        this.buton.setPrefSize(60,60);
     }
 
     public void deshabilitarBoton() {
