@@ -65,7 +65,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
             tableroVista.deshabilitarLadoTablero(2);
             tableroVista.deshabilitarBotonesUnidadDeJugador(2);
             if (jugador1.ubicarUnidad(unidad, botonTablero.obtenerCoordenada())){
-                labelPuntajeJugador1.setText("Puntaje " + jugador1.obtenerNombre() + ": " + jugador1.obtenerPuntos());
+                labelPuntajeJugador1.setText("Puntaje restante " + jugador1.obtenerNombre() + ": " + jugador1.obtenerPuntos());
                 tableroVista.agregarUltimaUnidadComprada(null);
                 botonTablero.mostrarCasillero(unidad);
                 if (jugador1.obtenerPuntos() == 0 && jugador2.obtenerPuntos() == 0){
@@ -119,7 +119,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
             tableroVista.deshabilitarLadoTablero(1);
             tableroVista.deshabilitarBotonesUnidadDeJugador(1);
             if (jugador2.ubicarUnidad(unidad,  botonTablero.obtenerCoordenada())){
-                labelPuntajeJugador2.setText("Puntaje " + jugador2.obtenerNombre() + ": " + jugador2.obtenerPuntos());
+                labelPuntajeJugador2.setText("Puntaje restante  " + jugador2.obtenerNombre() + ": " + jugador2.obtenerPuntos());
                 tableroVista.agregarUltimaUnidadComprada(null);
                 botonTablero.mostrarCasillero(unidad);
                 if (jugador1.obtenerPuntos() == 0 && jugador2.obtenerPuntos() == 0){
@@ -177,6 +177,11 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
         if (tableroVista.obtenerUnidadEsperando() == null) {
             // PRIMER CLIC JUGADOR
             if (!jugadorDeTurno.obtenerListaUnidades().contains(unidadActual) && unidadActual != null) {
+                Alert cartelUnidadInvalida = new Alert(Alert.AlertType.INFORMATION);
+                cartelUnidadInvalida.setTitle("Accion invalida");
+                cartelUnidadInvalida.setContentText("Estas tratando de mover una pieza que no es tuya, elegi otro");
+                cartelUnidadInvalida.initStyle(StageStyle.UNDECORATED);
+                cartelUnidadInvalida.showAndWait();
                 tableroVista.cambiarLabelDeAccionDelTurno("Está tratando de mover una pieza que no es tuya. Pruebe con otra!");
                 return;
             } else if (unidadActual != null) {
@@ -185,6 +190,11 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                 return;
             } else if (unidadActual == null) {
                 //NO HACE NADA
+                Alert cartelCasilleroVacio = new Alert(Alert.AlertType.INFORMATION);
+                cartelCasilleroVacio.setTitle("Accion invalida");
+                cartelCasilleroVacio.setContentText("Apretaste un casillero vacio, elegi otro");
+                cartelCasilleroVacio.initStyle(StageStyle.UNDECORATED);
+                cartelCasilleroVacio.showAndWait();
                 tableroVista.cambiarLabelDeAccionDelTurno("Apretó un casillero vacío y eso no hace nada. Pruebe con otro!");
                 return;
             }
@@ -196,6 +206,11 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                 if (tableroVista.obtenerUnidadEsperando() instanceof Catapulta) {
                     // NO HACE NADA, NO SE MUEVE
                     tableroVista.cambiarUnidadEsperando(null, null);
+                    Alert cartelCatapulta = new Alert(Alert.AlertType.INFORMATION);
+                    cartelCatapulta.setTitle("Accion invalida");
+                    cartelCatapulta.setContentText("No podes mover una catapulta, elegi otra unidad");
+                    cartelCatapulta.initStyle(StageStyle.UNDECORATED);
+                    cartelCatapulta.showAndWait();
                     tableroVista.cambiarLabelDeAccionDelTurno("No se puede mover la catapulta. Pruebe con otra acción!");
                     return;
                 } else {

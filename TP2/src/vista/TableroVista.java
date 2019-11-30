@@ -9,12 +9,14 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.util.ArrayList;
 
@@ -156,6 +158,13 @@ public class TableroVista extends Group {
         contenedorPrincipal.getChildren().addAll(izquierda, contenedorTableroVista, derecha);
         canvas.getChildren().addAll(contenedorSuperior, contenedorPrincipal);
         stackPane.getChildren().add(canvas);
+
+        Alert cartel = new Alert(Alert.AlertType.INFORMATION);
+        cartel.setTitle("Comienza el juego");
+        cartel.setContentText("Los jugadores ya seleccionaron sus unidades! Comienza el juego!");
+        cartel.initStyle(StageStyle.UNDECORATED);
+        cartel.showAndWait();
+
         stage.setScene(new Scene(stackPane));
     }
 

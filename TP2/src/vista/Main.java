@@ -114,9 +114,9 @@ public class Main extends Application {
         estadoAccionDelTurno.setStyle("-fx-text-fill:WHITE;");
         contenedorSuperior.getChildren().addAll(salir, turno, estadoAccionDelTurno);
 
-        Label puntajeJugador1 = new Label("Puntaje " + jugador1.obtenerNombre() + ": " + jugador1.obtenerPuntos());
+        Label puntajeJugador1 = new Label("Puntaje restante " + jugador1.obtenerNombre() + ": " + jugador1.obtenerPuntos());
         puntajeJugador1.setStyle("-fx-text-fill:WHITE;");
-        Label puntajeJugador2 = new Label("Puntaje " + jugador2.obtenerNombre() + ": " + jugador2.obtenerPuntos());
+        Label puntajeJugador2 = new Label("Puntaje restante " + jugador2.obtenerNombre() + ": " + jugador2.obtenerPuntos());
         puntajeJugador2.setStyle("-fx-text-fill:WHITE;");
 
         HBox contenedorPrincipal = new HBox(20);                                      //VER ESPACIAMIENTO
