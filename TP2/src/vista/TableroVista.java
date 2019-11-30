@@ -20,8 +20,8 @@ import java.util.ArrayList;
 
 
 public class TableroVista extends Group {
-    public static final int ancho = 20;
-    public static final int alto = 20;
+    public static final int ancho = 10;
+    public static final int alto = 10;
     Tablero tablero;
     Unidad ultimaComprada;
     StackPane principal;
@@ -52,11 +52,11 @@ public class TableroVista extends Group {
             for(int j = 1; j <= ancho; j++) {
                 Coordenada coordenada = new Coordenada(i, j);
                 BotonTablero boton = new BotonTablero(this, coordenada,jugador1, jugador2, labelPuntajeJugador1, labelPuntajeJugador2);
-                if (j >= 11) boton.setStyle("-fx-background-color: #79F1CC;"); // JUGADOR2
-                if (j < 11)  boton.setStyle("-fx-background-color: #F99DB8;"); // JUGADOR1
+                if (j >= 6) boton.setStyle("-fx-background-color: #79F1CC;"); // JUGADOR2
+                if (j < 6)  boton.setStyle("-fx-background-color: #F99DB8;"); // JUGADOR1
                 CasilleroVista casilleroVista = new CasilleroVista(boton);
                 casilleroVista.getChildren().add(boton);
-                casilleroVista.setPrefSize(33,33);
+                casilleroVista.setPrefSize(70,70);
                 tableroGui.add(casilleroVista, i, j);
                 this.casilleros[i-1][j-1] = casilleroVista;
             }

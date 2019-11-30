@@ -81,10 +81,10 @@ public class Jugador {
 
     public boolean estaEnLadoDelTableroCorrespondiente(Coordenada coordenada) {
         if (this.nroJugador == 1) {
-            if (coordenada.obtenerVertical() <= 10) return true;
+            if (coordenada.obtenerVertical() <= 5) return true;
             return false;
         }
-        if (coordenada.obtenerVertical() > 10) return true;
+        if (coordenada.obtenerVertical() > 5) return true;
         return false;
     }
 

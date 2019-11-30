@@ -10,8 +10,8 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public class Tablero {
-    private static final int CANT_FILAS = 20;
-    private static final int CANT_COLUMNAS = 20;
+    private static final int CANT_FILAS = 10;
+    private static final int CANT_COLUMNAS = 10;
     protected HashMap<Coordenada, Casillero> tablero;
 
     public Tablero() {
