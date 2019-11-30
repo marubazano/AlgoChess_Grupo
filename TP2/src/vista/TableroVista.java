@@ -48,8 +48,8 @@ public class TableroVista extends Group {
         tableroGui = new GridPane();
         tableroGui.setGridLinesVisible(true);
         casilleros = new CasilleroVista[ancho][alto];
-        for(int i = 1; i <= alto; i++) {
-            for(int j = 1; j <= ancho; j++) {
+        for (int i = 1; i <= alto; i++) {
+            for (int j = 1; j <= ancho; j++) {
                 Coordenada coordenada = new Coordenada(i, j);
                 BotonTablero boton = new BotonTablero(this, coordenada,jugador1, jugador2, labelPuntajeJugador1, labelPuntajeJugador2);
                 if (j >= 6) boton.setStyle("-fx-background-color: #79F1CC;"); // JUGADOR2
@@ -57,7 +57,7 @@ public class TableroVista extends Group {
                 CasilleroVista casilleroVista = new CasilleroVista(boton);
                 casilleroVista.getChildren().add(boton);
                 casilleroVista.setPrefSize(60,60);
-                tableroGui.add(casilleroVista, i, j);
+                tableroGui.add(casilleroVista, j-1, i-1);
                 this.casilleros[i-1][j-1] = casilleroVista;
             }
         }

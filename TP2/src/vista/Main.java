@@ -17,9 +17,6 @@ import javafx.stage.Stage;
 public class Main extends Application {
     Stage stage;
     MediaPlayer mediaPlayer;
-    //TableroVista tableroVista;                            SE CREA EN MenuSeleccionDeUnidades
-    Label turno;
-    Label estadoAccionDelTurno; // AVISA SI HACE ALGÚN MOVIMIENTO MAL
 
     public static void main(String[] args){
         launch(args);
@@ -91,8 +88,7 @@ public class Main extends Application {
         canvas.getChildren().add(contenedorBotonSalir);
         BotonJugar jugar = new BotonJugar(contenedorPrincipal, nombreJugador1, nombreJugador2);
         jugar.setOnAction(actionEvent -> {
-            Tablero tablero = new Tablero();
-            stage.setScene(MenuSeleccionDeUnidades(tablero, new Jugador(nombreJugador1.getText(), tablero, 1), new Jugador(nombreJugador2.getText(), tablero, 2)));
+            stage.setScene(MenuSeleccionDeUnidades(nombreJugador1.getText(), nombreJugador2.getText()));
         });
         panelNombreJugadores.getChildren().addAll(nombreJugador1, nombreJugador2, jugar);
         contenedorPrincipal.getChildren().add(panelNombreJugadores);
@@ -101,18 +97,22 @@ public class Main extends Application {
         return new Scene(stackPane);
     }
 
-    public Scene MenuSeleccionDeUnidades(Tablero tablero, Jugador jugador1, Jugador jugador2) {
+    public Scene MenuSeleccionDeUnidades(String nombreJugador1, String nombreJugador2) {
+        Tablero tablero = new Tablero();
+        Jugador jugador1 = new Jugador(nombreJugador1, tablero, 1);
+        Jugador jugador2 = new Jugador(nombreJugador2, tablero, 2);
+
         StackPane stackPane = principal();
         VBox canvas = new VBox();
 
         HBox contenedorSuperior = new HBox(10);
         contenedorSuperior.setAlignment(Pos.CENTER_LEFT);
         BotonSalir salir = new BotonSalir();
-        this.turno = new Label("Es turno de jugador: " + jugador1.obtenerNombre() + ".");
+        Label turno = new Label("Es turno de jugador: " + jugador1.obtenerNombre() + ".");
         turno.setStyle("-fx-text-fill:WHITE;");
-        this.estadoAccionDelTurno = new Label("Jugador1 seleccione unidad.");
+        Label estadoAccionDelTurno = new Label("Jugador1 seleccione unidad.");
         estadoAccionDelTurno.setStyle("-fx-text-fill:WHITE;");
-        contenedorSuperior.getChildren().addAll(salir, this.turno, this.estadoAccionDelTurno);
+        contenedorSuperior.getChildren().addAll(salir, turno, estadoAccionDelTurno);
 
         Label puntajeJugador1 = new Label("Puntaje " + jugador1.obtenerNombre() + ": " + jugador1.obtenerPuntos());
         puntajeJugador1.setStyle("-fx-text-fill:WHITE;");
@@ -122,7 +122,7 @@ public class Main extends Application {
         HBox contenedorPrincipal = new HBox(20);                                      //VER ESPACIAMIENTO
         contenedorPrincipal.setMinHeight(700);
         contenedorPrincipal.setAlignment(Pos.CENTER);
-        TableroVista tableroVista = new TableroVista(tablero, jugador1, jugador2, puntajeJugador1, puntajeJugador2, this.turno, this.estadoAccionDelTurno);
+        TableroVista tableroVista = new TableroVista(tablero, jugador1, jugador2, puntajeJugador1, puntajeJugador2, turno, estadoAccionDelTurno);
         tableroVista.deshabilitarLadoTablero(2);
         tableroVista.setearStage(this.stage, principal());
 

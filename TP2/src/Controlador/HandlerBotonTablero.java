@@ -114,7 +114,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
             tableroVista.deshabilitarLadoTablero(1);
             tableroVista.deshabilitarBotonesUnidadDeJugador(1);
             if (jugador2.ubicarUnidad(unidad,  botonTablero.obtenerCoordenada())){
-                labelPuntajeJugador2.setText("Puntaje jugador " + jugador2.obtenerNombre() + ": " + jugador2.obtenerPuntos());
+                labelPuntajeJugador2.setText("Puntaje " + jugador2.obtenerNombre() + ": " + jugador2.obtenerPuntos());
                 tableroVista.agregarUltimaUnidadComprada(null);
                 botonTablero.mostrarCasillero(unidad);
                 if (jugador1.obtenerPuntos() == 0 && jugador2.obtenerPuntos() == 0){
@@ -171,7 +171,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
         Unidad unidadActual = tablero.obtenerCasillero(botonTablero.obtenerCoordenada()).obtenerUnidad();
         if (tableroVista.obtenerUnidadEsperando() == null) {
             // PRIMER CLIC JUGADOR
-            if (!jugadorDeTurno.obtenerListaUnidades().contains(unidadActual)) {
+            if (!jugadorDeTurno.obtenerListaUnidades().contains(unidadActual) && unidadActual != null) {
                 tableroVista.cambiarLabelDeAccionDelTurno("Está tratando de mover una pieza que no es tuya. Pruebe con otra!");
                 return;
             } else if (unidadActual != null) {
@@ -194,15 +194,14 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                     tableroVista.cambiarLabelDeAccionDelTurno("No se puede mover la catapulta. Pruebe con otra acción!");
                     return;
                 } else {
-                    if (jugadorDeTurno.mover((Movible) tableroVista.obtenerUnidadEsperando(), Direccion.obtenerDireccionSegunCoordenadas(tableroVista.obtenerBotonTableroEsperando().obtenerCoordenada(), this.botonTablero.obtenerCoordenada()))) {
-                        tableroVista.cambiarLabelDeAccionDelTurno("Movió la unidad " + tableroVista.obtenerUnidadEsperando().getClass().getSimpleName());
-                        jugadorDeTurno.asignarTurno(false);
-                        jugadorSiguiente.asignarTurno(true);
-                        tableroVista.obtenerBotonTableroEsperando().setGraphic(null);
-                        botonTablero.mostrarCasillero(tableroVista.obtenerUnidadEsperando());
-                        tableroVista.cambiarUnidadEsperando(null, null);
-                        tableroVista.cambiarLabelTurno(jugadorSiguiente.obtenerNombre());
-                    }
+                    jugadorDeTurno.mover((Movible) tableroVista.obtenerUnidadEsperando(), Direccion.obtenerDireccionSegunCoordenadas(tableroVista.obtenerBotonTableroEsperando().obtenerCoordenada(), this.botonTablero.obtenerCoordenada()));
+                    tableroVista.cambiarLabelDeAccionDelTurno("Movió la unidad " + tableroVista.obtenerUnidadEsperando().getClass().getSimpleName());
+                    jugadorDeTurno.asignarTurno(false);
+                    jugadorSiguiente.asignarTurno(true);
+                    tableroVista.obtenerBotonTableroEsperando().setGraphic(null);
+                    botonTablero.mostrarCasillero(tableroVista.obtenerUnidadEsperando());
+                    tableroVista.cambiarUnidadEsperando(null, null);
+                    tableroVista.cambiarLabelTurno(jugadorSiguiente.obtenerNombre());
                     return;
                 }
             }

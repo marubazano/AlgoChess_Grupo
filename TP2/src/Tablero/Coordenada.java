@@ -12,16 +12,11 @@ public class Coordenada {
     }
 
     public Coordenada desplazar(Direccion direccion) {
-        try {
-            Coordenada dir = direccion.obtenerDireccion();
-            int horizontal = this.x + dir.obtenerHorizontal();
-            int vertical = this.y + dir.obtenerVertical();
-            Coordenada nueva = new Coordenada(horizontal, vertical);
-            return nueva;
-        }
-        catch (NullPointerException e){
-        }
-        return new Coordenada(0,0);
+        Coordenada dir = direccion.obtenerDireccion();
+        int horizontal = this.x + dir.obtenerHorizontal();
+        int vertical = this.y + dir.obtenerVertical();
+        Coordenada nueva = new Coordenada(horizontal, vertical);
+        return nueva;
     }
 
     public int obtenerHorizontal(){

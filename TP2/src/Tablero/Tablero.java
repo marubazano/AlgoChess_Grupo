@@ -49,6 +49,10 @@ public class Tablero {
         Coordenada coordenadaActual = unidadMovible.obtenerCoordenada();
         try {
             Coordenada nuevaCoordenada = coordenadaActual.desplazar(direccion);
+            if(nuevaCoordenada.compararCoordenada(new Coordenada(0,0))) {
+                System.out.println("Entra a desplaza en 0,0");
+                return false;
+            }
             ubicarUnidad(unidadMovible, nuevaCoordenada);
             Casillero casilleroActual = obtenerCasillero(coordenadaActual);
             casilleroActual.vaciarCasillero();
