@@ -1,15 +1,20 @@
 package Controlador;
 
 import AlgoChess.Jugador;
+import Excepciones.AccionInvalidaException;
 import Tablero.Direccion;
 import Tablero.Tablero;
 import Unidades.Catapulta;
 import Unidades.Movible;
 import Unidades.Unidad;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.StageStyle;
 import vista.BotonTablero;
 import vista.TableroVista;
 
@@ -207,11 +212,12 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
             }
             else{
                 // SI ENTRA ACÁ ES PORQUE VA A REALIZAR ACCIÓN SOBRE unidadActual (!= null)
-                /*try {
+                try {
                     jugadorDeTurno.realizarAccionDeUnidad(tableroVista.obtenerUnidadEsperando(), unidadActual,jugadorSiguiente);
                     tableroVista.cambiarLabelDeAccionDelTurno("Atacó a la unidad " + unidadActual.getClass().getSimpleName());
                     if (unidadActual.obtenerVida() <= 0){
-                        this.botonTablero.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/vista/imagenes/muerte.jpg"), 33, 33, false, false)));
+                        Image imagen =  new Image(getClass().getResourceAsStream("/vista/imagenes/muerte.jpg"), 33, 33, false, false);
+                        this.botonTablero.setGraphic(new ImageView(imagen));
                         this.botonTablero.setDisable(true);
                     }
                     jugadorDeTurno.asignarTurno(false);
@@ -220,9 +226,28 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                     tableroVista.cambiarLabelTurno(jugadorSiguiente.obtenerNombre());
                 } catch (AccionInvalidaException e) {
                     e.getMensaje();
-                }*/
+                }
             }
         }
+
+        if (this.jugador1.obtenerCantidadUnidades() == 0){
+            Alert cartel = new Alert(Alert.AlertType.INFORMATION);
+            cartel.setTitle("Fin del juego");
+            cartel.setContentText("SE ACABO EL JUEGO! EL GANADOR ES: "+jugador1.obtenerNombre());
+            cartel.initStyle(StageStyle.UNDECORATED);
+            cartel.showAndWait();
+            System.exit(0);
+        }
+        else if (this.jugador2.obtenerCantidadUnidades() == 0){
+            Alert cartel = new Alert(Alert.AlertType.INFORMATION);
+            cartel.setTitle("Fin del juego");
+            cartel.setContentText("SE ACABO EL JUEGO! EL GANADOR ES: "+jugador2.obtenerNombre());
+            cartel.initStyle(StageStyle.UNDECORATED);
+            cartel.showAndWait();
+            System.exit(0);
+        }
+
+
     }
 
     /*private void handleBatallon()  {
