@@ -179,7 +179,7 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
             if (!jugadorDeTurno.obtenerListaUnidades().contains(unidadActual) && unidadActual != null) {
                 Alert cartelUnidadInvalida = new Alert(Alert.AlertType.INFORMATION);
                 cartelUnidadInvalida.setTitle("Accion invalida");
-                cartelUnidadInvalida.setContentText("Estas tratando de mover una pieza que no es tuya, elegi otro");
+                cartelUnidadInvalida.setContentText("Estas tratando de usar una pieza que no es tuya, elegi otra");
                 cartelUnidadInvalida.initStyle(StageStyle.UNDECORATED);
                 cartelUnidadInvalida.showAndWait();
                 tableroVista.cambiarLabelDeAccionDelTurno("Está tratando de mover una pieza que no es tuya. Pruebe con otra!");
@@ -214,14 +214,23 @@ public class HandlerBotonTablero implements EventHandler<MouseEvent> {
                     tableroVista.cambiarLabelDeAccionDelTurno("No se puede mover la catapulta. Pruebe con otra acción!");
                     return;
                 } else {
-                    jugadorDeTurno.mover((Movible) tableroVista.obtenerUnidadEsperando(), Direccion.obtenerDireccionSegunCoordenadas(tableroVista.obtenerBotonTableroEsperando().obtenerCoordenada(), this.botonTablero.obtenerCoordenada()));
-                    tableroVista.cambiarLabelDeAccionDelTurno("Movió la unidad " + tableroVista.obtenerUnidadEsperando().getClass().getSimpleName());
-                    jugadorDeTurno.asignarTurno(false);
-                    jugadorSiguiente.asignarTurno(true);
-                    tableroVista.obtenerBotonTableroEsperando().setGraphic(null);
-                    botonTablero.mostrarCasillero(tableroVista.obtenerUnidadEsperando());
-                    tableroVista.cambiarUnidadEsperando(null, null);
-                    tableroVista.cambiarLabelTurno(jugadorSiguiente.obtenerNombre());
+                    try {
+                        jugadorDeTurno.mover((Movible) tableroVista.obtenerUnidadEsperando(), Direccion.obtenerDireccionSegunCoordenadas(tableroVista.obtenerBotonTableroEsperando().obtenerCoordenada(), this.botonTablero.obtenerCoordenada()));
+                        tableroVista.cambiarLabelDeAccionDelTurno("Movió la unidad " + tableroVista.obtenerUnidadEsperando().getClass().getSimpleName());
+                        jugadorDeTurno.asignarTurno(false);
+                        jugadorSiguiente.asignarTurno(true);
+                        tableroVista.obtenerBotonTableroEsperando().setGraphic(null);
+                        botonTablero.mostrarCasillero(tableroVista.obtenerUnidadEsperando());
+                        tableroVista.cambiarUnidadEsperando(null, null);
+                        tableroVista.cambiarLabelTurno(jugadorSiguiente.obtenerNombre());
+                    }catch (NullPointerException e){
+                        Alert cartel = new Alert(Alert.AlertType.INFORMATION);
+                        cartel.setTitle("Accion invalida");
+                        cartel.setContentText("Las unidades solo pueden moverse a un casillero de distancia");
+                        cartel.initStyle(StageStyle.UNDECORATED);
+                        cartel.showAndWait();
+                        tableroVista.cambiarLabelDeAccionDelTurno("Solo podes mover de a un casillero!");
+                    }
                     return;
                 }
             }
