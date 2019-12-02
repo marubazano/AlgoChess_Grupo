@@ -17,13 +17,41 @@
 
     <!-- Agrego tag de build para cambiar el directorio de tests y src -->
     <build>
-         <plugins>
-              <plugin>
-                   <groupId>org.apache.maven.plugins</groupId>
-                   <artifactId>maven-compiler-plugin</artifactId>
-                   <version>3.8.0</version>
-              </plugin>
-          </plugins>
+		<plugins>
+			 <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<release>11</release>
+				</configuration>
+			</plugin>
+			
+			  <plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+				  <descriptorRefs>
+					<descriptorRef>jar-with-dependencies</descriptorRef>
+				  </descriptorRefs>
+				  <archive>
+					  <manifest>
+					  <mainClass>vista.AlgoChess</mainClass>
+					  </manifest>
+				  </archive>
+				</configuration>
+				<executions>
+				  <execution>
+					<id>make-assembly</id> <!-- this is used for inheritance merges -->
+					<phase>package</phase> <!-- bind to the packaging phase -->
+					<goals>
+					  <goal>single</goal>
+					</goals>
+				  </execution>
+				</executions>
+			</plugin>
+			
+		 </plugins>
         <directory>target</directory>
         <outputDirectory>target/classes</outputDirectory>
         <finalName>${project.artifactId}-${project.version}</finalName>
@@ -51,13 +79,13 @@
             <scope>test</scope>
         </dependency>
 
-         <dependency>
+        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>11</version>
         </dependency>
 		
-	<dependency>
+		<dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>11</version>
@@ -70,5 +98,4 @@
 	</dependency>
 
     </dependencies>
-    
 </project>
