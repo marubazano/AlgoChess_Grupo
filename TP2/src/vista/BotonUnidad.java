@@ -1,7 +1,7 @@
 package vista;
 
-import AlgoChess.Jugador;
-import Controlador.HandlerBotonUnidad;
+import Excepciones.PuntosInsuficientesException;
+import Jugador.Jugador;
 import Unidades.Unidad;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -12,22 +12,32 @@ import javafx.scene.image.ImageView;
 public class BotonUnidad extends Button{
 
     Image imagen;
-    TableroVista tableroVista;
     Unidad unidad;
 
-    public BotonUnidad(String imagenRuta, Unidad unidad, Jugador jugador, Jugador OtroJugador, TableroVista tableroVista){
+    public BotonUnidad(String imagenRuta, String stringUnidad, Jugador jugadorDeTurno, Jugador jugadorSiguiente, SeleccionDeUnidades seleccionDeUnidades){
         super();
+        this.unidad = Unidad.factoryUnidad(stringUnidad);
         this.setPrefSize(100,100);
         imagen = new Image(getClass().getResourceAsStream(imagenRuta), 100, 100, false, false);
         ImageView imageView = new ImageView(imagen);
         this.setGraphic(imageView);
         this.setAlignment(Pos.CENTER);
-        this.tableroVista = tableroVista;
-        this.unidad = unidad;
-        this.setOnMouseClicked(new HandlerBotonUnidad(unidad, jugador, OtroJugador, this, tableroVista));
-      /*  this.setOnAction(MouseEvent ->{if (!jugador.tieneSuficientesPuntos(unidad)) {
-            this.setDisable(true); //Si el jugador no tiene puntos suficientes no esta el boton
-        }});*/
+        this.setOnAction(MouseEvent -> {
+            try {
+                Unidad unidadAComprar = Unidad.factoryUnidad(stringUnidad);
+                jugadorDeTurno.comprar(unidadAComprar);
+                System.out.println("Compró la unidad");
+                seleccionDeUnidades.cambiarUltimaUnidadComprada(unidadAComprar);
+                seleccionDeUnidades.cambiarLabelEstadoDeJuego("Ubique la unidad " + unidadAComprar.getClass().getSimpleName());
+                seleccionDeUnidades.cambiarLabelPuntajeJugador(jugadorDeTurno);
+                seleccionDeUnidades.deshabilitarBotonesUnidadDeJugador(jugadorDeTurno);
+                seleccionDeUnidades.deshabilitarBotonesUnidadDeJugador(jugadorSiguiente);
+
+            } catch (PuntosInsuficientesException e) {
+                // LA IDEA ES QUE NUNCA LLEGUE ACÁ PORQUE SE BLOQUEAN LOS BOTONES
+                e.getMensaje();
+            }
+        });
     }
 
     public Unidad obtenerUnidad() {

@@ -25,18 +25,20 @@ public class Jinete extends Movible {
 
     @Override
     public void realizarAccion(Unidad unidadEnemiga, Tablero tablero, ArrayList<Unidad> unidadesAliadas) throws AccionInvalidaException {
-        Coordenada coordenadaEnemiga = unidadEnemiga.obtenerCoordenada();
-        Coordenada coordenadaJinete = this.obtenerCoordenada();
-        Distancia distancia = coordenadaJinete.calcularDistacia(coordenadaEnemiga);
-        ArrayList<Unidad> unidadesTablero = tablero.obtenerUnidades();
-        ArrayList<Unidad> enemigas = obtenerUnidadesEnemigas(unidadesTablero, unidadesAliadas);
-        if ((haySoldadoAliadoCerca(unidadesAliadas) || !hayEnemigosCerca(enemigas)) && (distancia == Distancia.MEDIANA)) {
-            unidadEnemiga.recibirDanio(armaSegunDistancia(distancia), tablero);
-        }
-        else if ((hayEnemigosCerca(enemigas) && !hayAliadoCerca(unidadesAliadas)) && distancia == Distancia.CERCANA) {
-            unidadEnemiga.recibirDanio(armaSegunDistancia(distancia), tablero );
-        }
-        else {
+        if (!unidadesAliadas.contains(unidadEnemiga)) {
+            Coordenada coordenadaEnemiga = unidadEnemiga.obtenerCoordenada();
+            Coordenada coordenadaJinete = this.obtenerCoordenada();
+            Distancia distancia = coordenadaJinete.calcularDistacia(coordenadaEnemiga);
+            ArrayList<Unidad> unidadesTablero = tablero.obtenerUnidades();
+            ArrayList<Unidad> enemigas = obtenerUnidadesEnemigas(unidadesTablero, unidadesAliadas);
+            if ((haySoldadoAliadoCerca(unidadesAliadas) || !hayEnemigosCerca(enemigas)) && (distancia == Distancia.MEDIANA)) {
+                unidadEnemiga.recibirDanio(armaSegunDistancia(distancia));
+            } else if ((hayEnemigosCerca(enemigas) && !hayAliadoCerca(unidadesAliadas)) && distancia == Distancia.CERCANA) {
+                unidadEnemiga.recibirDanio(armaSegunDistancia(distancia));
+            } else {
+                throw new AccionInvalidaException();
+            }
+        } else {
             throw new AccionInvalidaException();
         }
     }

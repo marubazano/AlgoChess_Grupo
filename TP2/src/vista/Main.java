@@ -1,7 +1,8 @@
 package vista;
 
 
-import AlgoChess.Jugador;
+import Controlador.ControladorPrincipal;
+import Jugador.Jugador;
 import Tablero.Tablero;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -16,7 +17,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     Stage stage;
-    MediaPlayer mediaPlayer;
 
     public static void main(String[] args){
         launch(args);
@@ -24,175 +24,23 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         this.stage = stage;
-        Scene scene = MenuInicio();
+        ControladorPrincipal controladorPrincipal = new ControladorPrincipal(this.stage);
         stage.setTitle("AlgoChess");
-        stage.setScene(scene);
-        stage.setMinWidth(950);
-        stage.setMinHeight(800);
-        //reproducirMusicaDeFondo();
+        stage.setMinWidth(1024);
+        stage.setMinHeight(720);
+        stage.setScene(controladorPrincipal.MenuInicio());
         stage.show();
     }
 
-    public StackPane principal(){
-        StackPane stackPane = new StackPane();
-        Image titleBackground = new Image(getClass().getResourceAsStream("imagenes/menu.jpg"), 950, 800, false, true);
-        BackgroundImage imagenTitulo = new BackgroundImage(titleBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
-
-        stackPane.setBackground(new Background(imagenTitulo));
-        stackPane.setMinWidth(950);
-        stackPane.setMinHeight(800);
-        return stackPane;
-    }
-
-    public Scene MenuInicio(){
-        StackPane stackPane = principal();
-        VBox canvas = new VBox();
-        HBox contenedorBotonSalir = new HBox();
-        BotonSalir salir = new BotonSalir();
-        contenedorBotonSalir.getChildren().add(salir);
-        HBox contenedorPrincipal = new HBox();
-        contenedorPrincipal.setMinHeight(700);
-
-        BotonComenzar comenzar = new BotonComenzar(contenedorPrincipal);
-        contenedorPrincipal.setAlignment(Pos.CENTER);
-        contenedorPrincipal.getChildren().add(comenzar);
-        comenzar.setOnAction(actionEvent -> {stage.setScene(CreacionDeUsuarios());});
-        canvas.getChildren().add(contenedorBotonSalir);
-        canvas.getChildren().add(contenedorPrincipal);
 
 
-        stackPane.getChildren().add(canvas);
-        return new Scene(stackPane);
-    }
-
-    public Scene CreacionDeUsuarios(){
-        StackPane stackPane = principal();
-        VBox canvas = new VBox();
-        HBox contenedorBotonSalir = new HBox();
-        BotonSalir salir = new BotonSalir();
-        contenedorBotonSalir.getChildren().add(salir);
-        HBox contenedorPrincipal = new HBox();
-        contenedorPrincipal.setMinHeight(700);
-        contenedorPrincipal.setAlignment(Pos.CENTER);
-        TextField nombreJugador1 = new TextField("Ingrese nombre jugador 1");
-        TextField nombreJugador2 = new TextField("Ingrese nombre jugador 2");
-        nombreJugador1.textProperty().addListener((observableValue, s, t1) ->{});
-        nombreJugador2.textProperty().addListener((observableValue, s, t1) ->{});
-        nombreJugador1.setMaxWidth(220);
-        nombreJugador2.setMaxWidth(220);
-        VBox panelNombreJugadores = new VBox(40);
-        panelNombreJugadores.setAlignment(Pos.CENTER);
-        canvas.getChildren().add(contenedorBotonSalir);
-        BotonJugar jugar = new BotonJugar(contenedorPrincipal, nombreJugador1, nombreJugador2);
-        jugar.setOnAction(actionEvent -> {
-            stage.setScene(MenuSeleccionDeUnidades(nombreJugador1.getText(), nombreJugador2.getText()));
-        });
-        panelNombreJugadores.getChildren().addAll(nombreJugador1, nombreJugador2, jugar);
-        contenedorPrincipal.getChildren().add(panelNombreJugadores);
-        canvas.getChildren().add(contenedorPrincipal);
-        stackPane.getChildren().add(canvas);
-        return new Scene(stackPane);
-    }
-
-    public Scene MenuSeleccionDeUnidades(String nombreJugador1, String nombreJugador2) {
-        Tablero tablero = new Tablero();
-        Jugador jugador1 = new Jugador(nombreJugador1, tablero, 1);
-        Jugador jugador2 = new Jugador(nombreJugador2, tablero, 2);
-
-        StackPane stackPane = principal();
-        VBox canvas = new VBox();
-
-        HBox contenedorSuperior = new HBox(10);
-        contenedorSuperior.setAlignment(Pos.CENTER_LEFT);
-        BotonSalir salir = new BotonSalir();
-        Label turno = new Label("Es turno de jugador: " + jugador1.obtenerNombre() + ".");
-        turno.setStyle("-fx-text-fill:WHITE;");
-        Label estadoAccionDelTurno = new Label("Jugador1 seleccione unidad.");
-        estadoAccionDelTurno.setStyle("-fx-text-fill:WHITE;");
-        contenedorSuperior.getChildren().addAll(salir, turno, estadoAccionDelTurno);
-
-        Label puntajeJugador1 = new Label("Puntaje restante " + jugador1.obtenerNombre() + ": " + jugador1.obtenerPuntos());
-        puntajeJugador1.setStyle("-fx-text-fill:WHITE;");
-        Label puntajeJugador2 = new Label("Puntaje restante " + jugador2.obtenerNombre() + ": " + jugador2.obtenerPuntos());
-        puntajeJugador2.setStyle("-fx-text-fill:WHITE;");
-
-        HBox contenedorPrincipal = new HBox(20);                                      //VER ESPACIAMIENTO
-        contenedorPrincipal.setMinHeight(700);
-        contenedorPrincipal.setAlignment(Pos.CENTER);
-        TableroVista tableroVista = new TableroVista(tablero, jugador1, jugador2, puntajeJugador1, puntajeJugador2, turno, estadoAccionDelTurno);
-        tableroVista.deshabilitarLadoTablero(2);
-        tableroVista.setearStage(this.stage, principal());
-
-        SeleccionDeUnidades seleccion = new SeleccionDeUnidades(jugador1, jugador2, tableroVista);
-        tableroVista.setearSeleccionDeUnidades(seleccion);
-        tableroVista.deshabilitarBotonesUnidadDeJugador(2);
-
-        VBox contenedorUnidades1 = new VBox(20);                                       //VER ESPACIAMIENTO
-        contenedorUnidades1.setAlignment(Pos.CENTER);
-        contenedorUnidades1.getChildren().add(puntajeJugador1);
-        for (BotonUnidad boton1 : seleccion.unidadesPosiblesJugador1()) {
-            contenedorUnidades1.getChildren().add(boton1);
-        }
-
-        VBox contenedorUnidades2 = new VBox(20);                                       //VER ESPACIAMIENTO
-        contenedorUnidades2.setAlignment(Pos.CENTER);
-        contenedorUnidades2.getChildren().add(puntajeJugador2);
-        for (BotonUnidad boton2 : seleccion.unidadesPosiblesJugador2()) {
-            contenedorUnidades2.getChildren().add(boton2);
-        }
-
-        HBox contenedorTableroVista = new HBox();
-        contenedorTableroVista.getChildren().add(tableroVista);
-
-        contenedorPrincipal.getChildren().addAll(contenedorUnidades1, contenedorTableroVista, contenedorUnidades2);
-        canvas.getChildren().addAll(contenedorSuperior, contenedorPrincipal);
-        stackPane.getChildren().add(canvas);
-        return new Scene(stackPane);
-    }
-
-    /*public Scene MenuUbicacionUnidades(TableroVista tableroVista, Jugador jugador1, Jugador jugador2){
-        StackPane stackPane = principal();
-        VBox canvas = new VBox();
-        HBox contenedorBotonSalir = new HBox();
-        BotonSalir salir = new BotonSalir();
-        contenedorBotonSalir.getChildren().add(salir);
-
-        HBox contenedorTableroVista = new HBox();
-        contenedorTableroVista.getChildren().add(tableroVista);
-
-        HBox contenedorPrincipal = new HBox(20);                                      //VER ESPACIAMIENTO
-        contenedorPrincipal.setMinHeight(700);
-        contenedorPrincipal.setAlignment(Pos.CENTER);
-
-        VBox contenedorUnidades = new VBox();
-        VBox unidadesJugador1 = new VBox();
-        VBox unidadesJugador2 = new VBox();
-        for(Unidad unidad : jugador1.obtenerListaUnidades()){
-            UnidadVista vista = new UnidadVista(tableroVista, unidad);
-            unidadesJugador1.getChildren().add(vista);
-        }
-        for(Unidad unidad : jugador2.obtenerListaUnidades()){
-            UnidadVista vista = new UnidadVista(tableroVista, unidad);
-            unidadesJugador2.getChildren().add(vista);
-        }
-        contenedorUnidades.getChildren().addAll(unidadesJugador1, unidadesJugador2);
-
-        canvas.getChildren().add(contenedorUnidades);
-        stackPane.getChildren().add(canvas);
-
-        return new Scene(stackPane);
-    }*/
-
-
-
-    public void reproducirMusicaDeFondo() {
+    /*public void reproducirMusicaDeFondo() {
         String musicFile = "/TP2/src/Sonidos/phoenix-ft-cailin-russo-and-chrissy-costanza-worlds-2019-league-of-legends.mp3";
         Media sound = new Media("file:///" + System.getProperty("user.dir").replace('\\', '/') + musicFile);
         this.mediaPlayer = new MediaPlayer(sound);
         this.mediaPlayer.play();
-    }
+    }*/
 }
 

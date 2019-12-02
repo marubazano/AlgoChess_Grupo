@@ -1,9 +1,10 @@
-package AlgoChess;
+package Jugador;
 
 import Excepciones.*;
 import Tablero.*;
 import Unidades.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Jugador {
     private String nombre;
@@ -18,7 +19,7 @@ public class Jugador {
         this.nombre = nombre;
         this.unidades = new ArrayList<>();
         this.tablero = tablero;
-        this.puntos = 10;
+        this.puntos = 20;
         this.nroJugador = nroJugador;
         this.estado = "JUGANDO";
     }
@@ -75,16 +76,14 @@ public class Jugador {
         return true;
     }
 
-    public boolean mover(Movible unidadMovible, Direccion direccion) {
-         return tablero.mover(unidadMovible, direccion);
-    }
+    public String mover(Movible unidadMovible, Direccion direccion) { return tablero.mover(unidadMovible, direccion); }
 
     public boolean estaEnLadoDelTableroCorrespondiente(Coordenada coordenada) {
         if (this.nroJugador == 1) {
-            if (coordenada.obtenerVertical() <= 5) return true;
+            if (coordenada.obtenerHorizontal() <= 10) return true;
             return false;
         }
-        if (coordenada.obtenerVertical() > 5) return true;
+        if (coordenada.obtenerHorizontal() > 10) return true;
         return false;
     }
 
@@ -94,29 +93,14 @@ public class Jugador {
 
     public String obtenerEstado() { return this.estado; }
 
-    public void realizarAccionDeUnidad(Unidad unaUnidad, Unidad otraUnidad, Jugador jugadorEnemigo) throws AccionInvalidaException {
-        //Dos posibilidades:
-        //1) Recibe un aliado y un enemigo, el aliado ataca al enemigo.
-        //2) Recibe un Curandero (aliado) y un aliado, el curandero cura al aliado.
-        if (accionValida(unaUnidad,otraUnidad)) unaUnidad.realizarAccion(otraUnidad,this.tablero,this.unidades);
-        else throw new AccionInvalidaException();
-        if (otraUnidad.obtenerVida()<=0) {
-            System.out.println("Soy un jugador, elimino la unidad muerta de mi lista de unidades.");
-            jugadorEnemigo.eliminarUnidadDelJugador(otraUnidad);
-            tablero.obtenerCasillero(otraUnidad.obtenerCoordenada()).vaciarCasillero();
-           // this.tablero.obtenerCasillero(otraUnidad.obtenerCoordenada()).vaciarCasillero();
+    public String realizarAccionDeUnidad(Unidad unaUnidad, Unidad otraUnidad) {
+        try {
+            unaUnidad.realizarAccion(otraUnidad, tablero, unidades);
+        } catch (AccionInvalidaException e) {
+            return e.getMensaje();
         }
+        return "Se realizó acción.";
     }
-
-    public boolean accionValida (Unidad unidad1, Unidad unidad2) throws AccionInvalidaException{
-        if (this.unidades.contains(unidad2) && !esCurandero(unidad1)) return false;  //trató de atacar A una unidad aliada
-        if (!this.unidades.contains(unidad1) && !esCurandero(unidad2)) return false; //trató de atacar CON una unidad enemiga
-        if (!this.unidades.contains(unidad2) && esCurandero(unidad1)) return false; //trató de curar A unidad enemiga
-        if (!this.unidades.contains(unidad1) && esCurandero(unidad2)) return false; // trato de curar CON un curandero enemigo
-        return true;
-    }
-
-    public boolean esCurandero(Unidad unidad) { return (unidad instanceof Curandero); }
 
     public void asignarTurno(boolean turno){
         this.esTurno = turno;
@@ -126,9 +110,24 @@ public class Jugador {
         return this.esTurno;
     }
 
-    public int obtenerNumeroJugador() {
-        return this.nroJugador;
+    public ArrayList<Unidad> checkearUnidadesMuertas() {
+        ArrayList<Unidad> muertas = new ArrayList<>();
+        for(Iterator<Unidad> iterador = unidades.iterator(); iterador.hasNext();){
+            Unidad actual = iterador.next();
+            if(actual.obtenerVida() <= 0){
+                muertas.add(actual);
+                tablero.obtenerCasillero(actual.obtenerCoordenada()).vaciarCasillero();
+                iterador.remove();
+            }
+        }
+        return muertas;
     }
 
-}
+    public void actualizarEstadoJugador(){
+        if (unidades.size() == 0) this.estado = "PERDEDOR";
+    }
 
+    public int obtenerNumeroJugador() {
+        return nroJugador;
+    }
+}

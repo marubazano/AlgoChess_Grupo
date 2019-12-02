@@ -21,11 +21,7 @@ public enum Direccion {
     }
 
     public static Direccion obtenerDireccionSegunCoordenadas (Coordenada coordenadaOrigen, Coordenada coordenadaDestino){
-        //System.out.println("ESTOY EN OBTENERDIRECCIONSEGUNCOORDENADAS");
-        //System.out.println("coordenadaOrigenEnVertical: "+coordenadaOrigen.obtenerVertical() + " coordenadaOrigenEnHorizontal: "+coordenadaOrigen.obtenerHorizontal());
-        //System.out.println("coordenadaDestinoEnVertical: "+coordenadaDestino.obtenerVertical() + " coordenadaDestinoEnHorizontal: "+coordenadaDestino.obtenerHorizontal());
         Coordenada diferencia = coordenadaDestino.restarCoordenada(coordenadaOrigen);
-        //System.out.println("La diferencia es en vertical: "+diferencia.obtenerVertical() + " en horizontal: "+diferencia.obtenerHorizontal());
         for(Direccion dir: Direccion.values()){
             if(dir.obtenerDireccion().compararCoordenada(diferencia)) return dir;
         }

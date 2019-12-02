@@ -9,6 +9,5 @@ public class BotonComenzar extends Button {
         this.setText("COMENZAR");
         this.setPrefSize(250,90);
         this.setStyle("-fx-font: 30 arial; -fx-base: #000000; -fx-border-color: #6d1fd8; -fx-text-fill: #f4ed15");
-        //this.setOnAction(new HandlerBotonComenzar(hbox));
     }
 }

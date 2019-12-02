@@ -1,5 +1,6 @@
 package Tablero;
 
+import Controlador.Observable;
 import Excepciones.CasilleroInvalidoException;
 import Excepciones.CasilleroOcupadoException;
 import Unidades.Movible;
@@ -9,9 +10,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class Tablero {
-    private static final int CANT_FILAS = 10;
-    private static final int CANT_COLUMNAS = 10;
+public class Tablero extends Observable {
+    private static final int CANT_FILAS = 20;
+    private static final int CANT_COLUMNAS = 20;
     protected HashMap<Coordenada, Casillero> tablero;
 
     public Tablero() {
@@ -44,28 +45,25 @@ public class Tablero {
         }
     }
 
-    public boolean mover(Movible unidadMovible, Direccion direccion) {
+    public String mover(Movible unidadMovible, Direccion direccion) {
         //calcular la nueva Tablero.Coordenada
         Coordenada coordenadaActual = unidadMovible.obtenerCoordenada();
         try {
+            if(direccion == null) return "El casillero al que se movió no es contiguo.";
             Coordenada nuevaCoordenada = coordenadaActual.desplazar(direccion);
-            if(nuevaCoordenada.compararCoordenada(new Coordenada(0,0))) {
-                System.out.println("Entra a desplaza en 0,0");
-                return false;
-            }
             ubicarUnidad(unidadMovible, nuevaCoordenada);
             Casillero casilleroActual = obtenerCasillero(coordenadaActual);
             casilleroActual.vaciarCasillero();
             unidadMovible.mover(nuevaCoordenada);
-            return true;
+            notificarObservadores();
         }
         catch (CasilleroOcupadoException e) {
-            e.getMensaje();
+            return e.getMensaje();
         }
         catch (CasilleroInvalidoException e) {
-            e.getMensaje();
+            return e.getMensaje();
         }
-        return false;
+        return ("La unidad " + unidadMovible.getClass().getSimpleName() + " se movió");
     }
 
     public ArrayList<Unidad> obtenerUnidadesContiguas(Unidad unidad) {
@@ -100,9 +98,9 @@ public class Tablero {
     public Unidad obtenerContiguaEnDireccion(Unidad unidad, Direccion direccion) throws CasilleroInvalidoException {
         Coordenada desplazada;
         Coordenada actual = unidad.obtenerCoordenada();
-        desplazada = actual.desplazar(direccion);
-        Casillero casillero = obtenerCasillero(desplazada);
-        try {
+        try{
+            desplazada = actual.desplazar(direccion);
+            Casillero casillero = obtenerCasillero(desplazada);
             if (casillero.estaOcupado()) {
                 Unidad contigua = casillero.obtenerUnidad();
                 return contigua;

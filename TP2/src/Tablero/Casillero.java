@@ -1,9 +1,10 @@
 package Tablero;
 
+import Controlador.Observable;
 import Excepciones.CasilleroOcupadoException;
 import Unidades.Unidad;
 
-public class Casillero {
+public class Casillero extends Observable {
 
     private Unidad unidadQueOcupa;
     private boolean estaOcupado;
@@ -22,11 +23,13 @@ public class Casillero {
         this.unidadQueOcupa = unidad;
         unidad.ubicarEnCoodenada(coordenada);
         this.estaOcupado = true;
+        notificarObservadores();
     }
 
     public void vaciarCasillero() {
         this.unidadQueOcupa = null;
         this.estaOcupado = false;
+        notificarObservadores();
     }
 
     public Unidad obtenerUnidad(){
