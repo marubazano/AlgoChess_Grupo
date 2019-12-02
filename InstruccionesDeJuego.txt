@@ -1,0 +1,8 @@
+<--------------AlgoChess - Instrucciones de Juego-------------->
+Para mover/realizar accion de una unidad, siendo el turno del jugador,
+se la selecciona con el clic izquierdo, luego se selecciona otra unidad
+(puede ser propia o del enemigo) o un casillero contiguo. Si hay 3 soldados
+contiguos del mismo jugador en el tablero, se puede seleccionar a los 3 con el
+clic derecho en un solo turno para armar un batallon y luego apretar con clic derecho 
+en un casillero contiguo a la segunda unidad seleccionada para que se muevan
+los 3 soldados juntos.

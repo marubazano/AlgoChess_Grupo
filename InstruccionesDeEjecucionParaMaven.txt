@@ -1,0 +1,9 @@
+<--------------Instrucciones para ejecucion de AlgoChess con Maven (pom.xml)-------------->
+
+Estando en el root del proyecto (donde se encuentra el archivo pom.xml), ejecutamos desde linea de comandos 
+"mvn install". Esto genera todos los binarios necesarios para la ejecucion. Llegada a la instancia de armado de 
+paquete, maven crea un .jar ejecutable, ensamblando los .java y las dependencias de JavaFx. El pom.xml esta compilando con la JDK 
+13, puede cambiarse por la JDK instalada en la pc en las primeras lineas (puede que el juego no compile si la JDK es anterior).
+La JDK debe ser superior a la 8, ya que utilizamos JavaFx 11 para el proyecto y este no viene incluido xa todo JDK > 8.
+Una vez terminada la ejecucion de maven, en el mismo directorio, en la carpeta target, nos creó el ejectutable. Este se puede
+correr desde linea de comandos haciendo "java -jar nombre-del-ejecutable.jar".
